@@ -4,6 +4,7 @@ import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import { getCurrentUser } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
+import { uploadToSupabase, hasSupabaseStorage } from "@/lib/storage";
 
 export const runtime = "nodejs";
 const MAX_BYTES = 50 * 1024 * 1024;
@@ -22,6 +23,11 @@ export async function POST(req: NextRequest) {
     if (file.size > MAX_BYTES) return NextResponse.json({ error: "File is too large. Maximum is 50MB." }, { status: 400 });
     const ext = path.extname(file.name).toLowerCase() || (file.type.startsWith("video/") ? ".mp4" : ".jpg");
     const filename = `${Date.now()}-${randomUUID()}${ext}`;
+    const key = `uploads/${filename}`;
+    if (hasSupabaseStorage()) {
+      const url = await uploadToSupabase(key, Buffer.from(await file.arrayBuffer()), file.type);
+      return NextResponse.json({ url, mediaType: file.type.startsWith("video/") ? "VIDEO" : "IMAGE", size: file.size, name: file.name });
+    }
     const dir = path.join(process.cwd(), "public", "uploads");
     await mkdir(dir, { recursive: true });
     await writeFile(path.join(dir, filename), Buffer.from(await file.arrayBuffer()));
