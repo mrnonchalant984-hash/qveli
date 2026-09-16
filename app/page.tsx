@@ -9,7 +9,7 @@ export default function Landing() {
   return <main className="landing">
     <nav className="landingNav">
       <Link href="/" className="brandMark"><span className="qIcon">Q</span><span>Qevli</span></Link>
-      <div className="navLinks"><a href="#features">Features</a><a href="#about">About</a><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></div>
+      <div className="navLinks"><a href="#features">Features</a><a href="#about">About</a><Link href="/collaborators">Collaborators</Link><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></div>
       <div className="navActions"><Link className="navLogin" href="/login">Log in</Link><Link className="primaryBtn" href="/signup">Get started <ArrowRight size={16}/></Link></div>
     </nav>
 

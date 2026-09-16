@@ -3,9 +3,9 @@ import { ok, serverError } from '@/lib/http';
 import { flags } from '@/lib/platform';
 
 const defaultBoostPlans = [
-  { id: 'profile-boost-7d', code: 'profile-boost-7d', name: 'Profile Boost', description: 'Boost a profile for 7 days to get more visibility in discovery.', priceMinor: 5000, currency: 'NGN', active: true },
-  { id: 'profile-boost-30d', code: 'profile-boost-30d', name: 'Profile Spotlight', description: 'Boost a profile for 30 days with priority placement.', priceMinor: 15000, currency: 'NGN', active: true },
-  { id: 'profile-boost-90d', code: 'profile-boost-90d', name: 'Featured Profile', description: 'Boost a profile for 90 days and keep it highly visible.', priceMinor: 35000, currency: 'NGN', active: true },
+  { id: 'profile-boost-7d', code: 'profile-boost-7d', name: '7-day Profile Boost', description: 'A short campaign to put your profile in front of more people.', priceMinor: 250000, currency: 'NGN', active: true },
+  { id: 'profile-boost-30d', code: 'profile-boost-30d', name: '30-day Profile Spotlight', description: 'Sustained visibility for creators, professionals and growing communities.', priceMinor: 750000, currency: 'NGN', active: true },
+  { id: 'profile-boost-90d', code: 'profile-boost-90d', name: '90-day Featured Profile', description: 'Long-running profile promotion for serious audience growth.', priceMinor: 1800000, currency: 'NGN', active: true },
 ];
 
 export async function GET() {

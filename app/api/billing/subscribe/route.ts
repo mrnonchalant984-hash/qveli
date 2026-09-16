@@ -7,9 +7,9 @@ import { flags } from '@/lib/platform';
 import { initializeTransaction } from '@/lib/monnify';
 
 const fallbackProfileBoostPlans = {
-  'profile-boost-7d': { id: 'profile-boost-7d', code: 'profile-boost-7d', name: 'Profile Boost', priceMinor: 5000, currency: 'NGN', durationDays: 7 },
-  'profile-boost-30d': { id: 'profile-boost-30d', code: 'profile-boost-30d', name: 'Profile Spotlight', priceMinor: 15000, currency: 'NGN', durationDays: 30 },
-  'profile-boost-90d': { id: 'profile-boost-90d', code: 'profile-boost-90d', name: 'Featured Profile', priceMinor: 35000, currency: 'NGN', durationDays: 90 },
+  'profile-boost-7d': { id: 'profile-boost-7d', code: 'profile-boost-7d', name: '7-day Profile Boost', priceMinor: 250000, currency: 'NGN', durationDays: 7 },
+  'profile-boost-30d': { id: 'profile-boost-30d', code: 'profile-boost-30d', name: '30-day Profile Spotlight', priceMinor: 750000, currency: 'NGN', durationDays: 30 },
+  'profile-boost-90d': { id: 'profile-boost-90d', code: 'profile-boost-90d', name: '90-day Featured Profile', priceMinor: 1800000, currency: 'NGN', durationDays: 90 },
 } as const;
 
 export async function POST(req: NextRequest) {
