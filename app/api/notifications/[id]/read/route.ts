@@ -1,0 +1,2 @@
+import { getCurrentUser } from '@/lib/auth'; import { prisma } from '@/lib/prisma'; import { ok, unauthorized, notFound, serverError } from '@/lib/http';
+export async function POST(_:Request,{params}:{params:Promise<{id:string}>}){try{const me=await getCurrentUser();if(!me)return unauthorized();const {id}=await params;const n=await prisma.notification.findFirst({where:{id,recipientId:me.id}});if(!n)return notFound('Notification not found.');await prisma.notification.update({where:{id},data:{readAt:new Date()}});return ok({read:true});}catch{return serverError();}}

@@ -1,0 +1,2 @@
+import { getCurrentUser } from '@/lib/auth'; import { bad, ok, unauthorized } from '@/lib/http'; import { flags } from '@/lib/platform';
+export async function GET(){const u=await getCurrentUser();if(!u)return unauthorized();if(u.role!=='ADMIN')return bad('Admin access required.',403);return ok({flags,environment:process.env.NODE_ENV,cdn:Boolean(process.env.CDN_BASE_URL),storage:Boolean(process.env.CLOUDINARY_CLOUD_NAME||process.env.S3_BUCKET)});}

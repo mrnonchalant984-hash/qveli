@@ -1,0 +1,2 @@
+import { getCurrentUser } from '@/lib/auth'; import { prisma } from '@/lib/prisma'; import { ok, unauthorized, serverError } from '@/lib/http';
+export async function GET(){try{const me=await getCurrentUser();if(!me)return unauthorized();const blocks=await prisma.block.findMany({where:{blockerId:me.id},include:{blocked:{select:{id:true,name:true,username:true,avatarUrl:true}}},orderBy:{createdAt:'desc'}});return ok({blocks});}catch{return serverError();}}

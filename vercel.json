@@ -1,0 +1,1 @@
+{"crons":[{"path":"/api/official-feed/sync","schedule":"*/30 * * * *"}]}

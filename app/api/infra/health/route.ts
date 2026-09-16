@@ -1,0 +1,2 @@
+import { prisma } from '@/lib/prisma'; import { ok } from '@/lib/http'; import { flags } from '@/lib/platform';
+export async function GET(){const started=Date.now();let database='down';try{await prisma.$queryRaw`SELECT 1`;database='up';}catch{}return ok({service:'qevli',database,latencyMs:Date.now()-started,features:{livekit:flags.livekit,cloudStorage:flags.cloudStorage,redis:flags.redis,email:flags.email,push:flags.push,monetization:flags.monetization}});}

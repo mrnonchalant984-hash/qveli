@@ -1,0 +1,1 @@
+export default function Loading(){return <main className="qevliSplash" aria-label="Loading Qevli"><div className="splashLogo">Q</div><div className="splashName">Qevli</div><div className="splashDots"><i/><i/><i/></div></main>}

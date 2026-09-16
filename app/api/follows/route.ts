@@ -1,0 +1,2 @@
+import { getCurrentUser } from '@/lib/auth'; import { prisma } from '@/lib/prisma'; import { ok, unauthorized, serverError } from '@/lib/http';
+export async function GET(){try{const me=await getCurrentUser();if(!me)return unauthorized();const rows=await prisma.follow.findMany({where:{followerId:me.id},include:{following:{select:{id: true,username:true,name:true,avatarUrl:true,bio:true}}},orderBy:{createdAt:'desc'}});return ok({following:rows.map(x=>x.following)});}catch{return serverError();}}

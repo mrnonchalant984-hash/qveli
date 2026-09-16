@@ -1,0 +1,2 @@
+import { getCurrentUser } from '@/lib/auth'; import { prisma } from '@/lib/prisma'; import { bad, ok, unauthorized, serverError } from '@/lib/http';
+export async function GET(){try{const u=await getCurrentUser();if(!u)return unauthorized();if(u.role!=='ADMIN')return bad('Admin access required.',403);const since=new Date(Date.now()-7*86400000);const rows=await prisma.analyticsEvent.groupBy({by:['name'],where:{createdAt:{gte:since}},_count:{_all:true},orderBy:{_count:{name:'desc'}}});return ok({since,events:rows});}catch{return serverError();}}

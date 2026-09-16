@@ -1,0 +1,10 @@
+ALTER TABLE "User" ADD COLUMN "school" TEXT;
+ALTER TABLE "User" ADD COLUMN "schoolUrl" TEXT;
+ALTER TABLE "User" ADD COLUMN "workplace" TEXT;
+ALTER TABLE "User" ADD COLUMN "workplaceUrl" TEXT;
+ALTER TABLE "User" ADD COLUMN "jobTitle" TEXT;
+ALTER TABLE "User" ADD COLUMN "currentCity" TEXT;
+ALTER TABLE "User" ADD COLUMN "hometown" TEXT;
+ALTER TABLE "User" ADD COLUMN "website" TEXT;
+ALTER TABLE "User" ADD COLUMN "education" TEXT;
+ALTER TABLE "User" ADD COLUMN "interests" TEXT;

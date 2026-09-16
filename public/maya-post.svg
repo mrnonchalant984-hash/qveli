@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+<defs>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#182a72"/><stop offset=".55" stop-color="#ef8b65"/><stop offset="1" stop-color="#ffd27a"/></linearGradient>
+ <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#304b88"/><stop offset="1" stop-color="#0f244c"/></linearGradient>
+</defs>
+<rect width="900" height="600" fill="url(#sky)"/>
+<circle cx="650" cy="310" r="62" fill="#ffe8a3" opacity=".95"/>
+<path d="M0 360L120 275 220 350 325 240 420 345 540 260 650 355 770 225 900 335V600H0Z" fill="#18233d"/>
+<path d="M0 420c140-35 245-28 360 0 130 32 250 35 540-8v188H0Z" fill="url(#water)"/>
+<path d="M520 430c105-18 205-12 320 5" fill="none" stroke="#f7c96a" stroke-width="10" opacity=".55"/>
+<path d="M0 505c170-55 300-45 470 4 150 43 270 34 430-3v94H0Z" fill="#08162f"/>
+<text x="42" y="70" fill="white" font-family="Arial,sans-serif" font-size="30" font-weight="700" opacity=".9">A little moment worth sharing ✨</text>
+</svg>

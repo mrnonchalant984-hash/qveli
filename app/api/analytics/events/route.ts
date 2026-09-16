@@ -1,0 +1,3 @@
+import { NextRequest } from 'next/server';
+import { enqueueQevliJob } from '@/lib/queue'; import { getCurrentUser } from '@/lib/auth'; import { ok, serverError } from '@/lib/http'; import { track } from '@/lib/platform';
+export async function POST(req:NextRequest){try{const u=await getCurrentUser();const b=await req.json();if(!b.name)return ok({tracked:false});const name=String(b.name).slice(0,100); await track(u?.id||null,name,b.path?String(b.path).slice(0,200):undefined,b.metadata); void enqueueQevliJob('qevli-analytics','analytics-event',{userId:u?.id||null,name,path:b.path||null});return ok({tracked:true});}catch{return serverError();}}

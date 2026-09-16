@@ -1,0 +1,18 @@
+"use client";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { ArrowLeft, CheckCircle2, Mail, ShieldCheck } from "lucide-react";
+
+export default function VerifyAccount() {
+  const [userId, setUserId] = useState("");
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [done, setDone] = useState(false);
+  const [message, setMessage] = useState("");
+  const [busy, setBusy] = useState("");
+  const [devCode, setDevCode] = useState("");
+  useEffect(() => { const raw = sessionStorage.getItem("qevliSignup"); if (!raw) return; try { const data = JSON.parse(raw); setUserId(data.userId || ""); setEmail(data.email || ""); setDevCode(data.developmentCodes?.email || ""); } catch {} }, []);
+  const verify = async () => { if (!userId) return setMessage("Your signup session is missing. Please create the account again."); if (!/^\d{6}$/.test(code)) return setMessage("Enter the 6-digit code."); setBusy("verify"); setMessage(""); try { const r = await fetch("/api/auth/verify-otp", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ userId, channel: "EMAIL", code }) }); const j = await r.json(); if (!r.ok) { setMessage(j.error || "Verification failed."); return; } setDone(true); sessionStorage.removeItem("qevliSignup"); location.href = j.redirect || "/dashboard"; } catch { setMessage("Unable to verify right now."); } finally { setBusy(""); } };
+  const resend = async () => { setBusy("resend"); setMessage(""); try { const r = await fetch("/api/auth/send-otp", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ userId, channel: "EMAIL" }) }); const j = await r.json(); if (!r.ok) { setMessage(j.error || "Could not resend code."); return; } if (j.developmentCode) setDevCode(j.developmentCode); setMessage("Email code sent again."); } catch { setMessage("Unable to resend code."); } finally { setBusy(""); } };
+  return <main className="authPage verifyPage"><div className="authBrand"><Link href="/"><span className="qIcon">Q</span> Qevli</Link><Link href="/signup" className="back"><ArrowLeft size={16}/> Back to signup</Link></div><div className="verifyShell"><div className="verifyIntro"><div className="verifyLogo"><ShieldCheck size={28}/></div><div className="eyebrow">Secure your account</div><h1>Verify your Qevli email.</h1><p>Enter the code sent to your email address. Phone verification is currently disabled.</p></div><section className="authCard verifyCard"><div className={`verifyBox ${done ? "verified" : ""}`}><div className="verifyBoxHead"><div className="lockIcon">{done ? <CheckCircle2 size={19}/> : <Mail size={18}/>}</div><div><h2>Email verification</h2><p>{email || "your email"}</p></div>{done && <span className="verifiedTag">Verified</span>}</div>{done ? <div className="verifiedLine"><CheckCircle2 size={16}/> Confirmed</div> : <><input className="otpInput" inputMode="numeric" maxLength={6} value={code} onChange={e => setCode(e.target.value.replace(/\D/g, ""))} placeholder="000000" aria-label="Email verification code"/><button className="primaryBtn full" disabled={busy === "verify"} onClick={verify}>{busy === "verify" ? "Checking…" : "Verify email"}</button><button className="textBtn" type="button" onClick={resend} disabled={busy === "resend"}>{busy === "resend" ? "Sending…" : "Resend code"}</button></>}</div>{devCode && <div className="devCodeBox"><b>Local development code</b><span>Email: {devCode}</span><small>Shown only in local development when a real provider is not configured.</small></div>}{message && <div className="demoNotice">{message}</div>}<p className="authFoot">Already verified? <Link href="/login">Log in</Link></p></section></div></main>;
+}

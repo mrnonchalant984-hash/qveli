@@ -1,0 +1,4 @@
+"use client";
+import { useEffect, useState } from "react";
+const messages = ["Getting your screen ready", "Connecting your Qevli world", "Loading your people and communities", "Almost there"];
+export default function LaunchSplash(){const [show,setShow]=useState(true),[message,setMessage]=useState(messages[0]);useEffect(()=>{const rotate=window.setInterval(()=>setMessage(current=>messages[(messages.indexOf(current)+1)%messages.length]),550);const hide=window.setTimeout(()=>setShow(false),2100);return()=>{window.clearInterval(rotate);window.clearTimeout(hide)}},[]);if(!show)return null;return <div className="qevliSplash" aria-label="Qevli loading"><div className="splashBrand"><div className="splashLogo">Q</div><div className="splashName">Qevli</div></div><div className="splashTagline">{message}</div><div className="splashDots"><i/><i/><i/></div></div>}
