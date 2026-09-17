@@ -20,32 +20,33 @@
     "seed:official-sources": "tsx scripts/seed-official-sources.ts"
   },
   "dependencies": {
-    "next": "15.5.24",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "lucide-react": "^0.468.0",
-    "bcryptjs": "^3.0.2",
-    "jose": "^6.1.0",
-    "@prisma/client": "7.10.0",
-    "zod": "^4.1.5",
-    "@prisma/adapter-pg": "7.10.0",
-    "pg": "^8.16.3",
-    "livekit-client": "^2.15.4",
-    "livekit-server-sdk": "^2.15.0",
-    "@upstash/redis": "^1.35.6",
-    "bullmq": "5.80.12",
-    "ioredis": "^5.7.0",
     "@aws-sdk/client-s3": "^3.886.0",
     "@aws-sdk/s3-request-presigner": "^3.886.0",
-    "dotenv": "^17.4.2"
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
+    "@upstash/redis": "^1.35.6",
+    "@vercel/analytics": "^2.0.1",
+    "bcryptjs": "^3.0.2",
+    "bullmq": "5.80.12",
+    "dotenv": "^17.4.2",
+    "ioredis": "^5.7.0",
+    "jose": "^6.1.0",
+    "livekit-client": "^2.15.4",
+    "livekit-server-sdk": "^2.15.0",
+    "lucide-react": "^0.468.0",
+    "next": "15.5.24",
+    "pg": "^8.16.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "zod": "^4.1.5"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.0.0",
     "prisma": "7.10.0",
-    "@types/bcryptjs": "^2.4.6",
-    "tsx": "^4.20.5"
+    "tsx": "^4.20.5",
+    "typescript": "^5.0.0"
   }
 }

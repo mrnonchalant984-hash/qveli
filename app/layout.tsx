@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import ServiceWorker from '@/components/ServiceWorker';
 import LaunchSplash from '@/components/LaunchSplash';
+import { Analytics } from '@vercel/analytics/next';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -13,5 +14,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="en"><body><ServiceWorker /><LaunchSplash />{children}</body></html>;
+  return <html lang="en"><body><ServiceWorker /><LaunchSplash />{children}<Analytics /></body></html>;
 }
