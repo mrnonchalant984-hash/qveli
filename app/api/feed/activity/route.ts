@@ -3,6 +3,7 @@ import { getCurrentUser } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { bad, created, ok, unauthorized, serverError } from '@/lib/http';
 import { cleanText } from '@/lib/validation';
+import { rateLimit } from '@/lib/rate-limit';
 
 const allowedTargets = new Set(['OFFICIAL','QVIEWS']);
 const allowedActions = new Set(['REACTION','COMMENT','SHARE','REPOST']);
@@ -28,7 +29,7 @@ export async function GET(req:NextRequest){
 export async function POST(req:NextRequest){
   try{
     const me=await getCurrentUser();if(!me)return unauthorized();
-    const b=await req.json().catch(()=>({}));const targetType=String(b.targetType||'').toUpperCase();const targetId=String(b.targetId||'');const action=String(b.action||'').toUpperCase();
+    const rl=await rateLimit(`feed-activity:${me.id}`,120,60);if(!rl.allowed)return bad('You are doing that too quickly. Please wait a moment.',429);const b=await req.json().catch(()=>({}));const targetType=String(b.targetType||'').toUpperCase();const targetId=String(b.targetId||'');const action=String(b.action||'').toUpperCase();
     if(!allowedTargets.has(targetType)||!targetId)return bad('A valid feed target is required.');
     if(!allowedActions.has(action))return bad('Invalid feed activity.');
     if(action==='REACTION'){

@@ -5,9 +5,9 @@ export const flags = {
   monetization: process.env.QEVLI_MONETIZATION_ENABLED === 'true',
   email: process.env.QEVLI_EMAIL_ENABLED === 'true',
   push: process.env.QEVLI_PUSH_ENABLED === 'true',
-  cloudStorage: Boolean((process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.SUPABASE_STORAGE_BUCKET) || process.env.CLOUDINARY_CLOUD_NAME || process.env.S3_BUCKET),
+  cloudStorage: Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.SUPABASE_STORAGE_BUCKET),
   redis: Boolean(process.env.REDIS_URL || process.env.UPSTASH_REDIS_REST_URL),
-  livekit: Boolean(process.env.LIVEKIT_API_KEY && process.env.LIVEKIT_API_SECRET),
+  livekit: Boolean(process.env.LIVEKIT_API_KEY && process.env.LIVEKIT_API_SECRET && process.env.NEXT_PUBLIC_LIVEKIT_URL),
 };
 
 export function hashSecret(value: string) {

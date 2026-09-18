@@ -27,7 +27,7 @@ Qevli is a mobile-first social platform built with Next.js 15, TypeScript, Prism
 Only an account with the `ADMIN` role can open `/admin` or grant verification. The supplied `create-admin.js` script only permits the `leonard` username.
 
 ## Media storage
-For local development, uploads are stored under `public/uploads`. This is intentionally simple for local testing. Before a Vercel production deployment, replace this storage with a persistent object store such as Cloudinary or S3.
+For local development, uploads are stored under `public/uploads`. This is intentionally simple for local testing. Before a Vercel production deployment, replace this storage with a persistent object store Supabase Storage (including its S3-compatible endpoint).
 
 
 ## Profile and web discovery update

@@ -1,1 +1,1 @@
-import { getCurrentUser, publicUser } from '@/lib/auth'; import { ok, unauthorized } from '@/lib/http'; export async function GET(){const u=await getCurrentUser();return u?ok({user:publicUser(u)}):unauthorized();}
+import { getCurrentUser, publicUser, sessionUser } from '@/lib/auth'; import { ok, unauthorized } from '@/lib/http'; export async function GET(){const u=await getCurrentUser();return u?ok({user:sessionUser(u)}):unauthorized();}

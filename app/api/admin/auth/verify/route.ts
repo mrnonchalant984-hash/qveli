@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { hashSecret } from '@/lib/platform';
-import { createSession, publicUser } from '@/lib/auth';
+import { createSession, publicUser, sessionUser } from '@/lib/auth';
 import { bad, ok, serverError } from '@/lib/http';
 
 export async function POST(req: NextRequest) {
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     await prisma.adminAuthCode.update({ where: { id: row.id }, data: { usedAt: new Date() } });
     await prisma.user.update({ where: { id: user.id }, data: { lastSeenAt: new Date() } });
     await createSession(user.id);
-    return ok({ user: publicUser(user) });
+    return ok({ user: sessionUser(user) });
   } catch {
     return serverError();
   }

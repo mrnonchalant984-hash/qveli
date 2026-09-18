@@ -17,7 +17,9 @@
     "admin:start": "node admin-host/server.mjs",
     "seed:official-feed": "tsx scripts/seed-official-sources.ts && tsx scripts/seed-official-feed.ts",
     "sync:official-feed": "tsx scripts/sync-official-feed.ts",
-    "seed:official-sources": "tsx scripts/seed-official-sources.ts"
+    "seed:official-sources": "tsx scripts/seed-official-sources.ts",
+    "test": "node --test tests/*.test.mjs",
+    "verify:production": "npm run test && npm run build"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.886.0",

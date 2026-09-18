@@ -23,7 +23,6 @@ export async function GET(){
           status:'PENDING',
           requester:{
             emailVerifiedAt:{not:null},
-            phoneVerifiedAt:{not:null},
             blocksMade:{none:{blockedId:me.id}},
             blocksReceived:{none:{blockerId:me.id}}
           }
@@ -45,7 +44,6 @@ export async function GET(){
         where:{
           id:{not:me.id},
           emailVerifiedAt:{not:null},
-          phoneVerifiedAt:{not:null},
           blocksMade:{none:{blockedId:me.id}},
           blocksReceived:{none:{blockerId:me.id}},
           friendRequestsSent:{none:{addresseeId:me.id}},
@@ -55,7 +53,7 @@ export async function GET(){
         take:6,
         select:personSelect
       }),
-      prisma.post.findMany({where:{visibility:'PUBLIC',author:{emailVerifiedAt:{not:null},phoneVerifiedAt:{not:null}}},orderBy:{createdAt:'desc'},take:100,select:{text:true}})
+      prisma.post.findMany({where:{visibility:'PUBLIC',author:{emailVerifiedAt:{not:null}}},orderBy:{createdAt:'desc'},take:100,select:{text:true}})
     ]);
 
     const counts = new Map<string, number>();

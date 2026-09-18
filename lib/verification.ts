@@ -1,8 +1,9 @@
 import { prisma } from "@/lib/prisma";
+import crypto from "crypto";
 import { hashSecret } from "@/lib/platform";
 import { sendEmail } from "@/lib/email";
 
-function code() { return String(Math.floor(100000 + Math.random() * 900000)); }
+function code() { return String(crypto.randomInt(100000, 1000000)); }
 
 export function normalizePhone(value: string) {
   const raw = String(value || "").trim().replace(/[\s()-]/g, "");

@@ -28,8 +28,8 @@ async function syncOne(source:any){
 }
 export async function POST(req:NextRequest){
  try{
-  const secret=process.env.QEVLI_CRON_SECRET;const key=req.headers.get('x-qevli-cron')||req.headers.get('authorization')?.replace(/^Bearer\s+/i,'');const adminUser=await getCurrentUser();const authorizedAdmin=Boolean(adminUser&&adminUser.role==='ADMIN');
-  if(secret&&key!==secret&&!authorizedAdmin)return Response.json({error:'Unauthorized'},{status:401});
+  const secret=process.env.CRON_SECRET||process.env.QEVLI_CRON_SECRET;const key=req.headers.get('x-qevli-cron')||req.headers.get('authorization')?.replace(/^Bearer\s+/i,'');const adminUser=await getCurrentUser();const authorizedAdmin=Boolean(adminUser&&adminUser.role==='ADMIN');
+  if((secret && key!==secret && !authorizedAdmin) || (!secret && !authorizedAdmin))return Response.json({error:'Unauthorized'},{status:401});
   const sourceId=new URL(req.url).searchParams.get('sourceId');
   const sources=await prisma.officialFeedSource.findMany({where:{enabled:true,...(sourceId?{id:sourceId}:{})},orderBy:{name:'asc'}});
   if(sourceId&&sources.length===0)return Response.json({error:'Source not found or disabled.'},{status:404});

@@ -16,7 +16,7 @@ async function sendViaSmtp({ to, subject, html }: EmailInput) {
       port,
       secure: port === 465,
       auth: { user, pass },
-      tls: { rejectUnauthorized: false },
+      
     });
     const info = await transporter.sendMail({ from, to, subject, html });
     return !!info.messageId;
