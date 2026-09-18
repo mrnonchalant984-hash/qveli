@@ -28,8 +28,14 @@ export async function POST(req: NextRequest) {
 			await prisma.$transaction(async tx => {
 				await tx.paymentRecord.update({ where: { id: payment.id }, data: { status: 'PAID', providerRef: String(eventData.transactionReference || paymentReference), metadata: { ...paymentMetadata, monnify: eventData } } });
 				if (boostId) {
-					const boost = await tx.profileBoost.findUnique({ where: { id: boostId }, select: { metadata: true } });
-					await tx.profileBoost.update({ where: { id: boostId }, data: { providerRef: String(eventData.transactionReference || paymentReference), metadata: { ...((boost?.metadata as Record<string, unknown> | null) || {}), monnify: eventData, paymentConfirmedAt: new Date().toISOString() } } });
+					const boost = await tx.profileBoost.findUnique({ where: { id: boostId }, select: { metadata: true, targetUserId: true } });
+					if (boost) {
+						const metadata = (boost.metadata as Record<string, unknown> | null) || {};
+						const durationDays = Number(metadata.durationDays || 30);
+						const expiresAt = new Date(Date.now() + durationDays * 24 * 60 * 60 * 1000);
+						await tx.profileBoost.update({ where: { id: boostId }, data: { status: 'APPROVED', approvedAt: new Date(), expiresAt, providerRef: String(eventData.transactionReference || paymentReference), metadata: { ...metadata, monnify: eventData, paymentConfirmedAt: new Date().toISOString(), activation: 'AUTOMATIC_AFTER_PAYMENT' } } });
+						await tx.user.update({ where: { id: boost.targetUserId }, data: { profileBoostedUntil: expiresAt } });
+					}
 				}
 				if (plan) await tx.subscription.create({ data: { userId: payment.userId, planId: plan.id, status: 'ACTIVE', provider, providerRef: paymentReference, startsAt: new Date() } });
 				await tx.webhookEvent.update({ where: { provider_eventId: { provider, eventId } }, data: { processedAt: new Date() } });

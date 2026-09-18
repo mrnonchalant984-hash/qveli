@@ -153,7 +153,9 @@ exports.Prisma.UserScalarFieldEnum = {
   professionalMode: 'professionalMode',
   verified: 'verified',
   verifiedAt: 'verifiedAt',
-  profileBoostedUntil: 'profileBoostedUntil'
+  profileBoostedUntil: 'profileBoostedUntil',
+  coinBalance: 'coinBalance',
+  walletBonusAwardedAt: 'walletBonusAwardedAt'
 };
 
 exports.Prisma.FollowScalarFieldEnum = {
@@ -812,6 +814,32 @@ exports.Prisma.OutboxEventScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.OnboardingSurveyScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  source: 'source',
+  otherText: 'otherText',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FeatureRequestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FeatureRequestVoteScalarFieldEnum = {
+  id: 'id',
+  requestId: 'requestId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -886,6 +914,30 @@ exports.VerificationChannel = exports.$Enums.VerificationChannel = {
   PHONE: 'PHONE'
 };
 
+exports.OnboardingSource = exports.$Enums.OnboardingSource = {
+  SCHOOL: 'SCHOOL',
+  FRIEND: 'FRIEND',
+  GOOGLE: 'GOOGLE',
+  TIKTOK: 'TIKTOK',
+  INSTAGRAM: 'INSTAGRAM',
+  TWITTER: 'TWITTER',
+  AI: 'AI',
+  OTHER: 'OTHER'
+};
+
+exports.FeatureRequestCategory = exports.$Enums.FeatureRequestCategory = {
+  BUG: 'BUG',
+  FEATURE: 'FEATURE',
+  IMPROVEMENT: 'IMPROVEMENT'
+};
+
+exports.FeatureRequestStatus = exports.$Enums.FeatureRequestStatus = {
+  REQUESTED: 'REQUESTED',
+  PLANNED: 'PLANNED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  DONE: 'DONE'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Follow: 'Follow',
@@ -948,7 +1000,10 @@ exports.Prisma.ModelName = {
   AdCampaign: 'AdCampaign',
   WebhookEvent: 'WebhookEvent',
   BackgroundJob: 'BackgroundJob',
-  OutboxEvent: 'OutboxEvent'
+  OutboxEvent: 'OutboxEvent',
+  OnboardingSurvey: 'OnboardingSurvey',
+  FeatureRequest: 'FeatureRequest',
+  FeatureRequestVote: 'FeatureRequestVote'
 };
 
 /**

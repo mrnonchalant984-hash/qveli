@@ -54,6 +54,7 @@ export function publicUser(user: any) {
     verified: user.verified,
     verifiedAt: user.verifiedAt,
     profileBoostedUntil: user.profileBoostedUntil,
+    coinBalance: user.coinBalance ?? 0,
     isProfileBoosted: !!user.profileBoostedUntil && new Date(user.profileBoostedUntil).getTime() > Date.now(),
     emailVerifiedAt: user.emailVerifiedAt,
     twoFactorEnabled: user.twoFactorEnabled,

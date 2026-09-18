@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       await prisma.user.update({ where: { id: refreshed.id }, data: { verificationRequired: false } });
       await createSession(refreshed.id);
       const finalUser = await prisma.user.findUnique({ where: { id: refreshed.id } });
-      return ok({ verified: true, complete: true, user: publicUser(finalUser || refreshed), redirect: "/dashboard" });
+      return ok({ verified: true, complete: true, user: publicUser(finalUser || refreshed), redirect: "/onboarding" });
     }
     return ok({ verified: true, complete: false, channel });
   } catch { return serverError(); }

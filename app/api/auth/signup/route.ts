@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { bad, created, serverError } from "@/lib/http";
 import { cleanText, validEmail, validUsername } from "@/lib/validation";
 import { issueVerificationCodes, normalizePhone, validPhone } from "@/lib/verification";
+import { awardWelcomeBonusIfNeeded } from "@/lib/wallet";
 
 export async function POST(req: NextRequest) {
   try {
@@ -30,7 +31,8 @@ export async function POST(req: NextRequest) {
     }
     const passwordHash = await bcrypt.hash(password, 12);
     const user = await prisma.user.create({ data: { email, username, name, passwordHash, bio: "", phoneNumber, dateOfBirth, gender, verificationRequired: true } });
+    const wallet = await awardWelcomeBonusIfNeeded(user.id);
     const delivery = await issueVerificationCodes(user.id, email, phoneNumber, name);
-    return created({ userId: user.id, next: "/verify-account", delivery, message: "Your verification codes have been sent." });
+    return created({ userId: user.id, next: "/verify-account", delivery, wallet, message: "Your verification codes have been sent." });
   } catch { return serverError(); }
 }

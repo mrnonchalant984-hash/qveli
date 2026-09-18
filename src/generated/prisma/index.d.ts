@@ -323,6 +323,21 @@ export type BackgroundJob = $Result.DefaultSelection<Prisma.$BackgroundJobPayloa
  * 
  */
 export type OutboxEvent = $Result.DefaultSelection<Prisma.$OutboxEventPayload>
+/**
+ * Model OnboardingSurvey
+ * 
+ */
+export type OnboardingSurvey = $Result.DefaultSelection<Prisma.$OnboardingSurveyPayload>
+/**
+ * Model FeatureRequest
+ * 
+ */
+export type FeatureRequest = $Result.DefaultSelection<Prisma.$FeatureRequestPayload>
+/**
+ * Model FeatureRequestVote
+ * 
+ */
+export type FeatureRequestVote = $Result.DefaultSelection<Prisma.$FeatureRequestVotePayload>
 
 /**
  * Enums
@@ -390,6 +405,39 @@ export const ReportStatus: {
 
 export type ReportStatus = (typeof ReportStatus)[keyof typeof ReportStatus]
 
+
+export const OnboardingSource: {
+  SCHOOL: 'SCHOOL',
+  FRIEND: 'FRIEND',
+  GOOGLE: 'GOOGLE',
+  TIKTOK: 'TIKTOK',
+  INSTAGRAM: 'INSTAGRAM',
+  TWITTER: 'TWITTER',
+  AI: 'AI',
+  OTHER: 'OTHER'
+};
+
+export type OnboardingSource = (typeof OnboardingSource)[keyof typeof OnboardingSource]
+
+
+export const FeatureRequestCategory: {
+  BUG: 'BUG',
+  FEATURE: 'FEATURE',
+  IMPROVEMENT: 'IMPROVEMENT'
+};
+
+export type FeatureRequestCategory = (typeof FeatureRequestCategory)[keyof typeof FeatureRequestCategory]
+
+
+export const FeatureRequestStatus: {
+  REQUESTED: 'REQUESTED',
+  PLANNED: 'PLANNED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  DONE: 'DONE'
+};
+
+export type FeatureRequestStatus = (typeof FeatureRequestStatus)[keyof typeof FeatureRequestStatus]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -415,6 +463,18 @@ export const ReportReason: typeof $Enums.ReportReason
 export type ReportStatus = $Enums.ReportStatus
 
 export const ReportStatus: typeof $Enums.ReportStatus
+
+export type OnboardingSource = $Enums.OnboardingSource
+
+export const OnboardingSource: typeof $Enums.OnboardingSource
+
+export type FeatureRequestCategory = $Enums.FeatureRequestCategory
+
+export const FeatureRequestCategory: typeof $Enums.FeatureRequestCategory
+
+export type FeatureRequestStatus = $Enums.FeatureRequestStatus
+
+export const FeatureRequestStatus: typeof $Enums.FeatureRequestStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -1156,6 +1216,36 @@ export class PrismaClient<
     * ```
     */
   get outboxEvent(): Prisma.OutboxEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.onboardingSurvey`: Exposes CRUD operations for the **OnboardingSurvey** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OnboardingSurveys
+    * const onboardingSurveys = await prisma.onboardingSurvey.findMany()
+    * ```
+    */
+  get onboardingSurvey(): Prisma.OnboardingSurveyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.featureRequest`: Exposes CRUD operations for the **FeatureRequest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FeatureRequests
+    * const featureRequests = await prisma.featureRequest.findMany()
+    * ```
+    */
+  get featureRequest(): Prisma.FeatureRequestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.featureRequestVote`: Exposes CRUD operations for the **FeatureRequestVote** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FeatureRequestVotes
+    * const featureRequestVotes = await prisma.featureRequestVote.findMany()
+    * ```
+    */
+  get featureRequestVote(): Prisma.FeatureRequestVoteDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1664,7 +1754,10 @@ export namespace Prisma {
     AdCampaign: 'AdCampaign',
     WebhookEvent: 'WebhookEvent',
     BackgroundJob: 'BackgroundJob',
-    OutboxEvent: 'OutboxEvent'
+    OutboxEvent: 'OutboxEvent',
+    OnboardingSurvey: 'OnboardingSurvey',
+    FeatureRequest: 'FeatureRequest',
+    FeatureRequestVote: 'FeatureRequestVote'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1680,7 +1773,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "follow" | "block" | "post" | "postReaction" | "postShare" | "comment" | "repost" | "story" | "storyView" | "conversation" | "conversationMember" | "message" | "notification" | "report" | "officialFeedSource" | "officialFeedItem" | "officialFeedReaction" | "officialFeedComment" | "officialFeedShare" | "company" | "companyUpdate" | "companyFollow" | "group" | "groupMember" | "groupMessage" | "callSession" | "liveStream" | "friendship" | "event" | "eventAttendee" | "marketplaceListing" | "gamingTeam" | "gamingTeamMember" | "tournament" | "tournamentRegistration" | "tournamentMatch" | "savedItem" | "memory" | "platformRecord" | "verificationCode" | "adminAuthCode" | "emailVerificationToken" | "passwordResetToken" | "userSession" | "securityEvent" | "notificationPreference" | "pushSubscription" | "mediaAsset" | "analyticsEvent" | "moderationCase" | "appeal" | "feedActivity" | "recommendationFeedback" | "subscriptionPlan" | "subscription" | "profileBoost" | "paymentRecord" | "adCampaign" | "webhookEvent" | "backgroundJob" | "outboxEvent"
+      modelProps: "user" | "follow" | "block" | "post" | "postReaction" | "postShare" | "comment" | "repost" | "story" | "storyView" | "conversation" | "conversationMember" | "message" | "notification" | "report" | "officialFeedSource" | "officialFeedItem" | "officialFeedReaction" | "officialFeedComment" | "officialFeedShare" | "company" | "companyUpdate" | "companyFollow" | "group" | "groupMember" | "groupMessage" | "callSession" | "liveStream" | "friendship" | "event" | "eventAttendee" | "marketplaceListing" | "gamingTeam" | "gamingTeamMember" | "tournament" | "tournamentRegistration" | "tournamentMatch" | "savedItem" | "memory" | "platformRecord" | "verificationCode" | "adminAuthCode" | "emailVerificationToken" | "passwordResetToken" | "userSession" | "securityEvent" | "notificationPreference" | "pushSubscription" | "mediaAsset" | "analyticsEvent" | "moderationCase" | "appeal" | "feedActivity" | "recommendationFeedback" | "subscriptionPlan" | "subscription" | "profileBoost" | "paymentRecord" | "adCampaign" | "webhookEvent" | "backgroundJob" | "outboxEvent" | "onboardingSurvey" | "featureRequest" | "featureRequestVote"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -6272,6 +6365,228 @@ export namespace Prisma {
           }
         }
       }
+      OnboardingSurvey: {
+        payload: Prisma.$OnboardingSurveyPayload<ExtArgs>
+        fields: Prisma.OnboardingSurveyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OnboardingSurveyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OnboardingSurveyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload>
+          }
+          findFirst: {
+            args: Prisma.OnboardingSurveyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OnboardingSurveyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload>
+          }
+          findMany: {
+            args: Prisma.OnboardingSurveyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload>[]
+          }
+          create: {
+            args: Prisma.OnboardingSurveyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload>
+          }
+          createMany: {
+            args: Prisma.OnboardingSurveyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OnboardingSurveyCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload>[]
+          }
+          delete: {
+            args: Prisma.OnboardingSurveyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload>
+          }
+          update: {
+            args: Prisma.OnboardingSurveyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload>
+          }
+          deleteMany: {
+            args: Prisma.OnboardingSurveyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OnboardingSurveyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OnboardingSurveyUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload>[]
+          }
+          upsert: {
+            args: Prisma.OnboardingSurveyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OnboardingSurveyPayload>
+          }
+          aggregate: {
+            args: Prisma.OnboardingSurveyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOnboardingSurvey>
+          }
+          groupBy: {
+            args: Prisma.OnboardingSurveyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OnboardingSurveyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OnboardingSurveyCountArgs<ExtArgs>
+            result: $Utils.Optional<OnboardingSurveyCountAggregateOutputType> | number
+          }
+        }
+      }
+      FeatureRequest: {
+        payload: Prisma.$FeatureRequestPayload<ExtArgs>
+        fields: Prisma.FeatureRequestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FeatureRequestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FeatureRequestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload>
+          }
+          findFirst: {
+            args: Prisma.FeatureRequestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FeatureRequestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload>
+          }
+          findMany: {
+            args: Prisma.FeatureRequestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload>[]
+          }
+          create: {
+            args: Prisma.FeatureRequestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload>
+          }
+          createMany: {
+            args: Prisma.FeatureRequestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FeatureRequestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload>[]
+          }
+          delete: {
+            args: Prisma.FeatureRequestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload>
+          }
+          update: {
+            args: Prisma.FeatureRequestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload>
+          }
+          deleteMany: {
+            args: Prisma.FeatureRequestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FeatureRequestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FeatureRequestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload>[]
+          }
+          upsert: {
+            args: Prisma.FeatureRequestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestPayload>
+          }
+          aggregate: {
+            args: Prisma.FeatureRequestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeatureRequest>
+          }
+          groupBy: {
+            args: Prisma.FeatureRequestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeatureRequestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FeatureRequestCountArgs<ExtArgs>
+            result: $Utils.Optional<FeatureRequestCountAggregateOutputType> | number
+          }
+        }
+      }
+      FeatureRequestVote: {
+        payload: Prisma.$FeatureRequestVotePayload<ExtArgs>
+        fields: Prisma.FeatureRequestVoteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FeatureRequestVoteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FeatureRequestVoteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload>
+          }
+          findFirst: {
+            args: Prisma.FeatureRequestVoteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FeatureRequestVoteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload>
+          }
+          findMany: {
+            args: Prisma.FeatureRequestVoteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload>[]
+          }
+          create: {
+            args: Prisma.FeatureRequestVoteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload>
+          }
+          createMany: {
+            args: Prisma.FeatureRequestVoteCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FeatureRequestVoteCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload>[]
+          }
+          delete: {
+            args: Prisma.FeatureRequestVoteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload>
+          }
+          update: {
+            args: Prisma.FeatureRequestVoteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload>
+          }
+          deleteMany: {
+            args: Prisma.FeatureRequestVoteDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FeatureRequestVoteUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FeatureRequestVoteUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload>[]
+          }
+          upsert: {
+            args: Prisma.FeatureRequestVoteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeatureRequestVotePayload>
+          }
+          aggregate: {
+            args: Prisma.FeatureRequestVoteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeatureRequestVote>
+          }
+          groupBy: {
+            args: Prisma.FeatureRequestVoteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeatureRequestVoteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FeatureRequestVoteCountArgs<ExtArgs>
+            result: $Utils.Optional<FeatureRequestVoteCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -6457,6 +6772,9 @@ export namespace Prisma {
     webhookEvent?: WebhookEventOmit
     backgroundJob?: BackgroundJobOmit
     outboxEvent?: OutboxEventOmit
+    onboardingSurvey?: OnboardingSurveyOmit
+    featureRequest?: FeatureRequestOmit
+    featureRequestVote?: FeatureRequestVoteOmit
   }
 
   /* Types for Logging */
@@ -6596,6 +6914,9 @@ export namespace Prisma {
     tournamentMatchesB: number
     savedItems: number
     memories: number
+    onboardingSurveys: number
+    featureRequests: number
+    featureVotes: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6658,6 +6979,9 @@ export namespace Prisma {
     tournamentMatchesB?: boolean | UserCountOutputTypeCountTournamentMatchesBArgs
     savedItems?: boolean | UserCountOutputTypeCountSavedItemsArgs
     memories?: boolean | UserCountOutputTypeCountMemoriesArgs
+    onboardingSurveys?: boolean | UserCountOutputTypeCountOnboardingSurveysArgs
+    featureRequests?: boolean | UserCountOutputTypeCountFeatureRequestsArgs
+    featureVotes?: boolean | UserCountOutputTypeCountFeatureVotesArgs
   }
 
   // Custom InputTypes
@@ -7082,6 +7406,27 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountMemoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MemoryWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountOnboardingSurveysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OnboardingSurveyWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFeatureRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeatureRequestWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFeatureVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeatureRequestVoteWhereInput
   }
 
 
@@ -7579,6 +7924,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type FeatureRequestCountOutputType
+   */
+
+  export type FeatureRequestCountOutputType = {
+    votes: number
+  }
+
+  export type FeatureRequestCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    votes?: boolean | FeatureRequestCountOutputTypeCountVotesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FeatureRequestCountOutputType without action
+   */
+  export type FeatureRequestCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestCountOutputType
+     */
+    select?: FeatureRequestCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FeatureRequestCountOutputType without action
+   */
+  export type FeatureRequestCountOutputTypeCountVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeatureRequestVoteWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -7588,8 +7964,18 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserAvgAggregateOutputType = {
+    coinBalance: number | null
+  }
+
+  export type UserSumAggregateOutputType = {
+    coinBalance: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -7626,6 +8012,8 @@ export namespace Prisma {
     verified: boolean | null
     verifiedAt: Date | null
     profileBoostedUntil: Date | null
+    coinBalance: number | null
+    walletBonusAwardedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -7662,6 +8050,8 @@ export namespace Prisma {
     verified: boolean | null
     verifiedAt: Date | null
     profileBoostedUntil: Date | null
+    coinBalance: number | null
+    walletBonusAwardedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -7698,9 +8088,19 @@ export namespace Prisma {
     verified: number
     verifiedAt: number
     profileBoostedUntil: number
+    coinBalance: number
+    walletBonusAwardedAt: number
     _all: number
   }
 
+
+  export type UserAvgAggregateInputType = {
+    coinBalance?: true
+  }
+
+  export type UserSumAggregateInputType = {
+    coinBalance?: true
+  }
 
   export type UserMinAggregateInputType = {
     id?: true
@@ -7736,6 +8136,8 @@ export namespace Prisma {
     verified?: true
     verifiedAt?: true
     profileBoostedUntil?: true
+    coinBalance?: true
+    walletBonusAwardedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -7772,6 +8174,8 @@ export namespace Prisma {
     verified?: true
     verifiedAt?: true
     profileBoostedUntil?: true
+    coinBalance?: true
+    walletBonusAwardedAt?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -7808,6 +8212,8 @@ export namespace Prisma {
     verified?: true
     verifiedAt?: true
     profileBoostedUntil?: true
+    coinBalance?: true
+    walletBonusAwardedAt?: true
     _all?: true
   }
 
@@ -7849,6 +8255,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: UserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -7879,6 +8297,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
+    _avg?: UserAvgAggregateInputType
+    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
@@ -7917,7 +8337,11 @@ export namespace Prisma {
     verified: boolean
     verifiedAt: Date | null
     profileBoostedUntil: Date | null
+    coinBalance: number
+    walletBonusAwardedAt: Date | null
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -7970,6 +8394,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: boolean
     profileBoostedUntil?: boolean
+    coinBalance?: boolean
+    walletBonusAwardedAt?: boolean
     posts?: boolean | User$postsArgs<ExtArgs>
     companyFollows?: boolean | User$companyFollowsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
@@ -8030,6 +8456,9 @@ export namespace Prisma {
     tournamentMatchesB?: boolean | User$tournamentMatchesBArgs<ExtArgs>
     savedItems?: boolean | User$savedItemsArgs<ExtArgs>
     memories?: boolean | User$memoriesArgs<ExtArgs>
+    onboardingSurveys?: boolean | User$onboardingSurveysArgs<ExtArgs>
+    featureRequests?: boolean | User$featureRequestsArgs<ExtArgs>
+    featureVotes?: boolean | User$featureVotesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -8067,6 +8496,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: boolean
     profileBoostedUntil?: boolean
+    coinBalance?: boolean
+    walletBonusAwardedAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8103,6 +8534,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: boolean
     profileBoostedUntil?: boolean
+    coinBalance?: boolean
+    walletBonusAwardedAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -8139,9 +8572,11 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: boolean
     profileBoostedUntil?: boolean
+    coinBalance?: boolean
+    walletBonusAwardedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "passwordHash" | "name" | "bio" | "school" | "schoolUrl" | "workplace" | "workplaceUrl" | "jobTitle" | "currentCity" | "hometown" | "website" | "education" | "interests" | "avatarUrl" | "coverUrl" | "role" | "createdAt" | "updatedAt" | "lastSeenAt" | "emailVerifiedAt" | "phoneNumber" | "phoneVerifiedAt" | "dateOfBirth" | "gender" | "verificationRequired" | "twoFactorEnabled" | "professionalMode" | "verified" | "verifiedAt" | "profileBoostedUntil", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "passwordHash" | "name" | "bio" | "school" | "schoolUrl" | "workplace" | "workplaceUrl" | "jobTitle" | "currentCity" | "hometown" | "website" | "education" | "interests" | "avatarUrl" | "coverUrl" | "role" | "createdAt" | "updatedAt" | "lastSeenAt" | "emailVerifiedAt" | "phoneNumber" | "phoneVerifiedAt" | "dateOfBirth" | "gender" | "verificationRequired" | "twoFactorEnabled" | "professionalMode" | "verified" | "verifiedAt" | "profileBoostedUntil" | "coinBalance" | "walletBonusAwardedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
     companyFollows?: boolean | User$companyFollowsArgs<ExtArgs>
@@ -8203,6 +8638,9 @@ export namespace Prisma {
     tournamentMatchesB?: boolean | User$tournamentMatchesBArgs<ExtArgs>
     savedItems?: boolean | User$savedItemsArgs<ExtArgs>
     memories?: boolean | User$memoriesArgs<ExtArgs>
+    onboardingSurveys?: boolean | User$onboardingSurveysArgs<ExtArgs>
+    featureRequests?: boolean | User$featureRequestsArgs<ExtArgs>
+    featureVotes?: boolean | User$featureVotesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -8271,6 +8709,9 @@ export namespace Prisma {
       tournamentMatchesB: Prisma.$TournamentMatchPayload<ExtArgs>[]
       savedItems: Prisma.$SavedItemPayload<ExtArgs>[]
       memories: Prisma.$MemoryPayload<ExtArgs>[]
+      onboardingSurveys: Prisma.$OnboardingSurveyPayload<ExtArgs>[]
+      featureRequests: Prisma.$FeatureRequestPayload<ExtArgs>[]
+      featureVotes: Prisma.$FeatureRequestVotePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8306,6 +8747,8 @@ export namespace Prisma {
       verified: boolean
       verifiedAt: Date | null
       profileBoostedUntil: Date | null
+      coinBalance: number
+      walletBonusAwardedAt: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -8760,6 +9203,9 @@ export namespace Prisma {
     tournamentMatchesB<T extends User$tournamentMatchesBArgs<ExtArgs> = {}>(args?: Subset<T, User$tournamentMatchesBArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TournamentMatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     savedItems<T extends User$savedItemsArgs<ExtArgs> = {}>(args?: Subset<T, User$savedItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SavedItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     memories<T extends User$memoriesArgs<ExtArgs> = {}>(args?: Subset<T, User$memoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    onboardingSurveys<T extends User$onboardingSurveysArgs<ExtArgs> = {}>(args?: Subset<T, User$onboardingSurveysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    featureRequests<T extends User$featureRequestsArgs<ExtArgs> = {}>(args?: Subset<T, User$featureRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    featureVotes<T extends User$featureVotesArgs<ExtArgs> = {}>(args?: Subset<T, User$featureVotesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8822,6 +9268,8 @@ export namespace Prisma {
     readonly verified: FieldRef<"User", 'Boolean'>
     readonly verifiedAt: FieldRef<"User", 'DateTime'>
     readonly profileBoostedUntil: FieldRef<"User", 'DateTime'>
+    readonly coinBalance: FieldRef<"User", 'Int'>
+    readonly walletBonusAwardedAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -10647,6 +11095,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MemoryScalarFieldEnum | MemoryScalarFieldEnum[]
+  }
+
+  /**
+   * User.onboardingSurveys
+   */
+  export type User$onboardingSurveysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+    where?: OnboardingSurveyWhereInput
+    orderBy?: OnboardingSurveyOrderByWithRelationInput | OnboardingSurveyOrderByWithRelationInput[]
+    cursor?: OnboardingSurveyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OnboardingSurveyScalarFieldEnum | OnboardingSurveyScalarFieldEnum[]
+  }
+
+  /**
+   * User.featureRequests
+   */
+  export type User$featureRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+    where?: FeatureRequestWhereInput
+    orderBy?: FeatureRequestOrderByWithRelationInput | FeatureRequestOrderByWithRelationInput[]
+    cursor?: FeatureRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeatureRequestScalarFieldEnum | FeatureRequestScalarFieldEnum[]
+  }
+
+  /**
+   * User.featureVotes
+   */
+  export type User$featureVotesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    where?: FeatureRequestVoteWhereInput
+    orderBy?: FeatureRequestVoteOrderByWithRelationInput | FeatureRequestVoteOrderByWithRelationInput[]
+    cursor?: FeatureRequestVoteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeatureRequestVoteScalarFieldEnum | FeatureRequestVoteScalarFieldEnum[]
   }
 
   /**
@@ -78947,6 +79467,3259 @@ export namespace Prisma {
 
 
   /**
+   * Model OnboardingSurvey
+   */
+
+  export type AggregateOnboardingSurvey = {
+    _count: OnboardingSurveyCountAggregateOutputType | null
+    _min: OnboardingSurveyMinAggregateOutputType | null
+    _max: OnboardingSurveyMaxAggregateOutputType | null
+  }
+
+  export type OnboardingSurveyMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    source: $Enums.OnboardingSource | null
+    otherText: string | null
+    createdAt: Date | null
+  }
+
+  export type OnboardingSurveyMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    source: $Enums.OnboardingSource | null
+    otherText: string | null
+    createdAt: Date | null
+  }
+
+  export type OnboardingSurveyCountAggregateOutputType = {
+    id: number
+    userId: number
+    source: number
+    otherText: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type OnboardingSurveyMinAggregateInputType = {
+    id?: true
+    userId?: true
+    source?: true
+    otherText?: true
+    createdAt?: true
+  }
+
+  export type OnboardingSurveyMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    source?: true
+    otherText?: true
+    createdAt?: true
+  }
+
+  export type OnboardingSurveyCountAggregateInputType = {
+    id?: true
+    userId?: true
+    source?: true
+    otherText?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type OnboardingSurveyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OnboardingSurvey to aggregate.
+     */
+    where?: OnboardingSurveyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OnboardingSurveys to fetch.
+     */
+    orderBy?: OnboardingSurveyOrderByWithRelationInput | OnboardingSurveyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OnboardingSurveyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OnboardingSurveys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OnboardingSurveys.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OnboardingSurveys
+    **/
+    _count?: true | OnboardingSurveyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OnboardingSurveyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OnboardingSurveyMaxAggregateInputType
+  }
+
+  export type GetOnboardingSurveyAggregateType<T extends OnboardingSurveyAggregateArgs> = {
+        [P in keyof T & keyof AggregateOnboardingSurvey]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOnboardingSurvey[P]>
+      : GetScalarType<T[P], AggregateOnboardingSurvey[P]>
+  }
+
+
+
+
+  export type OnboardingSurveyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OnboardingSurveyWhereInput
+    orderBy?: OnboardingSurveyOrderByWithAggregationInput | OnboardingSurveyOrderByWithAggregationInput[]
+    by: OnboardingSurveyScalarFieldEnum[] | OnboardingSurveyScalarFieldEnum
+    having?: OnboardingSurveyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OnboardingSurveyCountAggregateInputType | true
+    _min?: OnboardingSurveyMinAggregateInputType
+    _max?: OnboardingSurveyMaxAggregateInputType
+  }
+
+  export type OnboardingSurveyGroupByOutputType = {
+    id: string
+    userId: string
+    source: $Enums.OnboardingSource
+    otherText: string | null
+    createdAt: Date
+    _count: OnboardingSurveyCountAggregateOutputType | null
+    _min: OnboardingSurveyMinAggregateOutputType | null
+    _max: OnboardingSurveyMaxAggregateOutputType | null
+  }
+
+  type GetOnboardingSurveyGroupByPayload<T extends OnboardingSurveyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OnboardingSurveyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OnboardingSurveyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OnboardingSurveyGroupByOutputType[P]>
+            : GetScalarType<T[P], OnboardingSurveyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OnboardingSurveySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    source?: boolean
+    otherText?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["onboardingSurvey"]>
+
+  export type OnboardingSurveySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    source?: boolean
+    otherText?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["onboardingSurvey"]>
+
+  export type OnboardingSurveySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    source?: boolean
+    otherText?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["onboardingSurvey"]>
+
+  export type OnboardingSurveySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    source?: boolean
+    otherText?: boolean
+    createdAt?: boolean
+  }
+
+  export type OnboardingSurveyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "source" | "otherText" | "createdAt", ExtArgs["result"]["onboardingSurvey"]>
+  export type OnboardingSurveyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type OnboardingSurveyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type OnboardingSurveyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $OnboardingSurveyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OnboardingSurvey"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      source: $Enums.OnboardingSource
+      otherText: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["onboardingSurvey"]>
+    composites: {}
+  }
+
+  type OnboardingSurveyGetPayload<S extends boolean | null | undefined | OnboardingSurveyDefaultArgs> = $Result.GetResult<Prisma.$OnboardingSurveyPayload, S>
+
+  type OnboardingSurveyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OnboardingSurveyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OnboardingSurveyCountAggregateInputType | true
+    }
+
+  export interface OnboardingSurveyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OnboardingSurvey'], meta: { name: 'OnboardingSurvey' } }
+    /**
+     * Find zero or one OnboardingSurvey that matches the filter.
+     * @param {OnboardingSurveyFindUniqueArgs} args - Arguments to find a OnboardingSurvey
+     * @example
+     * // Get one OnboardingSurvey
+     * const onboardingSurvey = await prisma.onboardingSurvey.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OnboardingSurveyFindUniqueArgs>(args: SelectSubset<T, OnboardingSurveyFindUniqueArgs<ExtArgs>>): Prisma__OnboardingSurveyClient<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one OnboardingSurvey that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OnboardingSurveyFindUniqueOrThrowArgs} args - Arguments to find a OnboardingSurvey
+     * @example
+     * // Get one OnboardingSurvey
+     * const onboardingSurvey = await prisma.onboardingSurvey.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OnboardingSurveyFindUniqueOrThrowArgs>(args: SelectSubset<T, OnboardingSurveyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OnboardingSurveyClient<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OnboardingSurvey that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OnboardingSurveyFindFirstArgs} args - Arguments to find a OnboardingSurvey
+     * @example
+     * // Get one OnboardingSurvey
+     * const onboardingSurvey = await prisma.onboardingSurvey.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OnboardingSurveyFindFirstArgs>(args?: SelectSubset<T, OnboardingSurveyFindFirstArgs<ExtArgs>>): Prisma__OnboardingSurveyClient<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OnboardingSurvey that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OnboardingSurveyFindFirstOrThrowArgs} args - Arguments to find a OnboardingSurvey
+     * @example
+     * // Get one OnboardingSurvey
+     * const onboardingSurvey = await prisma.onboardingSurvey.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OnboardingSurveyFindFirstOrThrowArgs>(args?: SelectSubset<T, OnboardingSurveyFindFirstOrThrowArgs<ExtArgs>>): Prisma__OnboardingSurveyClient<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OnboardingSurveys that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OnboardingSurveyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OnboardingSurveys
+     * const onboardingSurveys = await prisma.onboardingSurvey.findMany()
+     * 
+     * // Get first 10 OnboardingSurveys
+     * const onboardingSurveys = await prisma.onboardingSurvey.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const onboardingSurveyWithIdOnly = await prisma.onboardingSurvey.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OnboardingSurveyFindManyArgs>(args?: SelectSubset<T, OnboardingSurveyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a OnboardingSurvey.
+     * @param {OnboardingSurveyCreateArgs} args - Arguments to create a OnboardingSurvey.
+     * @example
+     * // Create one OnboardingSurvey
+     * const OnboardingSurvey = await prisma.onboardingSurvey.create({
+     *   data: {
+     *     // ... data to create a OnboardingSurvey
+     *   }
+     * })
+     * 
+     */
+    create<T extends OnboardingSurveyCreateArgs>(args: SelectSubset<T, OnboardingSurveyCreateArgs<ExtArgs>>): Prisma__OnboardingSurveyClient<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many OnboardingSurveys.
+     * @param {OnboardingSurveyCreateManyArgs} args - Arguments to create many OnboardingSurveys.
+     * @example
+     * // Create many OnboardingSurveys
+     * const onboardingSurvey = await prisma.onboardingSurvey.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OnboardingSurveyCreateManyArgs>(args?: SelectSubset<T, OnboardingSurveyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many OnboardingSurveys and returns the data saved in the database.
+     * @param {OnboardingSurveyCreateManyAndReturnArgs} args - Arguments to create many OnboardingSurveys.
+     * @example
+     * // Create many OnboardingSurveys
+     * const onboardingSurvey = await prisma.onboardingSurvey.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OnboardingSurveys and only return the `id`
+     * const onboardingSurveyWithIdOnly = await prisma.onboardingSurvey.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OnboardingSurveyCreateManyAndReturnArgs>(args?: SelectSubset<T, OnboardingSurveyCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a OnboardingSurvey.
+     * @param {OnboardingSurveyDeleteArgs} args - Arguments to delete one OnboardingSurvey.
+     * @example
+     * // Delete one OnboardingSurvey
+     * const OnboardingSurvey = await prisma.onboardingSurvey.delete({
+     *   where: {
+     *     // ... filter to delete one OnboardingSurvey
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OnboardingSurveyDeleteArgs>(args: SelectSubset<T, OnboardingSurveyDeleteArgs<ExtArgs>>): Prisma__OnboardingSurveyClient<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one OnboardingSurvey.
+     * @param {OnboardingSurveyUpdateArgs} args - Arguments to update one OnboardingSurvey.
+     * @example
+     * // Update one OnboardingSurvey
+     * const onboardingSurvey = await prisma.onboardingSurvey.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OnboardingSurveyUpdateArgs>(args: SelectSubset<T, OnboardingSurveyUpdateArgs<ExtArgs>>): Prisma__OnboardingSurveyClient<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more OnboardingSurveys.
+     * @param {OnboardingSurveyDeleteManyArgs} args - Arguments to filter OnboardingSurveys to delete.
+     * @example
+     * // Delete a few OnboardingSurveys
+     * const { count } = await prisma.onboardingSurvey.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OnboardingSurveyDeleteManyArgs>(args?: SelectSubset<T, OnboardingSurveyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OnboardingSurveys.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OnboardingSurveyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OnboardingSurveys
+     * const onboardingSurvey = await prisma.onboardingSurvey.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OnboardingSurveyUpdateManyArgs>(args: SelectSubset<T, OnboardingSurveyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OnboardingSurveys and returns the data updated in the database.
+     * @param {OnboardingSurveyUpdateManyAndReturnArgs} args - Arguments to update many OnboardingSurveys.
+     * @example
+     * // Update many OnboardingSurveys
+     * const onboardingSurvey = await prisma.onboardingSurvey.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OnboardingSurveys and only return the `id`
+     * const onboardingSurveyWithIdOnly = await prisma.onboardingSurvey.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OnboardingSurveyUpdateManyAndReturnArgs>(args: SelectSubset<T, OnboardingSurveyUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one OnboardingSurvey.
+     * @param {OnboardingSurveyUpsertArgs} args - Arguments to update or create a OnboardingSurvey.
+     * @example
+     * // Update or create a OnboardingSurvey
+     * const onboardingSurvey = await prisma.onboardingSurvey.upsert({
+     *   create: {
+     *     // ... data to create a OnboardingSurvey
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OnboardingSurvey we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OnboardingSurveyUpsertArgs>(args: SelectSubset<T, OnboardingSurveyUpsertArgs<ExtArgs>>): Prisma__OnboardingSurveyClient<$Result.GetResult<Prisma.$OnboardingSurveyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of OnboardingSurveys.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OnboardingSurveyCountArgs} args - Arguments to filter OnboardingSurveys to count.
+     * @example
+     * // Count the number of OnboardingSurveys
+     * const count = await prisma.onboardingSurvey.count({
+     *   where: {
+     *     // ... the filter for the OnboardingSurveys we want to count
+     *   }
+     * })
+    **/
+    count<T extends OnboardingSurveyCountArgs>(
+      args?: Subset<T, OnboardingSurveyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OnboardingSurveyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OnboardingSurvey.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OnboardingSurveyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OnboardingSurveyAggregateArgs>(args: Subset<T, OnboardingSurveyAggregateArgs>): Prisma.PrismaPromise<GetOnboardingSurveyAggregateType<T>>
+
+    /**
+     * Group by OnboardingSurvey.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OnboardingSurveyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OnboardingSurveyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OnboardingSurveyGroupByArgs['orderBy'] }
+        : { orderBy?: OnboardingSurveyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OnboardingSurveyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOnboardingSurveyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OnboardingSurvey model
+   */
+  readonly fields: OnboardingSurveyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OnboardingSurvey.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OnboardingSurveyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OnboardingSurvey model
+   */
+  interface OnboardingSurveyFieldRefs {
+    readonly id: FieldRef<"OnboardingSurvey", 'String'>
+    readonly userId: FieldRef<"OnboardingSurvey", 'String'>
+    readonly source: FieldRef<"OnboardingSurvey", 'OnboardingSource'>
+    readonly otherText: FieldRef<"OnboardingSurvey", 'String'>
+    readonly createdAt: FieldRef<"OnboardingSurvey", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OnboardingSurvey findUnique
+   */
+  export type OnboardingSurveyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+    /**
+     * Filter, which OnboardingSurvey to fetch.
+     */
+    where: OnboardingSurveyWhereUniqueInput
+  }
+
+  /**
+   * OnboardingSurvey findUniqueOrThrow
+   */
+  export type OnboardingSurveyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+    /**
+     * Filter, which OnboardingSurvey to fetch.
+     */
+    where: OnboardingSurveyWhereUniqueInput
+  }
+
+  /**
+   * OnboardingSurvey findFirst
+   */
+  export type OnboardingSurveyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+    /**
+     * Filter, which OnboardingSurvey to fetch.
+     */
+    where?: OnboardingSurveyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OnboardingSurveys to fetch.
+     */
+    orderBy?: OnboardingSurveyOrderByWithRelationInput | OnboardingSurveyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OnboardingSurveys.
+     */
+    cursor?: OnboardingSurveyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OnboardingSurveys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OnboardingSurveys.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OnboardingSurveys.
+     */
+    distinct?: OnboardingSurveyScalarFieldEnum | OnboardingSurveyScalarFieldEnum[]
+  }
+
+  /**
+   * OnboardingSurvey findFirstOrThrow
+   */
+  export type OnboardingSurveyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+    /**
+     * Filter, which OnboardingSurvey to fetch.
+     */
+    where?: OnboardingSurveyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OnboardingSurveys to fetch.
+     */
+    orderBy?: OnboardingSurveyOrderByWithRelationInput | OnboardingSurveyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OnboardingSurveys.
+     */
+    cursor?: OnboardingSurveyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OnboardingSurveys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OnboardingSurveys.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OnboardingSurveys.
+     */
+    distinct?: OnboardingSurveyScalarFieldEnum | OnboardingSurveyScalarFieldEnum[]
+  }
+
+  /**
+   * OnboardingSurvey findMany
+   */
+  export type OnboardingSurveyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+    /**
+     * Filter, which OnboardingSurveys to fetch.
+     */
+    where?: OnboardingSurveyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OnboardingSurveys to fetch.
+     */
+    orderBy?: OnboardingSurveyOrderByWithRelationInput | OnboardingSurveyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OnboardingSurveys.
+     */
+    cursor?: OnboardingSurveyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OnboardingSurveys from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OnboardingSurveys.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OnboardingSurveys.
+     */
+    distinct?: OnboardingSurveyScalarFieldEnum | OnboardingSurveyScalarFieldEnum[]
+  }
+
+  /**
+   * OnboardingSurvey create
+   */
+  export type OnboardingSurveyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a OnboardingSurvey.
+     */
+    data: XOR<OnboardingSurveyCreateInput, OnboardingSurveyUncheckedCreateInput>
+  }
+
+  /**
+   * OnboardingSurvey createMany
+   */
+  export type OnboardingSurveyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OnboardingSurveys.
+     */
+    data: OnboardingSurveyCreateManyInput | OnboardingSurveyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OnboardingSurvey createManyAndReturn
+   */
+  export type OnboardingSurveyCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * The data used to create many OnboardingSurveys.
+     */
+    data: OnboardingSurveyCreateManyInput | OnboardingSurveyCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * OnboardingSurvey update
+   */
+  export type OnboardingSurveyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a OnboardingSurvey.
+     */
+    data: XOR<OnboardingSurveyUpdateInput, OnboardingSurveyUncheckedUpdateInput>
+    /**
+     * Choose, which OnboardingSurvey to update.
+     */
+    where: OnboardingSurveyWhereUniqueInput
+  }
+
+  /**
+   * OnboardingSurvey updateMany
+   */
+  export type OnboardingSurveyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OnboardingSurveys.
+     */
+    data: XOR<OnboardingSurveyUpdateManyMutationInput, OnboardingSurveyUncheckedUpdateManyInput>
+    /**
+     * Filter which OnboardingSurveys to update
+     */
+    where?: OnboardingSurveyWhereInput
+    /**
+     * Limit how many OnboardingSurveys to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OnboardingSurvey updateManyAndReturn
+   */
+  export type OnboardingSurveyUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * The data used to update OnboardingSurveys.
+     */
+    data: XOR<OnboardingSurveyUpdateManyMutationInput, OnboardingSurveyUncheckedUpdateManyInput>
+    /**
+     * Filter which OnboardingSurveys to update
+     */
+    where?: OnboardingSurveyWhereInput
+    /**
+     * Limit how many OnboardingSurveys to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * OnboardingSurvey upsert
+   */
+  export type OnboardingSurveyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the OnboardingSurvey to update in case it exists.
+     */
+    where: OnboardingSurveyWhereUniqueInput
+    /**
+     * In case the OnboardingSurvey found by the `where` argument doesn't exist, create a new OnboardingSurvey with this data.
+     */
+    create: XOR<OnboardingSurveyCreateInput, OnboardingSurveyUncheckedCreateInput>
+    /**
+     * In case the OnboardingSurvey was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OnboardingSurveyUpdateInput, OnboardingSurveyUncheckedUpdateInput>
+  }
+
+  /**
+   * OnboardingSurvey delete
+   */
+  export type OnboardingSurveyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+    /**
+     * Filter which OnboardingSurvey to delete.
+     */
+    where: OnboardingSurveyWhereUniqueInput
+  }
+
+  /**
+   * OnboardingSurvey deleteMany
+   */
+  export type OnboardingSurveyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OnboardingSurveys to delete
+     */
+    where?: OnboardingSurveyWhereInput
+    /**
+     * Limit how many OnboardingSurveys to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * OnboardingSurvey without action
+   */
+  export type OnboardingSurveyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OnboardingSurvey
+     */
+    select?: OnboardingSurveySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OnboardingSurvey
+     */
+    omit?: OnboardingSurveyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OnboardingSurveyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FeatureRequest
+   */
+
+  export type AggregateFeatureRequest = {
+    _count: FeatureRequestCountAggregateOutputType | null
+    _min: FeatureRequestMinAggregateOutputType | null
+    _max: FeatureRequestMaxAggregateOutputType | null
+  }
+
+  export type FeatureRequestMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    title: string | null
+    description: string | null
+    category: $Enums.FeatureRequestCategory | null
+    status: $Enums.FeatureRequestStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FeatureRequestMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    title: string | null
+    description: string | null
+    category: $Enums.FeatureRequestCategory | null
+    status: $Enums.FeatureRequestStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FeatureRequestCountAggregateOutputType = {
+    id: number
+    userId: number
+    title: number
+    description: number
+    category: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FeatureRequestMinAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    description?: true
+    category?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FeatureRequestMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    description?: true
+    category?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FeatureRequestCountAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    description?: true
+    category?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FeatureRequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeatureRequest to aggregate.
+     */
+    where?: FeatureRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureRequests to fetch.
+     */
+    orderBy?: FeatureRequestOrderByWithRelationInput | FeatureRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FeatureRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FeatureRequests
+    **/
+    _count?: true | FeatureRequestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeatureRequestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeatureRequestMaxAggregateInputType
+  }
+
+  export type GetFeatureRequestAggregateType<T extends FeatureRequestAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeatureRequest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeatureRequest[P]>
+      : GetScalarType<T[P], AggregateFeatureRequest[P]>
+  }
+
+
+
+
+  export type FeatureRequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeatureRequestWhereInput
+    orderBy?: FeatureRequestOrderByWithAggregationInput | FeatureRequestOrderByWithAggregationInput[]
+    by: FeatureRequestScalarFieldEnum[] | FeatureRequestScalarFieldEnum
+    having?: FeatureRequestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeatureRequestCountAggregateInputType | true
+    _min?: FeatureRequestMinAggregateInputType
+    _max?: FeatureRequestMaxAggregateInputType
+  }
+
+  export type FeatureRequestGroupByOutputType = {
+    id: string
+    userId: string
+    title: string
+    description: string | null
+    category: $Enums.FeatureRequestCategory
+    status: $Enums.FeatureRequestStatus
+    createdAt: Date
+    updatedAt: Date
+    _count: FeatureRequestCountAggregateOutputType | null
+    _min: FeatureRequestMinAggregateOutputType | null
+    _max: FeatureRequestMaxAggregateOutputType | null
+  }
+
+  type GetFeatureRequestGroupByPayload<T extends FeatureRequestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeatureRequestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeatureRequestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeatureRequestGroupByOutputType[P]>
+            : GetScalarType<T[P], FeatureRequestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FeatureRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    votes?: boolean | FeatureRequest$votesArgs<ExtArgs>
+    _count?: boolean | FeatureRequestCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["featureRequest"]>
+
+  export type FeatureRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["featureRequest"]>
+
+  export type FeatureRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["featureRequest"]>
+
+  export type FeatureRequestSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FeatureRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "description" | "category" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["featureRequest"]>
+  export type FeatureRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    votes?: boolean | FeatureRequest$votesArgs<ExtArgs>
+    _count?: boolean | FeatureRequestCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FeatureRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type FeatureRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $FeatureRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FeatureRequest"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      votes: Prisma.$FeatureRequestVotePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      title: string
+      description: string | null
+      category: $Enums.FeatureRequestCategory
+      status: $Enums.FeatureRequestStatus
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["featureRequest"]>
+    composites: {}
+  }
+
+  type FeatureRequestGetPayload<S extends boolean | null | undefined | FeatureRequestDefaultArgs> = $Result.GetResult<Prisma.$FeatureRequestPayload, S>
+
+  type FeatureRequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FeatureRequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeatureRequestCountAggregateInputType | true
+    }
+
+  export interface FeatureRequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FeatureRequest'], meta: { name: 'FeatureRequest' } }
+    /**
+     * Find zero or one FeatureRequest that matches the filter.
+     * @param {FeatureRequestFindUniqueArgs} args - Arguments to find a FeatureRequest
+     * @example
+     * // Get one FeatureRequest
+     * const featureRequest = await prisma.featureRequest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FeatureRequestFindUniqueArgs>(args: SelectSubset<T, FeatureRequestFindUniqueArgs<ExtArgs>>): Prisma__FeatureRequestClient<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FeatureRequest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FeatureRequestFindUniqueOrThrowArgs} args - Arguments to find a FeatureRequest
+     * @example
+     * // Get one FeatureRequest
+     * const featureRequest = await prisma.featureRequest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FeatureRequestFindUniqueOrThrowArgs>(args: SelectSubset<T, FeatureRequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeatureRequestClient<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeatureRequest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestFindFirstArgs} args - Arguments to find a FeatureRequest
+     * @example
+     * // Get one FeatureRequest
+     * const featureRequest = await prisma.featureRequest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FeatureRequestFindFirstArgs>(args?: SelectSubset<T, FeatureRequestFindFirstArgs<ExtArgs>>): Prisma__FeatureRequestClient<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeatureRequest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestFindFirstOrThrowArgs} args - Arguments to find a FeatureRequest
+     * @example
+     * // Get one FeatureRequest
+     * const featureRequest = await prisma.featureRequest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FeatureRequestFindFirstOrThrowArgs>(args?: SelectSubset<T, FeatureRequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeatureRequestClient<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FeatureRequests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FeatureRequests
+     * const featureRequests = await prisma.featureRequest.findMany()
+     * 
+     * // Get first 10 FeatureRequests
+     * const featureRequests = await prisma.featureRequest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const featureRequestWithIdOnly = await prisma.featureRequest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FeatureRequestFindManyArgs>(args?: SelectSubset<T, FeatureRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FeatureRequest.
+     * @param {FeatureRequestCreateArgs} args - Arguments to create a FeatureRequest.
+     * @example
+     * // Create one FeatureRequest
+     * const FeatureRequest = await prisma.featureRequest.create({
+     *   data: {
+     *     // ... data to create a FeatureRequest
+     *   }
+     * })
+     * 
+     */
+    create<T extends FeatureRequestCreateArgs>(args: SelectSubset<T, FeatureRequestCreateArgs<ExtArgs>>): Prisma__FeatureRequestClient<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FeatureRequests.
+     * @param {FeatureRequestCreateManyArgs} args - Arguments to create many FeatureRequests.
+     * @example
+     * // Create many FeatureRequests
+     * const featureRequest = await prisma.featureRequest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FeatureRequestCreateManyArgs>(args?: SelectSubset<T, FeatureRequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FeatureRequests and returns the data saved in the database.
+     * @param {FeatureRequestCreateManyAndReturnArgs} args - Arguments to create many FeatureRequests.
+     * @example
+     * // Create many FeatureRequests
+     * const featureRequest = await prisma.featureRequest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FeatureRequests and only return the `id`
+     * const featureRequestWithIdOnly = await prisma.featureRequest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FeatureRequestCreateManyAndReturnArgs>(args?: SelectSubset<T, FeatureRequestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FeatureRequest.
+     * @param {FeatureRequestDeleteArgs} args - Arguments to delete one FeatureRequest.
+     * @example
+     * // Delete one FeatureRequest
+     * const FeatureRequest = await prisma.featureRequest.delete({
+     *   where: {
+     *     // ... filter to delete one FeatureRequest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FeatureRequestDeleteArgs>(args: SelectSubset<T, FeatureRequestDeleteArgs<ExtArgs>>): Prisma__FeatureRequestClient<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FeatureRequest.
+     * @param {FeatureRequestUpdateArgs} args - Arguments to update one FeatureRequest.
+     * @example
+     * // Update one FeatureRequest
+     * const featureRequest = await prisma.featureRequest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FeatureRequestUpdateArgs>(args: SelectSubset<T, FeatureRequestUpdateArgs<ExtArgs>>): Prisma__FeatureRequestClient<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FeatureRequests.
+     * @param {FeatureRequestDeleteManyArgs} args - Arguments to filter FeatureRequests to delete.
+     * @example
+     * // Delete a few FeatureRequests
+     * const { count } = await prisma.featureRequest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FeatureRequestDeleteManyArgs>(args?: SelectSubset<T, FeatureRequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeatureRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FeatureRequests
+     * const featureRequest = await prisma.featureRequest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FeatureRequestUpdateManyArgs>(args: SelectSubset<T, FeatureRequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeatureRequests and returns the data updated in the database.
+     * @param {FeatureRequestUpdateManyAndReturnArgs} args - Arguments to update many FeatureRequests.
+     * @example
+     * // Update many FeatureRequests
+     * const featureRequest = await prisma.featureRequest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FeatureRequests and only return the `id`
+     * const featureRequestWithIdOnly = await prisma.featureRequest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FeatureRequestUpdateManyAndReturnArgs>(args: SelectSubset<T, FeatureRequestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FeatureRequest.
+     * @param {FeatureRequestUpsertArgs} args - Arguments to update or create a FeatureRequest.
+     * @example
+     * // Update or create a FeatureRequest
+     * const featureRequest = await prisma.featureRequest.upsert({
+     *   create: {
+     *     // ... data to create a FeatureRequest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FeatureRequest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FeatureRequestUpsertArgs>(args: SelectSubset<T, FeatureRequestUpsertArgs<ExtArgs>>): Prisma__FeatureRequestClient<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FeatureRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestCountArgs} args - Arguments to filter FeatureRequests to count.
+     * @example
+     * // Count the number of FeatureRequests
+     * const count = await prisma.featureRequest.count({
+     *   where: {
+     *     // ... the filter for the FeatureRequests we want to count
+     *   }
+     * })
+    **/
+    count<T extends FeatureRequestCountArgs>(
+      args?: Subset<T, FeatureRequestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeatureRequestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FeatureRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeatureRequestAggregateArgs>(args: Subset<T, FeatureRequestAggregateArgs>): Prisma.PrismaPromise<GetFeatureRequestAggregateType<T>>
+
+    /**
+     * Group by FeatureRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FeatureRequestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FeatureRequestGroupByArgs['orderBy'] }
+        : { orderBy?: FeatureRequestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FeatureRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeatureRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FeatureRequest model
+   */
+  readonly fields: FeatureRequestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FeatureRequest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FeatureRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    votes<T extends FeatureRequest$votesArgs<ExtArgs> = {}>(args?: Subset<T, FeatureRequest$votesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FeatureRequest model
+   */
+  interface FeatureRequestFieldRefs {
+    readonly id: FieldRef<"FeatureRequest", 'String'>
+    readonly userId: FieldRef<"FeatureRequest", 'String'>
+    readonly title: FieldRef<"FeatureRequest", 'String'>
+    readonly description: FieldRef<"FeatureRequest", 'String'>
+    readonly category: FieldRef<"FeatureRequest", 'FeatureRequestCategory'>
+    readonly status: FieldRef<"FeatureRequest", 'FeatureRequestStatus'>
+    readonly createdAt: FieldRef<"FeatureRequest", 'DateTime'>
+    readonly updatedAt: FieldRef<"FeatureRequest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FeatureRequest findUnique
+   */
+  export type FeatureRequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureRequest to fetch.
+     */
+    where: FeatureRequestWhereUniqueInput
+  }
+
+  /**
+   * FeatureRequest findUniqueOrThrow
+   */
+  export type FeatureRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureRequest to fetch.
+     */
+    where: FeatureRequestWhereUniqueInput
+  }
+
+  /**
+   * FeatureRequest findFirst
+   */
+  export type FeatureRequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureRequest to fetch.
+     */
+    where?: FeatureRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureRequests to fetch.
+     */
+    orderBy?: FeatureRequestOrderByWithRelationInput | FeatureRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeatureRequests.
+     */
+    cursor?: FeatureRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeatureRequests.
+     */
+    distinct?: FeatureRequestScalarFieldEnum | FeatureRequestScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureRequest findFirstOrThrow
+   */
+  export type FeatureRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureRequest to fetch.
+     */
+    where?: FeatureRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureRequests to fetch.
+     */
+    orderBy?: FeatureRequestOrderByWithRelationInput | FeatureRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeatureRequests.
+     */
+    cursor?: FeatureRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeatureRequests.
+     */
+    distinct?: FeatureRequestScalarFieldEnum | FeatureRequestScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureRequest findMany
+   */
+  export type FeatureRequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureRequests to fetch.
+     */
+    where?: FeatureRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureRequests to fetch.
+     */
+    orderBy?: FeatureRequestOrderByWithRelationInput | FeatureRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FeatureRequests.
+     */
+    cursor?: FeatureRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeatureRequests.
+     */
+    distinct?: FeatureRequestScalarFieldEnum | FeatureRequestScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureRequest create
+   */
+  export type FeatureRequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FeatureRequest.
+     */
+    data: XOR<FeatureRequestCreateInput, FeatureRequestUncheckedCreateInput>
+  }
+
+  /**
+   * FeatureRequest createMany
+   */
+  export type FeatureRequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FeatureRequests.
+     */
+    data: FeatureRequestCreateManyInput | FeatureRequestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FeatureRequest createManyAndReturn
+   */
+  export type FeatureRequestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * The data used to create many FeatureRequests.
+     */
+    data: FeatureRequestCreateManyInput | FeatureRequestCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeatureRequest update
+   */
+  export type FeatureRequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FeatureRequest.
+     */
+    data: XOR<FeatureRequestUpdateInput, FeatureRequestUncheckedUpdateInput>
+    /**
+     * Choose, which FeatureRequest to update.
+     */
+    where: FeatureRequestWhereUniqueInput
+  }
+
+  /**
+   * FeatureRequest updateMany
+   */
+  export type FeatureRequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FeatureRequests.
+     */
+    data: XOR<FeatureRequestUpdateManyMutationInput, FeatureRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which FeatureRequests to update
+     */
+    where?: FeatureRequestWhereInput
+    /**
+     * Limit how many FeatureRequests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeatureRequest updateManyAndReturn
+   */
+  export type FeatureRequestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * The data used to update FeatureRequests.
+     */
+    data: XOR<FeatureRequestUpdateManyMutationInput, FeatureRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which FeatureRequests to update
+     */
+    where?: FeatureRequestWhereInput
+    /**
+     * Limit how many FeatureRequests to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeatureRequest upsert
+   */
+  export type FeatureRequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FeatureRequest to update in case it exists.
+     */
+    where: FeatureRequestWhereUniqueInput
+    /**
+     * In case the FeatureRequest found by the `where` argument doesn't exist, create a new FeatureRequest with this data.
+     */
+    create: XOR<FeatureRequestCreateInput, FeatureRequestUncheckedCreateInput>
+    /**
+     * In case the FeatureRequest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FeatureRequestUpdateInput, FeatureRequestUncheckedUpdateInput>
+  }
+
+  /**
+   * FeatureRequest delete
+   */
+  export type FeatureRequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+    /**
+     * Filter which FeatureRequest to delete.
+     */
+    where: FeatureRequestWhereUniqueInput
+  }
+
+  /**
+   * FeatureRequest deleteMany
+   */
+  export type FeatureRequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeatureRequests to delete
+     */
+    where?: FeatureRequestWhereInput
+    /**
+     * Limit how many FeatureRequests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeatureRequest.votes
+   */
+  export type FeatureRequest$votesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    where?: FeatureRequestVoteWhereInput
+    orderBy?: FeatureRequestVoteOrderByWithRelationInput | FeatureRequestVoteOrderByWithRelationInput[]
+    cursor?: FeatureRequestVoteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FeatureRequestVoteScalarFieldEnum | FeatureRequestVoteScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureRequest without action
+   */
+  export type FeatureRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequest
+     */
+    select?: FeatureRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequest
+     */
+    omit?: FeatureRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FeatureRequestVote
+   */
+
+  export type AggregateFeatureRequestVote = {
+    _count: FeatureRequestVoteCountAggregateOutputType | null
+    _min: FeatureRequestVoteMinAggregateOutputType | null
+    _max: FeatureRequestVoteMaxAggregateOutputType | null
+  }
+
+  export type FeatureRequestVoteMinAggregateOutputType = {
+    id: string | null
+    requestId: string | null
+    userId: string | null
+    createdAt: Date | null
+  }
+
+  export type FeatureRequestVoteMaxAggregateOutputType = {
+    id: string | null
+    requestId: string | null
+    userId: string | null
+    createdAt: Date | null
+  }
+
+  export type FeatureRequestVoteCountAggregateOutputType = {
+    id: number
+    requestId: number
+    userId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FeatureRequestVoteMinAggregateInputType = {
+    id?: true
+    requestId?: true
+    userId?: true
+    createdAt?: true
+  }
+
+  export type FeatureRequestVoteMaxAggregateInputType = {
+    id?: true
+    requestId?: true
+    userId?: true
+    createdAt?: true
+  }
+
+  export type FeatureRequestVoteCountAggregateInputType = {
+    id?: true
+    requestId?: true
+    userId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FeatureRequestVoteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeatureRequestVote to aggregate.
+     */
+    where?: FeatureRequestVoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureRequestVotes to fetch.
+     */
+    orderBy?: FeatureRequestVoteOrderByWithRelationInput | FeatureRequestVoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FeatureRequestVoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureRequestVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureRequestVotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FeatureRequestVotes
+    **/
+    _count?: true | FeatureRequestVoteCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeatureRequestVoteMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeatureRequestVoteMaxAggregateInputType
+  }
+
+  export type GetFeatureRequestVoteAggregateType<T extends FeatureRequestVoteAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeatureRequestVote]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeatureRequestVote[P]>
+      : GetScalarType<T[P], AggregateFeatureRequestVote[P]>
+  }
+
+
+
+
+  export type FeatureRequestVoteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeatureRequestVoteWhereInput
+    orderBy?: FeatureRequestVoteOrderByWithAggregationInput | FeatureRequestVoteOrderByWithAggregationInput[]
+    by: FeatureRequestVoteScalarFieldEnum[] | FeatureRequestVoteScalarFieldEnum
+    having?: FeatureRequestVoteScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeatureRequestVoteCountAggregateInputType | true
+    _min?: FeatureRequestVoteMinAggregateInputType
+    _max?: FeatureRequestVoteMaxAggregateInputType
+  }
+
+  export type FeatureRequestVoteGroupByOutputType = {
+    id: string
+    requestId: string
+    userId: string
+    createdAt: Date
+    _count: FeatureRequestVoteCountAggregateOutputType | null
+    _min: FeatureRequestVoteMinAggregateOutputType | null
+    _max: FeatureRequestVoteMaxAggregateOutputType | null
+  }
+
+  type GetFeatureRequestVoteGroupByPayload<T extends FeatureRequestVoteGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeatureRequestVoteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeatureRequestVoteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeatureRequestVoteGroupByOutputType[P]>
+            : GetScalarType<T[P], FeatureRequestVoteGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FeatureRequestVoteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    request?: boolean | FeatureRequestDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["featureRequestVote"]>
+
+  export type FeatureRequestVoteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    request?: boolean | FeatureRequestDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["featureRequestVote"]>
+
+  export type FeatureRequestVoteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    request?: boolean | FeatureRequestDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["featureRequestVote"]>
+
+  export type FeatureRequestVoteSelectScalar = {
+    id?: boolean
+    requestId?: boolean
+    userId?: boolean
+    createdAt?: boolean
+  }
+
+  export type FeatureRequestVoteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "requestId" | "userId" | "createdAt", ExtArgs["result"]["featureRequestVote"]>
+  export type FeatureRequestVoteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    request?: boolean | FeatureRequestDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type FeatureRequestVoteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    request?: boolean | FeatureRequestDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type FeatureRequestVoteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    request?: boolean | FeatureRequestDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $FeatureRequestVotePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FeatureRequestVote"
+    objects: {
+      request: Prisma.$FeatureRequestPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      requestId: string
+      userId: string
+      createdAt: Date
+    }, ExtArgs["result"]["featureRequestVote"]>
+    composites: {}
+  }
+
+  type FeatureRequestVoteGetPayload<S extends boolean | null | undefined | FeatureRequestVoteDefaultArgs> = $Result.GetResult<Prisma.$FeatureRequestVotePayload, S>
+
+  type FeatureRequestVoteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FeatureRequestVoteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeatureRequestVoteCountAggregateInputType | true
+    }
+
+  export interface FeatureRequestVoteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FeatureRequestVote'], meta: { name: 'FeatureRequestVote' } }
+    /**
+     * Find zero or one FeatureRequestVote that matches the filter.
+     * @param {FeatureRequestVoteFindUniqueArgs} args - Arguments to find a FeatureRequestVote
+     * @example
+     * // Get one FeatureRequestVote
+     * const featureRequestVote = await prisma.featureRequestVote.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FeatureRequestVoteFindUniqueArgs>(args: SelectSubset<T, FeatureRequestVoteFindUniqueArgs<ExtArgs>>): Prisma__FeatureRequestVoteClient<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FeatureRequestVote that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FeatureRequestVoteFindUniqueOrThrowArgs} args - Arguments to find a FeatureRequestVote
+     * @example
+     * // Get one FeatureRequestVote
+     * const featureRequestVote = await prisma.featureRequestVote.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FeatureRequestVoteFindUniqueOrThrowArgs>(args: SelectSubset<T, FeatureRequestVoteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeatureRequestVoteClient<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeatureRequestVote that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestVoteFindFirstArgs} args - Arguments to find a FeatureRequestVote
+     * @example
+     * // Get one FeatureRequestVote
+     * const featureRequestVote = await prisma.featureRequestVote.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FeatureRequestVoteFindFirstArgs>(args?: SelectSubset<T, FeatureRequestVoteFindFirstArgs<ExtArgs>>): Prisma__FeatureRequestVoteClient<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FeatureRequestVote that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestVoteFindFirstOrThrowArgs} args - Arguments to find a FeatureRequestVote
+     * @example
+     * // Get one FeatureRequestVote
+     * const featureRequestVote = await prisma.featureRequestVote.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FeatureRequestVoteFindFirstOrThrowArgs>(args?: SelectSubset<T, FeatureRequestVoteFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeatureRequestVoteClient<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FeatureRequestVotes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestVoteFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FeatureRequestVotes
+     * const featureRequestVotes = await prisma.featureRequestVote.findMany()
+     * 
+     * // Get first 10 FeatureRequestVotes
+     * const featureRequestVotes = await prisma.featureRequestVote.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const featureRequestVoteWithIdOnly = await prisma.featureRequestVote.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FeatureRequestVoteFindManyArgs>(args?: SelectSubset<T, FeatureRequestVoteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FeatureRequestVote.
+     * @param {FeatureRequestVoteCreateArgs} args - Arguments to create a FeatureRequestVote.
+     * @example
+     * // Create one FeatureRequestVote
+     * const FeatureRequestVote = await prisma.featureRequestVote.create({
+     *   data: {
+     *     // ... data to create a FeatureRequestVote
+     *   }
+     * })
+     * 
+     */
+    create<T extends FeatureRequestVoteCreateArgs>(args: SelectSubset<T, FeatureRequestVoteCreateArgs<ExtArgs>>): Prisma__FeatureRequestVoteClient<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FeatureRequestVotes.
+     * @param {FeatureRequestVoteCreateManyArgs} args - Arguments to create many FeatureRequestVotes.
+     * @example
+     * // Create many FeatureRequestVotes
+     * const featureRequestVote = await prisma.featureRequestVote.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FeatureRequestVoteCreateManyArgs>(args?: SelectSubset<T, FeatureRequestVoteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FeatureRequestVotes and returns the data saved in the database.
+     * @param {FeatureRequestVoteCreateManyAndReturnArgs} args - Arguments to create many FeatureRequestVotes.
+     * @example
+     * // Create many FeatureRequestVotes
+     * const featureRequestVote = await prisma.featureRequestVote.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FeatureRequestVotes and only return the `id`
+     * const featureRequestVoteWithIdOnly = await prisma.featureRequestVote.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FeatureRequestVoteCreateManyAndReturnArgs>(args?: SelectSubset<T, FeatureRequestVoteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FeatureRequestVote.
+     * @param {FeatureRequestVoteDeleteArgs} args - Arguments to delete one FeatureRequestVote.
+     * @example
+     * // Delete one FeatureRequestVote
+     * const FeatureRequestVote = await prisma.featureRequestVote.delete({
+     *   where: {
+     *     // ... filter to delete one FeatureRequestVote
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FeatureRequestVoteDeleteArgs>(args: SelectSubset<T, FeatureRequestVoteDeleteArgs<ExtArgs>>): Prisma__FeatureRequestVoteClient<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FeatureRequestVote.
+     * @param {FeatureRequestVoteUpdateArgs} args - Arguments to update one FeatureRequestVote.
+     * @example
+     * // Update one FeatureRequestVote
+     * const featureRequestVote = await prisma.featureRequestVote.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FeatureRequestVoteUpdateArgs>(args: SelectSubset<T, FeatureRequestVoteUpdateArgs<ExtArgs>>): Prisma__FeatureRequestVoteClient<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FeatureRequestVotes.
+     * @param {FeatureRequestVoteDeleteManyArgs} args - Arguments to filter FeatureRequestVotes to delete.
+     * @example
+     * // Delete a few FeatureRequestVotes
+     * const { count } = await prisma.featureRequestVote.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FeatureRequestVoteDeleteManyArgs>(args?: SelectSubset<T, FeatureRequestVoteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeatureRequestVotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestVoteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FeatureRequestVotes
+     * const featureRequestVote = await prisma.featureRequestVote.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FeatureRequestVoteUpdateManyArgs>(args: SelectSubset<T, FeatureRequestVoteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FeatureRequestVotes and returns the data updated in the database.
+     * @param {FeatureRequestVoteUpdateManyAndReturnArgs} args - Arguments to update many FeatureRequestVotes.
+     * @example
+     * // Update many FeatureRequestVotes
+     * const featureRequestVote = await prisma.featureRequestVote.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FeatureRequestVotes and only return the `id`
+     * const featureRequestVoteWithIdOnly = await prisma.featureRequestVote.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FeatureRequestVoteUpdateManyAndReturnArgs>(args: SelectSubset<T, FeatureRequestVoteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FeatureRequestVote.
+     * @param {FeatureRequestVoteUpsertArgs} args - Arguments to update or create a FeatureRequestVote.
+     * @example
+     * // Update or create a FeatureRequestVote
+     * const featureRequestVote = await prisma.featureRequestVote.upsert({
+     *   create: {
+     *     // ... data to create a FeatureRequestVote
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FeatureRequestVote we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FeatureRequestVoteUpsertArgs>(args: SelectSubset<T, FeatureRequestVoteUpsertArgs<ExtArgs>>): Prisma__FeatureRequestVoteClient<$Result.GetResult<Prisma.$FeatureRequestVotePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FeatureRequestVotes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestVoteCountArgs} args - Arguments to filter FeatureRequestVotes to count.
+     * @example
+     * // Count the number of FeatureRequestVotes
+     * const count = await prisma.featureRequestVote.count({
+     *   where: {
+     *     // ... the filter for the FeatureRequestVotes we want to count
+     *   }
+     * })
+    **/
+    count<T extends FeatureRequestVoteCountArgs>(
+      args?: Subset<T, FeatureRequestVoteCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeatureRequestVoteCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FeatureRequestVote.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestVoteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeatureRequestVoteAggregateArgs>(args: Subset<T, FeatureRequestVoteAggregateArgs>): Prisma.PrismaPromise<GetFeatureRequestVoteAggregateType<T>>
+
+    /**
+     * Group by FeatureRequestVote.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeatureRequestVoteGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FeatureRequestVoteGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FeatureRequestVoteGroupByArgs['orderBy'] }
+        : { orderBy?: FeatureRequestVoteGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FeatureRequestVoteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeatureRequestVoteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FeatureRequestVote model
+   */
+  readonly fields: FeatureRequestVoteFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FeatureRequestVote.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FeatureRequestVoteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    request<T extends FeatureRequestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FeatureRequestDefaultArgs<ExtArgs>>): Prisma__FeatureRequestClient<$Result.GetResult<Prisma.$FeatureRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FeatureRequestVote model
+   */
+  interface FeatureRequestVoteFieldRefs {
+    readonly id: FieldRef<"FeatureRequestVote", 'String'>
+    readonly requestId: FieldRef<"FeatureRequestVote", 'String'>
+    readonly userId: FieldRef<"FeatureRequestVote", 'String'>
+    readonly createdAt: FieldRef<"FeatureRequestVote", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FeatureRequestVote findUnique
+   */
+  export type FeatureRequestVoteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureRequestVote to fetch.
+     */
+    where: FeatureRequestVoteWhereUniqueInput
+  }
+
+  /**
+   * FeatureRequestVote findUniqueOrThrow
+   */
+  export type FeatureRequestVoteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureRequestVote to fetch.
+     */
+    where: FeatureRequestVoteWhereUniqueInput
+  }
+
+  /**
+   * FeatureRequestVote findFirst
+   */
+  export type FeatureRequestVoteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureRequestVote to fetch.
+     */
+    where?: FeatureRequestVoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureRequestVotes to fetch.
+     */
+    orderBy?: FeatureRequestVoteOrderByWithRelationInput | FeatureRequestVoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeatureRequestVotes.
+     */
+    cursor?: FeatureRequestVoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureRequestVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureRequestVotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeatureRequestVotes.
+     */
+    distinct?: FeatureRequestVoteScalarFieldEnum | FeatureRequestVoteScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureRequestVote findFirstOrThrow
+   */
+  export type FeatureRequestVoteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureRequestVote to fetch.
+     */
+    where?: FeatureRequestVoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureRequestVotes to fetch.
+     */
+    orderBy?: FeatureRequestVoteOrderByWithRelationInput | FeatureRequestVoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FeatureRequestVotes.
+     */
+    cursor?: FeatureRequestVoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureRequestVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureRequestVotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeatureRequestVotes.
+     */
+    distinct?: FeatureRequestVoteScalarFieldEnum | FeatureRequestVoteScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureRequestVote findMany
+   */
+  export type FeatureRequestVoteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    /**
+     * Filter, which FeatureRequestVotes to fetch.
+     */
+    where?: FeatureRequestVoteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FeatureRequestVotes to fetch.
+     */
+    orderBy?: FeatureRequestVoteOrderByWithRelationInput | FeatureRequestVoteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FeatureRequestVotes.
+     */
+    cursor?: FeatureRequestVoteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FeatureRequestVotes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FeatureRequestVotes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FeatureRequestVotes.
+     */
+    distinct?: FeatureRequestVoteScalarFieldEnum | FeatureRequestVoteScalarFieldEnum[]
+  }
+
+  /**
+   * FeatureRequestVote create
+   */
+  export type FeatureRequestVoteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FeatureRequestVote.
+     */
+    data: XOR<FeatureRequestVoteCreateInput, FeatureRequestVoteUncheckedCreateInput>
+  }
+
+  /**
+   * FeatureRequestVote createMany
+   */
+  export type FeatureRequestVoteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FeatureRequestVotes.
+     */
+    data: FeatureRequestVoteCreateManyInput | FeatureRequestVoteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FeatureRequestVote createManyAndReturn
+   */
+  export type FeatureRequestVoteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * The data used to create many FeatureRequestVotes.
+     */
+    data: FeatureRequestVoteCreateManyInput | FeatureRequestVoteCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeatureRequestVote update
+   */
+  export type FeatureRequestVoteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FeatureRequestVote.
+     */
+    data: XOR<FeatureRequestVoteUpdateInput, FeatureRequestVoteUncheckedUpdateInput>
+    /**
+     * Choose, which FeatureRequestVote to update.
+     */
+    where: FeatureRequestVoteWhereUniqueInput
+  }
+
+  /**
+   * FeatureRequestVote updateMany
+   */
+  export type FeatureRequestVoteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FeatureRequestVotes.
+     */
+    data: XOR<FeatureRequestVoteUpdateManyMutationInput, FeatureRequestVoteUncheckedUpdateManyInput>
+    /**
+     * Filter which FeatureRequestVotes to update
+     */
+    where?: FeatureRequestVoteWhereInput
+    /**
+     * Limit how many FeatureRequestVotes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeatureRequestVote updateManyAndReturn
+   */
+  export type FeatureRequestVoteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * The data used to update FeatureRequestVotes.
+     */
+    data: XOR<FeatureRequestVoteUpdateManyMutationInput, FeatureRequestVoteUncheckedUpdateManyInput>
+    /**
+     * Filter which FeatureRequestVotes to update
+     */
+    where?: FeatureRequestVoteWhereInput
+    /**
+     * Limit how many FeatureRequestVotes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FeatureRequestVote upsert
+   */
+  export type FeatureRequestVoteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FeatureRequestVote to update in case it exists.
+     */
+    where: FeatureRequestVoteWhereUniqueInput
+    /**
+     * In case the FeatureRequestVote found by the `where` argument doesn't exist, create a new FeatureRequestVote with this data.
+     */
+    create: XOR<FeatureRequestVoteCreateInput, FeatureRequestVoteUncheckedCreateInput>
+    /**
+     * In case the FeatureRequestVote was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FeatureRequestVoteUpdateInput, FeatureRequestVoteUncheckedUpdateInput>
+  }
+
+  /**
+   * FeatureRequestVote delete
+   */
+  export type FeatureRequestVoteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+    /**
+     * Filter which FeatureRequestVote to delete.
+     */
+    where: FeatureRequestVoteWhereUniqueInput
+  }
+
+  /**
+   * FeatureRequestVote deleteMany
+   */
+  export type FeatureRequestVoteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FeatureRequestVotes to delete
+     */
+    where?: FeatureRequestVoteWhereInput
+    /**
+     * Limit how many FeatureRequestVotes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FeatureRequestVote without action
+   */
+  export type FeatureRequestVoteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FeatureRequestVote
+     */
+    select?: FeatureRequestVoteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FeatureRequestVote
+     */
+    omit?: FeatureRequestVoteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FeatureRequestVoteInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -78993,7 +82766,9 @@ export namespace Prisma {
     professionalMode: 'professionalMode',
     verified: 'verified',
     verifiedAt: 'verifiedAt',
-    profileBoostedUntil: 'profileBoostedUntil'
+    profileBoostedUntil: 'profileBoostedUntil',
+    coinBalance: 'coinBalance',
+    walletBonusAwardedAt: 'walletBonusAwardedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -79838,6 +83613,41 @@ export namespace Prisma {
   export type OutboxEventScalarFieldEnum = (typeof OutboxEventScalarFieldEnum)[keyof typeof OutboxEventScalarFieldEnum]
 
 
+  export const OnboardingSurveyScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    source: 'source',
+    otherText: 'otherText',
+    createdAt: 'createdAt'
+  };
+
+  export type OnboardingSurveyScalarFieldEnum = (typeof OnboardingSurveyScalarFieldEnum)[keyof typeof OnboardingSurveyScalarFieldEnum]
+
+
+  export const FeatureRequestScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    title: 'title',
+    description: 'description',
+    category: 'category',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FeatureRequestScalarFieldEnum = (typeof FeatureRequestScalarFieldEnum)[keyof typeof FeatureRequestScalarFieldEnum]
+
+
+  export const FeatureRequestVoteScalarFieldEnum: {
+    id: 'id',
+    requestId: 'requestId',
+    userId: 'userId',
+    createdAt: 'createdAt'
+  };
+
+  export type FeatureRequestVoteScalarFieldEnum = (typeof FeatureRequestVoteScalarFieldEnum)[keyof typeof FeatureRequestVoteScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -79941,6 +83751,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'ReactionType'
    */
   export type EnumReactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReactionType'>
@@ -79997,20 +83821,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -80049,6 +83859,48 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'OnboardingSource'
+   */
+  export type EnumOnboardingSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnboardingSource'>
+    
+
+
+  /**
+   * Reference to a field of type 'OnboardingSource[]'
+   */
+  export type ListEnumOnboardingSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OnboardingSource[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'FeatureRequestCategory'
+   */
+  export type EnumFeatureRequestCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeatureRequestCategory'>
+    
+
+
+  /**
+   * Reference to a field of type 'FeatureRequestCategory[]'
+   */
+  export type ListEnumFeatureRequestCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeatureRequestCategory[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'FeatureRequestStatus'
+   */
+  export type EnumFeatureRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeatureRequestStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'FeatureRequestStatus[]'
+   */
+  export type ListEnumFeatureRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeatureRequestStatus[]'>
     
   /**
    * Deep Input Types
@@ -80092,6 +83944,8 @@ export namespace Prisma {
     verified?: BoolFilter<"User"> | boolean
     verifiedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     profileBoostedUntil?: DateTimeNullableFilter<"User"> | Date | string | null
+    coinBalance?: IntFilter<"User"> | number
+    walletBonusAwardedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     posts?: PostListRelationFilter
     companyFollows?: CompanyFollowListRelationFilter
     comments?: CommentListRelationFilter
@@ -80152,6 +84006,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchListRelationFilter
     savedItems?: SavedItemListRelationFilter
     memories?: MemoryListRelationFilter
+    onboardingSurveys?: OnboardingSurveyListRelationFilter
+    featureRequests?: FeatureRequestListRelationFilter
+    featureVotes?: FeatureRequestVoteListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -80188,6 +84045,8 @@ export namespace Prisma {
     verified?: SortOrder
     verifiedAt?: SortOrderInput | SortOrder
     profileBoostedUntil?: SortOrderInput | SortOrder
+    coinBalance?: SortOrder
+    walletBonusAwardedAt?: SortOrderInput | SortOrder
     posts?: PostOrderByRelationAggregateInput
     companyFollows?: CompanyFollowOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
@@ -80248,6 +84107,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchOrderByRelationAggregateInput
     savedItems?: SavedItemOrderByRelationAggregateInput
     memories?: MemoryOrderByRelationAggregateInput
+    onboardingSurveys?: OnboardingSurveyOrderByRelationAggregateInput
+    featureRequests?: FeatureRequestOrderByRelationAggregateInput
+    featureVotes?: FeatureRequestVoteOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -80287,6 +84149,8 @@ export namespace Prisma {
     verified?: BoolFilter<"User"> | boolean
     verifiedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     profileBoostedUntil?: DateTimeNullableFilter<"User"> | Date | string | null
+    coinBalance?: IntFilter<"User"> | number
+    walletBonusAwardedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     posts?: PostListRelationFilter
     companyFollows?: CompanyFollowListRelationFilter
     comments?: CommentListRelationFilter
@@ -80347,6 +84211,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchListRelationFilter
     savedItems?: SavedItemListRelationFilter
     memories?: MemoryListRelationFilter
+    onboardingSurveys?: OnboardingSurveyListRelationFilter
+    featureRequests?: FeatureRequestListRelationFilter
+    featureVotes?: FeatureRequestVoteListRelationFilter
   }, "id" | "email" | "username" | "phoneNumber">
 
   export type UserOrderByWithAggregationInput = {
@@ -80383,9 +84250,13 @@ export namespace Prisma {
     verified?: SortOrder
     verifiedAt?: SortOrderInput | SortOrder
     profileBoostedUntil?: SortOrderInput | SortOrder
+    coinBalance?: SortOrder
+    walletBonusAwardedAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
+    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
+    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
@@ -80425,6 +84296,8 @@ export namespace Prisma {
     verified?: BoolWithAggregatesFilter<"User"> | boolean
     verifiedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     profileBoostedUntil?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    coinBalance?: IntWithAggregatesFilter<"User"> | number
+    walletBonusAwardedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
 
   export type FollowWhereInput = {
@@ -84803,6 +88676,188 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"OutboxEvent"> | Date | string
   }
 
+  export type OnboardingSurveyWhereInput = {
+    AND?: OnboardingSurveyWhereInput | OnboardingSurveyWhereInput[]
+    OR?: OnboardingSurveyWhereInput[]
+    NOT?: OnboardingSurveyWhereInput | OnboardingSurveyWhereInput[]
+    id?: StringFilter<"OnboardingSurvey"> | string
+    userId?: StringFilter<"OnboardingSurvey"> | string
+    source?: EnumOnboardingSourceFilter<"OnboardingSurvey"> | $Enums.OnboardingSource
+    otherText?: StringNullableFilter<"OnboardingSurvey"> | string | null
+    createdAt?: DateTimeFilter<"OnboardingSurvey"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type OnboardingSurveyOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    source?: SortOrder
+    otherText?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type OnboardingSurveyWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: OnboardingSurveyWhereInput | OnboardingSurveyWhereInput[]
+    OR?: OnboardingSurveyWhereInput[]
+    NOT?: OnboardingSurveyWhereInput | OnboardingSurveyWhereInput[]
+    source?: EnumOnboardingSourceFilter<"OnboardingSurvey"> | $Enums.OnboardingSource
+    otherText?: StringNullableFilter<"OnboardingSurvey"> | string | null
+    createdAt?: DateTimeFilter<"OnboardingSurvey"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type OnboardingSurveyOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    source?: SortOrder
+    otherText?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: OnboardingSurveyCountOrderByAggregateInput
+    _max?: OnboardingSurveyMaxOrderByAggregateInput
+    _min?: OnboardingSurveyMinOrderByAggregateInput
+  }
+
+  export type OnboardingSurveyScalarWhereWithAggregatesInput = {
+    AND?: OnboardingSurveyScalarWhereWithAggregatesInput | OnboardingSurveyScalarWhereWithAggregatesInput[]
+    OR?: OnboardingSurveyScalarWhereWithAggregatesInput[]
+    NOT?: OnboardingSurveyScalarWhereWithAggregatesInput | OnboardingSurveyScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"OnboardingSurvey"> | string
+    userId?: StringWithAggregatesFilter<"OnboardingSurvey"> | string
+    source?: EnumOnboardingSourceWithAggregatesFilter<"OnboardingSurvey"> | $Enums.OnboardingSource
+    otherText?: StringNullableWithAggregatesFilter<"OnboardingSurvey"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"OnboardingSurvey"> | Date | string
+  }
+
+  export type FeatureRequestWhereInput = {
+    AND?: FeatureRequestWhereInput | FeatureRequestWhereInput[]
+    OR?: FeatureRequestWhereInput[]
+    NOT?: FeatureRequestWhereInput | FeatureRequestWhereInput[]
+    id?: StringFilter<"FeatureRequest"> | string
+    userId?: StringFilter<"FeatureRequest"> | string
+    title?: StringFilter<"FeatureRequest"> | string
+    description?: StringNullableFilter<"FeatureRequest"> | string | null
+    category?: EnumFeatureRequestCategoryFilter<"FeatureRequest"> | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFilter<"FeatureRequest"> | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFilter<"FeatureRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"FeatureRequest"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    votes?: FeatureRequestVoteListRelationFilter
+  }
+
+  export type FeatureRequestOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    category?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    votes?: FeatureRequestVoteOrderByRelationAggregateInput
+  }
+
+  export type FeatureRequestWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FeatureRequestWhereInput | FeatureRequestWhereInput[]
+    OR?: FeatureRequestWhereInput[]
+    NOT?: FeatureRequestWhereInput | FeatureRequestWhereInput[]
+    userId?: StringFilter<"FeatureRequest"> | string
+    title?: StringFilter<"FeatureRequest"> | string
+    description?: StringNullableFilter<"FeatureRequest"> | string | null
+    category?: EnumFeatureRequestCategoryFilter<"FeatureRequest"> | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFilter<"FeatureRequest"> | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFilter<"FeatureRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"FeatureRequest"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    votes?: FeatureRequestVoteListRelationFilter
+  }, "id">
+
+  export type FeatureRequestOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    category?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FeatureRequestCountOrderByAggregateInput
+    _max?: FeatureRequestMaxOrderByAggregateInput
+    _min?: FeatureRequestMinOrderByAggregateInput
+  }
+
+  export type FeatureRequestScalarWhereWithAggregatesInput = {
+    AND?: FeatureRequestScalarWhereWithAggregatesInput | FeatureRequestScalarWhereWithAggregatesInput[]
+    OR?: FeatureRequestScalarWhereWithAggregatesInput[]
+    NOT?: FeatureRequestScalarWhereWithAggregatesInput | FeatureRequestScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FeatureRequest"> | string
+    userId?: StringWithAggregatesFilter<"FeatureRequest"> | string
+    title?: StringWithAggregatesFilter<"FeatureRequest"> | string
+    description?: StringNullableWithAggregatesFilter<"FeatureRequest"> | string | null
+    category?: EnumFeatureRequestCategoryWithAggregatesFilter<"FeatureRequest"> | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusWithAggregatesFilter<"FeatureRequest"> | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeWithAggregatesFilter<"FeatureRequest"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FeatureRequest"> | Date | string
+  }
+
+  export type FeatureRequestVoteWhereInput = {
+    AND?: FeatureRequestVoteWhereInput | FeatureRequestVoteWhereInput[]
+    OR?: FeatureRequestVoteWhereInput[]
+    NOT?: FeatureRequestVoteWhereInput | FeatureRequestVoteWhereInput[]
+    id?: StringFilter<"FeatureRequestVote"> | string
+    requestId?: StringFilter<"FeatureRequestVote"> | string
+    userId?: StringFilter<"FeatureRequestVote"> | string
+    createdAt?: DateTimeFilter<"FeatureRequestVote"> | Date | string
+    request?: XOR<FeatureRequestScalarRelationFilter, FeatureRequestWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type FeatureRequestVoteOrderByWithRelationInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    request?: FeatureRequestOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type FeatureRequestVoteWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    requestId_userId?: FeatureRequestVoteRequestIdUserIdCompoundUniqueInput
+    AND?: FeatureRequestVoteWhereInput | FeatureRequestVoteWhereInput[]
+    OR?: FeatureRequestVoteWhereInput[]
+    NOT?: FeatureRequestVoteWhereInput | FeatureRequestVoteWhereInput[]
+    requestId?: StringFilter<"FeatureRequestVote"> | string
+    userId?: StringFilter<"FeatureRequestVote"> | string
+    createdAt?: DateTimeFilter<"FeatureRequestVote"> | Date | string
+    request?: XOR<FeatureRequestScalarRelationFilter, FeatureRequestWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "requestId_userId">
+
+  export type FeatureRequestVoteOrderByWithAggregationInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    _count?: FeatureRequestVoteCountOrderByAggregateInput
+    _max?: FeatureRequestVoteMaxOrderByAggregateInput
+    _min?: FeatureRequestVoteMinOrderByAggregateInput
+  }
+
+  export type FeatureRequestVoteScalarWhereWithAggregatesInput = {
+    AND?: FeatureRequestVoteScalarWhereWithAggregatesInput | FeatureRequestVoteScalarWhereWithAggregatesInput[]
+    OR?: FeatureRequestVoteScalarWhereWithAggregatesInput[]
+    NOT?: FeatureRequestVoteScalarWhereWithAggregatesInput | FeatureRequestVoteScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FeatureRequestVote"> | string
+    requestId?: StringWithAggregatesFilter<"FeatureRequestVote"> | string
+    userId?: StringWithAggregatesFilter<"FeatureRequestVote"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"FeatureRequestVote"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -84837,6 +88892,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -84897,6 +88954,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -84933,6 +88993,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -84993,6 +89055,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -85029,6 +89094,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -85089,6 +89156,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -85125,6 +89195,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -85185,6 +89257,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -85221,6 +89296,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -85257,6 +89334,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -85293,6 +89372,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type FollowCreateInput = {
@@ -89896,6 +93977,188 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type OnboardingSurveyCreateInput = {
+    id?: string
+    source: $Enums.OnboardingSource
+    otherText?: string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutOnboardingSurveysInput
+  }
+
+  export type OnboardingSurveyUncheckedCreateInput = {
+    id?: string
+    userId: string
+    source: $Enums.OnboardingSource
+    otherText?: string | null
+    createdAt?: Date | string
+  }
+
+  export type OnboardingSurveyUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumOnboardingSourceFieldUpdateOperationsInput | $Enums.OnboardingSource
+    otherText?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOnboardingSurveysNestedInput
+  }
+
+  export type OnboardingSurveyUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    source?: EnumOnboardingSourceFieldUpdateOperationsInput | $Enums.OnboardingSource
+    otherText?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OnboardingSurveyCreateManyInput = {
+    id?: string
+    userId: string
+    source: $Enums.OnboardingSource
+    otherText?: string | null
+    createdAt?: Date | string
+  }
+
+  export type OnboardingSurveyUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumOnboardingSourceFieldUpdateOperationsInput | $Enums.OnboardingSource
+    otherText?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OnboardingSurveyUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    source?: EnumOnboardingSourceFieldUpdateOperationsInput | $Enums.OnboardingSource
+    otherText?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureRequestCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    category?: $Enums.FeatureRequestCategory
+    status?: $Enums.FeatureRequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutFeatureRequestsInput
+    votes?: FeatureRequestVoteCreateNestedManyWithoutRequestInput
+  }
+
+  export type FeatureRequestUncheckedCreateInput = {
+    id?: string
+    userId: string
+    title: string
+    description?: string | null
+    category?: $Enums.FeatureRequestCategory
+    status?: $Enums.FeatureRequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    votes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutRequestInput
+  }
+
+  export type FeatureRequestUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: EnumFeatureRequestCategoryFieldUpdateOperationsInput | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFieldUpdateOperationsInput | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFeatureRequestsNestedInput
+    votes?: FeatureRequestVoteUpdateManyWithoutRequestNestedInput
+  }
+
+  export type FeatureRequestUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: EnumFeatureRequestCategoryFieldUpdateOperationsInput | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFieldUpdateOperationsInput | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    votes?: FeatureRequestVoteUncheckedUpdateManyWithoutRequestNestedInput
+  }
+
+  export type FeatureRequestCreateManyInput = {
+    id?: string
+    userId: string
+    title: string
+    description?: string | null
+    category?: $Enums.FeatureRequestCategory
+    status?: $Enums.FeatureRequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeatureRequestUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: EnumFeatureRequestCategoryFieldUpdateOperationsInput | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFieldUpdateOperationsInput | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureRequestUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: EnumFeatureRequestCategoryFieldUpdateOperationsInput | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFieldUpdateOperationsInput | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureRequestVoteCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    request: FeatureRequestCreateNestedOneWithoutVotesInput
+    user: UserCreateNestedOneWithoutFeatureVotesInput
+  }
+
+  export type FeatureRequestVoteUncheckedCreateInput = {
+    id?: string
+    requestId: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type FeatureRequestVoteUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    request?: FeatureRequestUpdateOneRequiredWithoutVotesNestedInput
+    user?: UserUpdateOneRequiredWithoutFeatureVotesNestedInput
+  }
+
+  export type FeatureRequestVoteUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureRequestVoteCreateManyInput = {
+    id?: string
+    requestId: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type FeatureRequestVoteUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureRequestVoteUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -89958,6 +94221,17 @@ export namespace Prisma {
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type PostListRelationFilter = {
@@ -90265,6 +94539,24 @@ export namespace Prisma {
     none?: MemoryWhereInput
   }
 
+  export type OnboardingSurveyListRelationFilter = {
+    every?: OnboardingSurveyWhereInput
+    some?: OnboardingSurveyWhereInput
+    none?: OnboardingSurveyWhereInput
+  }
+
+  export type FeatureRequestListRelationFilter = {
+    every?: FeatureRequestWhereInput
+    some?: FeatureRequestWhereInput
+    none?: FeatureRequestWhereInput
+  }
+
+  export type FeatureRequestVoteListRelationFilter = {
+    every?: FeatureRequestVoteWhereInput
+    some?: FeatureRequestVoteWhereInput
+    none?: FeatureRequestVoteWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -90470,6 +94762,18 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type OnboardingSurveyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FeatureRequestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FeatureRequestVoteOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
@@ -90504,6 +94808,12 @@ export namespace Prisma {
     verified?: SortOrder
     verifiedAt?: SortOrder
     profileBoostedUntil?: SortOrder
+    coinBalance?: SortOrder
+    walletBonusAwardedAt?: SortOrder
+  }
+
+  export type UserAvgOrderByAggregateInput = {
+    coinBalance?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -90540,6 +94850,8 @@ export namespace Prisma {
     verified?: SortOrder
     verifiedAt?: SortOrder
     profileBoostedUntil?: SortOrder
+    coinBalance?: SortOrder
+    walletBonusAwardedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -90576,6 +94888,12 @@ export namespace Prisma {
     verified?: SortOrder
     verifiedAt?: SortOrder
     profileBoostedUntil?: SortOrder
+    coinBalance?: SortOrder
+    walletBonusAwardedAt?: SortOrder
+  }
+
+  export type UserSumOrderByAggregateInput = {
+    coinBalance?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -90658,6 +94976,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type UserScalarRelationFilter = {
@@ -91164,17 +95498,6 @@ export namespace Prisma {
     _max?: NestedEnumReportStatusFilter<$PrismaModel>
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type OfficialFeedItemListRelationFilter = {
     every?: OfficialFeedItemWhereInput
     some?: OfficialFeedItemWhereInput
@@ -91257,22 +95580,6 @@ export namespace Prisma {
 
   export type OfficialFeedSourceSumOrderByAggregateInput = {
     syncIntervalMinutes?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type OfficialFeedSourceNullableScalarRelationFilter = {
@@ -93185,6 +97492,145 @@ export namespace Prisma {
     attempts?: SortOrder
   }
 
+  export type EnumOnboardingSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingSource | EnumOnboardingSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.OnboardingSource[] | ListEnumOnboardingSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OnboardingSource[] | ListEnumOnboardingSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumOnboardingSourceFilter<$PrismaModel> | $Enums.OnboardingSource
+  }
+
+  export type OnboardingSurveyCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    source?: SortOrder
+    otherText?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OnboardingSurveyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    source?: SortOrder
+    otherText?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OnboardingSurveyMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    source?: SortOrder
+    otherText?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumOnboardingSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingSource | EnumOnboardingSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.OnboardingSource[] | ListEnumOnboardingSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OnboardingSource[] | ListEnumOnboardingSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumOnboardingSourceWithAggregatesFilter<$PrismaModel> | $Enums.OnboardingSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumOnboardingSourceFilter<$PrismaModel>
+    _max?: NestedEnumOnboardingSourceFilter<$PrismaModel>
+  }
+
+  export type EnumFeatureRequestCategoryFilter<$PrismaModel = never> = {
+    equals?: $Enums.FeatureRequestCategory | EnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.FeatureRequestCategory[] | ListEnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FeatureRequestCategory[] | ListEnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumFeatureRequestCategoryFilter<$PrismaModel> | $Enums.FeatureRequestCategory
+  }
+
+  export type EnumFeatureRequestStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FeatureRequestStatus | EnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FeatureRequestStatus[] | ListEnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FeatureRequestStatus[] | ListEnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFeatureRequestStatusFilter<$PrismaModel> | $Enums.FeatureRequestStatus
+  }
+
+  export type FeatureRequestCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FeatureRequestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FeatureRequestMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumFeatureRequestCategoryWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FeatureRequestCategory | EnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.FeatureRequestCategory[] | ListEnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FeatureRequestCategory[] | ListEnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumFeatureRequestCategoryWithAggregatesFilter<$PrismaModel> | $Enums.FeatureRequestCategory
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFeatureRequestCategoryFilter<$PrismaModel>
+    _max?: NestedEnumFeatureRequestCategoryFilter<$PrismaModel>
+  }
+
+  export type EnumFeatureRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FeatureRequestStatus | EnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FeatureRequestStatus[] | ListEnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FeatureRequestStatus[] | ListEnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFeatureRequestStatusWithAggregatesFilter<$PrismaModel> | $Enums.FeatureRequestStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFeatureRequestStatusFilter<$PrismaModel>
+    _max?: NestedEnumFeatureRequestStatusFilter<$PrismaModel>
+  }
+
+  export type FeatureRequestScalarRelationFilter = {
+    is?: FeatureRequestWhereInput
+    isNot?: FeatureRequestWhereInput
+  }
+
+  export type FeatureRequestVoteRequestIdUserIdCompoundUniqueInput = {
+    requestId: string
+    userId: string
+  }
+
+  export type FeatureRequestVoteCountOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FeatureRequestVoteMaxOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FeatureRequestVoteMinOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type PostCreateNestedManyWithoutAuthorInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
@@ -93602,6 +98048,27 @@ export namespace Prisma {
     connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
     createMany?: MemoryCreateManyUserInputEnvelope
     connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+  }
+
+  export type OnboardingSurveyCreateNestedManyWithoutUserInput = {
+    create?: XOR<OnboardingSurveyCreateWithoutUserInput, OnboardingSurveyUncheckedCreateWithoutUserInput> | OnboardingSurveyCreateWithoutUserInput[] | OnboardingSurveyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OnboardingSurveyCreateOrConnectWithoutUserInput | OnboardingSurveyCreateOrConnectWithoutUserInput[]
+    createMany?: OnboardingSurveyCreateManyUserInputEnvelope
+    connect?: OnboardingSurveyWhereUniqueInput | OnboardingSurveyWhereUniqueInput[]
+  }
+
+  export type FeatureRequestCreateNestedManyWithoutUserInput = {
+    create?: XOR<FeatureRequestCreateWithoutUserInput, FeatureRequestUncheckedCreateWithoutUserInput> | FeatureRequestCreateWithoutUserInput[] | FeatureRequestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeatureRequestCreateOrConnectWithoutUserInput | FeatureRequestCreateOrConnectWithoutUserInput[]
+    createMany?: FeatureRequestCreateManyUserInputEnvelope
+    connect?: FeatureRequestWhereUniqueInput | FeatureRequestWhereUniqueInput[]
+  }
+
+  export type FeatureRequestVoteCreateNestedManyWithoutUserInput = {
+    create?: XOR<FeatureRequestVoteCreateWithoutUserInput, FeatureRequestVoteUncheckedCreateWithoutUserInput> | FeatureRequestVoteCreateWithoutUserInput[] | FeatureRequestVoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeatureRequestVoteCreateOrConnectWithoutUserInput | FeatureRequestVoteCreateOrConnectWithoutUserInput[]
+    createMany?: FeatureRequestVoteCreateManyUserInputEnvelope
+    connect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
   }
 
   export type PostUncheckedCreateNestedManyWithoutAuthorInput = {
@@ -94023,6 +98490,27 @@ export namespace Prisma {
     connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
   }
 
+  export type OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<OnboardingSurveyCreateWithoutUserInput, OnboardingSurveyUncheckedCreateWithoutUserInput> | OnboardingSurveyCreateWithoutUserInput[] | OnboardingSurveyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OnboardingSurveyCreateOrConnectWithoutUserInput | OnboardingSurveyCreateOrConnectWithoutUserInput[]
+    createMany?: OnboardingSurveyCreateManyUserInputEnvelope
+    connect?: OnboardingSurveyWhereUniqueInput | OnboardingSurveyWhereUniqueInput[]
+  }
+
+  export type FeatureRequestUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FeatureRequestCreateWithoutUserInput, FeatureRequestUncheckedCreateWithoutUserInput> | FeatureRequestCreateWithoutUserInput[] | FeatureRequestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeatureRequestCreateOrConnectWithoutUserInput | FeatureRequestCreateOrConnectWithoutUserInput[]
+    createMany?: FeatureRequestCreateManyUserInputEnvelope
+    connect?: FeatureRequestWhereUniqueInput | FeatureRequestWhereUniqueInput[]
+  }
+
+  export type FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FeatureRequestVoteCreateWithoutUserInput, FeatureRequestVoteUncheckedCreateWithoutUserInput> | FeatureRequestVoteCreateWithoutUserInput[] | FeatureRequestVoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeatureRequestVoteCreateOrConnectWithoutUserInput | FeatureRequestVoteCreateOrConnectWithoutUserInput[]
+    createMany?: FeatureRequestVoteCreateManyUserInputEnvelope
+    connect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -94045,6 +98533,14 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type PostUpdateManyWithoutAuthorNestedInput = {
@@ -94883,6 +99379,48 @@ export namespace Prisma {
     deleteMany?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
   }
 
+  export type OnboardingSurveyUpdateManyWithoutUserNestedInput = {
+    create?: XOR<OnboardingSurveyCreateWithoutUserInput, OnboardingSurveyUncheckedCreateWithoutUserInput> | OnboardingSurveyCreateWithoutUserInput[] | OnboardingSurveyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OnboardingSurveyCreateOrConnectWithoutUserInput | OnboardingSurveyCreateOrConnectWithoutUserInput[]
+    upsert?: OnboardingSurveyUpsertWithWhereUniqueWithoutUserInput | OnboardingSurveyUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: OnboardingSurveyCreateManyUserInputEnvelope
+    set?: OnboardingSurveyWhereUniqueInput | OnboardingSurveyWhereUniqueInput[]
+    disconnect?: OnboardingSurveyWhereUniqueInput | OnboardingSurveyWhereUniqueInput[]
+    delete?: OnboardingSurveyWhereUniqueInput | OnboardingSurveyWhereUniqueInput[]
+    connect?: OnboardingSurveyWhereUniqueInput | OnboardingSurveyWhereUniqueInput[]
+    update?: OnboardingSurveyUpdateWithWhereUniqueWithoutUserInput | OnboardingSurveyUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: OnboardingSurveyUpdateManyWithWhereWithoutUserInput | OnboardingSurveyUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: OnboardingSurveyScalarWhereInput | OnboardingSurveyScalarWhereInput[]
+  }
+
+  export type FeatureRequestUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FeatureRequestCreateWithoutUserInput, FeatureRequestUncheckedCreateWithoutUserInput> | FeatureRequestCreateWithoutUserInput[] | FeatureRequestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeatureRequestCreateOrConnectWithoutUserInput | FeatureRequestCreateOrConnectWithoutUserInput[]
+    upsert?: FeatureRequestUpsertWithWhereUniqueWithoutUserInput | FeatureRequestUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FeatureRequestCreateManyUserInputEnvelope
+    set?: FeatureRequestWhereUniqueInput | FeatureRequestWhereUniqueInput[]
+    disconnect?: FeatureRequestWhereUniqueInput | FeatureRequestWhereUniqueInput[]
+    delete?: FeatureRequestWhereUniqueInput | FeatureRequestWhereUniqueInput[]
+    connect?: FeatureRequestWhereUniqueInput | FeatureRequestWhereUniqueInput[]
+    update?: FeatureRequestUpdateWithWhereUniqueWithoutUserInput | FeatureRequestUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FeatureRequestUpdateManyWithWhereWithoutUserInput | FeatureRequestUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FeatureRequestScalarWhereInput | FeatureRequestScalarWhereInput[]
+  }
+
+  export type FeatureRequestVoteUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FeatureRequestVoteCreateWithoutUserInput, FeatureRequestVoteUncheckedCreateWithoutUserInput> | FeatureRequestVoteCreateWithoutUserInput[] | FeatureRequestVoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeatureRequestVoteCreateOrConnectWithoutUserInput | FeatureRequestVoteCreateOrConnectWithoutUserInput[]
+    upsert?: FeatureRequestVoteUpsertWithWhereUniqueWithoutUserInput | FeatureRequestVoteUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FeatureRequestVoteCreateManyUserInputEnvelope
+    set?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    disconnect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    delete?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    connect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    update?: FeatureRequestVoteUpdateWithWhereUniqueWithoutUserInput | FeatureRequestVoteUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FeatureRequestVoteUpdateManyWithWhereWithoutUserInput | FeatureRequestVoteUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FeatureRequestVoteScalarWhereInput | FeatureRequestVoteScalarWhereInput[]
+  }
+
   export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
@@ -95719,6 +100257,48 @@ export namespace Prisma {
     deleteMany?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
   }
 
+  export type OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<OnboardingSurveyCreateWithoutUserInput, OnboardingSurveyUncheckedCreateWithoutUserInput> | OnboardingSurveyCreateWithoutUserInput[] | OnboardingSurveyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: OnboardingSurveyCreateOrConnectWithoutUserInput | OnboardingSurveyCreateOrConnectWithoutUserInput[]
+    upsert?: OnboardingSurveyUpsertWithWhereUniqueWithoutUserInput | OnboardingSurveyUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: OnboardingSurveyCreateManyUserInputEnvelope
+    set?: OnboardingSurveyWhereUniqueInput | OnboardingSurveyWhereUniqueInput[]
+    disconnect?: OnboardingSurveyWhereUniqueInput | OnboardingSurveyWhereUniqueInput[]
+    delete?: OnboardingSurveyWhereUniqueInput | OnboardingSurveyWhereUniqueInput[]
+    connect?: OnboardingSurveyWhereUniqueInput | OnboardingSurveyWhereUniqueInput[]
+    update?: OnboardingSurveyUpdateWithWhereUniqueWithoutUserInput | OnboardingSurveyUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: OnboardingSurveyUpdateManyWithWhereWithoutUserInput | OnboardingSurveyUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: OnboardingSurveyScalarWhereInput | OnboardingSurveyScalarWhereInput[]
+  }
+
+  export type FeatureRequestUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FeatureRequestCreateWithoutUserInput, FeatureRequestUncheckedCreateWithoutUserInput> | FeatureRequestCreateWithoutUserInput[] | FeatureRequestUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeatureRequestCreateOrConnectWithoutUserInput | FeatureRequestCreateOrConnectWithoutUserInput[]
+    upsert?: FeatureRequestUpsertWithWhereUniqueWithoutUserInput | FeatureRequestUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FeatureRequestCreateManyUserInputEnvelope
+    set?: FeatureRequestWhereUniqueInput | FeatureRequestWhereUniqueInput[]
+    disconnect?: FeatureRequestWhereUniqueInput | FeatureRequestWhereUniqueInput[]
+    delete?: FeatureRequestWhereUniqueInput | FeatureRequestWhereUniqueInput[]
+    connect?: FeatureRequestWhereUniqueInput | FeatureRequestWhereUniqueInput[]
+    update?: FeatureRequestUpdateWithWhereUniqueWithoutUserInput | FeatureRequestUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FeatureRequestUpdateManyWithWhereWithoutUserInput | FeatureRequestUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FeatureRequestScalarWhereInput | FeatureRequestScalarWhereInput[]
+  }
+
+  export type FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FeatureRequestVoteCreateWithoutUserInput, FeatureRequestVoteUncheckedCreateWithoutUserInput> | FeatureRequestVoteCreateWithoutUserInput[] | FeatureRequestVoteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FeatureRequestVoteCreateOrConnectWithoutUserInput | FeatureRequestVoteCreateOrConnectWithoutUserInput[]
+    upsert?: FeatureRequestVoteUpsertWithWhereUniqueWithoutUserInput | FeatureRequestVoteUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FeatureRequestVoteCreateManyUserInputEnvelope
+    set?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    disconnect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    delete?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    connect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    update?: FeatureRequestVoteUpdateWithWhereUniqueWithoutUserInput | FeatureRequestVoteUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FeatureRequestVoteUpdateManyWithWhereWithoutUserInput | FeatureRequestVoteUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FeatureRequestVoteScalarWhereInput | FeatureRequestVoteScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutFollowingInput = {
     create?: XOR<UserCreateWithoutFollowingInput, UserUncheckedCreateWithoutFollowingInput>
     connectOrCreate?: UserCreateOrConnectWithoutFollowingInput
@@ -96497,14 +101077,6 @@ export namespace Prisma {
     connectOrCreate?: OfficialFeedItemCreateOrConnectWithoutSourceInput | OfficialFeedItemCreateOrConnectWithoutSourceInput[]
     createMany?: OfficialFeedItemCreateManySourceInputEnvelope
     connect?: OfficialFeedItemWhereUniqueInput | OfficialFeedItemWhereUniqueInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type OfficialFeedItemUpdateManyWithoutSourceNestedInput = {
@@ -97913,6 +102485,116 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPaymentRecordsInput, UserUpdateWithoutPaymentRecordsInput>, UserUncheckedUpdateWithoutPaymentRecordsInput>
   }
 
+  export type UserCreateNestedOneWithoutOnboardingSurveysInput = {
+    create?: XOR<UserCreateWithoutOnboardingSurveysInput, UserUncheckedCreateWithoutOnboardingSurveysInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOnboardingSurveysInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumOnboardingSourceFieldUpdateOperationsInput = {
+    set?: $Enums.OnboardingSource
+  }
+
+  export type UserUpdateOneRequiredWithoutOnboardingSurveysNestedInput = {
+    create?: XOR<UserCreateWithoutOnboardingSurveysInput, UserUncheckedCreateWithoutOnboardingSurveysInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOnboardingSurveysInput
+    upsert?: UserUpsertWithoutOnboardingSurveysInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOnboardingSurveysInput, UserUpdateWithoutOnboardingSurveysInput>, UserUncheckedUpdateWithoutOnboardingSurveysInput>
+  }
+
+  export type UserCreateNestedOneWithoutFeatureRequestsInput = {
+    create?: XOR<UserCreateWithoutFeatureRequestsInput, UserUncheckedCreateWithoutFeatureRequestsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFeatureRequestsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type FeatureRequestVoteCreateNestedManyWithoutRequestInput = {
+    create?: XOR<FeatureRequestVoteCreateWithoutRequestInput, FeatureRequestVoteUncheckedCreateWithoutRequestInput> | FeatureRequestVoteCreateWithoutRequestInput[] | FeatureRequestVoteUncheckedCreateWithoutRequestInput[]
+    connectOrCreate?: FeatureRequestVoteCreateOrConnectWithoutRequestInput | FeatureRequestVoteCreateOrConnectWithoutRequestInput[]
+    createMany?: FeatureRequestVoteCreateManyRequestInputEnvelope
+    connect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+  }
+
+  export type FeatureRequestVoteUncheckedCreateNestedManyWithoutRequestInput = {
+    create?: XOR<FeatureRequestVoteCreateWithoutRequestInput, FeatureRequestVoteUncheckedCreateWithoutRequestInput> | FeatureRequestVoteCreateWithoutRequestInput[] | FeatureRequestVoteUncheckedCreateWithoutRequestInput[]
+    connectOrCreate?: FeatureRequestVoteCreateOrConnectWithoutRequestInput | FeatureRequestVoteCreateOrConnectWithoutRequestInput[]
+    createMany?: FeatureRequestVoteCreateManyRequestInputEnvelope
+    connect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+  }
+
+  export type EnumFeatureRequestCategoryFieldUpdateOperationsInput = {
+    set?: $Enums.FeatureRequestCategory
+  }
+
+  export type EnumFeatureRequestStatusFieldUpdateOperationsInput = {
+    set?: $Enums.FeatureRequestStatus
+  }
+
+  export type UserUpdateOneRequiredWithoutFeatureRequestsNestedInput = {
+    create?: XOR<UserCreateWithoutFeatureRequestsInput, UserUncheckedCreateWithoutFeatureRequestsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFeatureRequestsInput
+    upsert?: UserUpsertWithoutFeatureRequestsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFeatureRequestsInput, UserUpdateWithoutFeatureRequestsInput>, UserUncheckedUpdateWithoutFeatureRequestsInput>
+  }
+
+  export type FeatureRequestVoteUpdateManyWithoutRequestNestedInput = {
+    create?: XOR<FeatureRequestVoteCreateWithoutRequestInput, FeatureRequestVoteUncheckedCreateWithoutRequestInput> | FeatureRequestVoteCreateWithoutRequestInput[] | FeatureRequestVoteUncheckedCreateWithoutRequestInput[]
+    connectOrCreate?: FeatureRequestVoteCreateOrConnectWithoutRequestInput | FeatureRequestVoteCreateOrConnectWithoutRequestInput[]
+    upsert?: FeatureRequestVoteUpsertWithWhereUniqueWithoutRequestInput | FeatureRequestVoteUpsertWithWhereUniqueWithoutRequestInput[]
+    createMany?: FeatureRequestVoteCreateManyRequestInputEnvelope
+    set?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    disconnect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    delete?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    connect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    update?: FeatureRequestVoteUpdateWithWhereUniqueWithoutRequestInput | FeatureRequestVoteUpdateWithWhereUniqueWithoutRequestInput[]
+    updateMany?: FeatureRequestVoteUpdateManyWithWhereWithoutRequestInput | FeatureRequestVoteUpdateManyWithWhereWithoutRequestInput[]
+    deleteMany?: FeatureRequestVoteScalarWhereInput | FeatureRequestVoteScalarWhereInput[]
+  }
+
+  export type FeatureRequestVoteUncheckedUpdateManyWithoutRequestNestedInput = {
+    create?: XOR<FeatureRequestVoteCreateWithoutRequestInput, FeatureRequestVoteUncheckedCreateWithoutRequestInput> | FeatureRequestVoteCreateWithoutRequestInput[] | FeatureRequestVoteUncheckedCreateWithoutRequestInput[]
+    connectOrCreate?: FeatureRequestVoteCreateOrConnectWithoutRequestInput | FeatureRequestVoteCreateOrConnectWithoutRequestInput[]
+    upsert?: FeatureRequestVoteUpsertWithWhereUniqueWithoutRequestInput | FeatureRequestVoteUpsertWithWhereUniqueWithoutRequestInput[]
+    createMany?: FeatureRequestVoteCreateManyRequestInputEnvelope
+    set?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    disconnect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    delete?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    connect?: FeatureRequestVoteWhereUniqueInput | FeatureRequestVoteWhereUniqueInput[]
+    update?: FeatureRequestVoteUpdateWithWhereUniqueWithoutRequestInput | FeatureRequestVoteUpdateWithWhereUniqueWithoutRequestInput[]
+    updateMany?: FeatureRequestVoteUpdateManyWithWhereWithoutRequestInput | FeatureRequestVoteUpdateManyWithWhereWithoutRequestInput[]
+    deleteMany?: FeatureRequestVoteScalarWhereInput | FeatureRequestVoteScalarWhereInput[]
+  }
+
+  export type FeatureRequestCreateNestedOneWithoutVotesInput = {
+    create?: XOR<FeatureRequestCreateWithoutVotesInput, FeatureRequestUncheckedCreateWithoutVotesInput>
+    connectOrCreate?: FeatureRequestCreateOrConnectWithoutVotesInput
+    connect?: FeatureRequestWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutFeatureVotesInput = {
+    create?: XOR<UserCreateWithoutFeatureVotesInput, UserUncheckedCreateWithoutFeatureVotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFeatureVotesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type FeatureRequestUpdateOneRequiredWithoutVotesNestedInput = {
+    create?: XOR<FeatureRequestCreateWithoutVotesInput, FeatureRequestUncheckedCreateWithoutVotesInput>
+    connectOrCreate?: FeatureRequestCreateOrConnectWithoutVotesInput
+    upsert?: FeatureRequestUpsertWithoutVotesInput
+    connect?: FeatureRequestWhereUniqueInput
+    update?: XOR<XOR<FeatureRequestUpdateToOneWithWhereWithoutVotesInput, FeatureRequestUpdateWithoutVotesInput>, FeatureRequestUncheckedUpdateWithoutVotesInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutFeatureVotesNestedInput = {
+    create?: XOR<UserCreateWithoutFeatureVotesInput, UserUncheckedCreateWithoutFeatureVotesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFeatureVotesInput
+    upsert?: UserUpsertWithoutFeatureVotesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFeatureVotesInput, UserUpdateWithoutFeatureVotesInput>, UserUncheckedUpdateWithoutFeatureVotesInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -97975,6 +102657,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -97990,17 +102683,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -98077,6 +102759,33 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type NestedEnumReactionTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.ReactionType | EnumReactionTypeFieldRefInput<$PrismaModel>
     in?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
@@ -98143,33 +102852,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumReportStatusFilter<$PrismaModel>
     _max?: NestedEnumReportStatusFilter<$PrismaModel>
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -98276,6 +102958,57 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumOnboardingSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingSource | EnumOnboardingSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.OnboardingSource[] | ListEnumOnboardingSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OnboardingSource[] | ListEnumOnboardingSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumOnboardingSourceFilter<$PrismaModel> | $Enums.OnboardingSource
+  }
+
+  export type NestedEnumOnboardingSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.OnboardingSource | EnumOnboardingSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.OnboardingSource[] | ListEnumOnboardingSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OnboardingSource[] | ListEnumOnboardingSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumOnboardingSourceWithAggregatesFilter<$PrismaModel> | $Enums.OnboardingSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumOnboardingSourceFilter<$PrismaModel>
+    _max?: NestedEnumOnboardingSourceFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFeatureRequestCategoryFilter<$PrismaModel = never> = {
+    equals?: $Enums.FeatureRequestCategory | EnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.FeatureRequestCategory[] | ListEnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FeatureRequestCategory[] | ListEnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumFeatureRequestCategoryFilter<$PrismaModel> | $Enums.FeatureRequestCategory
+  }
+
+  export type NestedEnumFeatureRequestStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FeatureRequestStatus | EnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FeatureRequestStatus[] | ListEnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FeatureRequestStatus[] | ListEnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFeatureRequestStatusFilter<$PrismaModel> | $Enums.FeatureRequestStatus
+  }
+
+  export type NestedEnumFeatureRequestCategoryWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FeatureRequestCategory | EnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.FeatureRequestCategory[] | ListEnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FeatureRequestCategory[] | ListEnumFeatureRequestCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumFeatureRequestCategoryWithAggregatesFilter<$PrismaModel> | $Enums.FeatureRequestCategory
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFeatureRequestCategoryFilter<$PrismaModel>
+    _max?: NestedEnumFeatureRequestCategoryFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFeatureRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FeatureRequestStatus | EnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FeatureRequestStatus[] | ListEnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FeatureRequestStatus[] | ListEnumFeatureRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFeatureRequestStatusWithAggregatesFilter<$PrismaModel> | $Enums.FeatureRequestStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFeatureRequestStatusFilter<$PrismaModel>
+    _max?: NestedEnumFeatureRequestStatusFilter<$PrismaModel>
   }
 
   export type PostCreateWithoutAuthorInput = {
@@ -100039,6 +104772,84 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type OnboardingSurveyCreateWithoutUserInput = {
+    id?: string
+    source: $Enums.OnboardingSource
+    otherText?: string | null
+    createdAt?: Date | string
+  }
+
+  export type OnboardingSurveyUncheckedCreateWithoutUserInput = {
+    id?: string
+    source: $Enums.OnboardingSource
+    otherText?: string | null
+    createdAt?: Date | string
+  }
+
+  export type OnboardingSurveyCreateOrConnectWithoutUserInput = {
+    where: OnboardingSurveyWhereUniqueInput
+    create: XOR<OnboardingSurveyCreateWithoutUserInput, OnboardingSurveyUncheckedCreateWithoutUserInput>
+  }
+
+  export type OnboardingSurveyCreateManyUserInputEnvelope = {
+    data: OnboardingSurveyCreateManyUserInput | OnboardingSurveyCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeatureRequestCreateWithoutUserInput = {
+    id?: string
+    title: string
+    description?: string | null
+    category?: $Enums.FeatureRequestCategory
+    status?: $Enums.FeatureRequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    votes?: FeatureRequestVoteCreateNestedManyWithoutRequestInput
+  }
+
+  export type FeatureRequestUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    description?: string | null
+    category?: $Enums.FeatureRequestCategory
+    status?: $Enums.FeatureRequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    votes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutRequestInput
+  }
+
+  export type FeatureRequestCreateOrConnectWithoutUserInput = {
+    where: FeatureRequestWhereUniqueInput
+    create: XOR<FeatureRequestCreateWithoutUserInput, FeatureRequestUncheckedCreateWithoutUserInput>
+  }
+
+  export type FeatureRequestCreateManyUserInputEnvelope = {
+    data: FeatureRequestCreateManyUserInput | FeatureRequestCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FeatureRequestVoteCreateWithoutUserInput = {
+    id?: string
+    createdAt?: Date | string
+    request: FeatureRequestCreateNestedOneWithoutVotesInput
+  }
+
+  export type FeatureRequestVoteUncheckedCreateWithoutUserInput = {
+    id?: string
+    requestId: string
+    createdAt?: Date | string
+  }
+
+  export type FeatureRequestVoteCreateOrConnectWithoutUserInput = {
+    where: FeatureRequestVoteWhereUniqueInput
+    create: XOR<FeatureRequestVoteCreateWithoutUserInput, FeatureRequestVoteUncheckedCreateWithoutUserInput>
+  }
+
+  export type FeatureRequestVoteCreateManyUserInputEnvelope = {
+    data: FeatureRequestVoteCreateManyUserInput | FeatureRequestVoteCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PostUpsertWithWhereUniqueWithoutAuthorInput = {
     where: PostWhereUniqueInput
     update: XOR<PostUpdateWithoutAuthorInput, PostUncheckedUpdateWithoutAuthorInput>
@@ -101683,6 +106494,89 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Memory"> | Date | string
   }
 
+  export type OnboardingSurveyUpsertWithWhereUniqueWithoutUserInput = {
+    where: OnboardingSurveyWhereUniqueInput
+    update: XOR<OnboardingSurveyUpdateWithoutUserInput, OnboardingSurveyUncheckedUpdateWithoutUserInput>
+    create: XOR<OnboardingSurveyCreateWithoutUserInput, OnboardingSurveyUncheckedCreateWithoutUserInput>
+  }
+
+  export type OnboardingSurveyUpdateWithWhereUniqueWithoutUserInput = {
+    where: OnboardingSurveyWhereUniqueInput
+    data: XOR<OnboardingSurveyUpdateWithoutUserInput, OnboardingSurveyUncheckedUpdateWithoutUserInput>
+  }
+
+  export type OnboardingSurveyUpdateManyWithWhereWithoutUserInput = {
+    where: OnboardingSurveyScalarWhereInput
+    data: XOR<OnboardingSurveyUpdateManyMutationInput, OnboardingSurveyUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type OnboardingSurveyScalarWhereInput = {
+    AND?: OnboardingSurveyScalarWhereInput | OnboardingSurveyScalarWhereInput[]
+    OR?: OnboardingSurveyScalarWhereInput[]
+    NOT?: OnboardingSurveyScalarWhereInput | OnboardingSurveyScalarWhereInput[]
+    id?: StringFilter<"OnboardingSurvey"> | string
+    userId?: StringFilter<"OnboardingSurvey"> | string
+    source?: EnumOnboardingSourceFilter<"OnboardingSurvey"> | $Enums.OnboardingSource
+    otherText?: StringNullableFilter<"OnboardingSurvey"> | string | null
+    createdAt?: DateTimeFilter<"OnboardingSurvey"> | Date | string
+  }
+
+  export type FeatureRequestUpsertWithWhereUniqueWithoutUserInput = {
+    where: FeatureRequestWhereUniqueInput
+    update: XOR<FeatureRequestUpdateWithoutUserInput, FeatureRequestUncheckedUpdateWithoutUserInput>
+    create: XOR<FeatureRequestCreateWithoutUserInput, FeatureRequestUncheckedCreateWithoutUserInput>
+  }
+
+  export type FeatureRequestUpdateWithWhereUniqueWithoutUserInput = {
+    where: FeatureRequestWhereUniqueInput
+    data: XOR<FeatureRequestUpdateWithoutUserInput, FeatureRequestUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FeatureRequestUpdateManyWithWhereWithoutUserInput = {
+    where: FeatureRequestScalarWhereInput
+    data: XOR<FeatureRequestUpdateManyMutationInput, FeatureRequestUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type FeatureRequestScalarWhereInput = {
+    AND?: FeatureRequestScalarWhereInput | FeatureRequestScalarWhereInput[]
+    OR?: FeatureRequestScalarWhereInput[]
+    NOT?: FeatureRequestScalarWhereInput | FeatureRequestScalarWhereInput[]
+    id?: StringFilter<"FeatureRequest"> | string
+    userId?: StringFilter<"FeatureRequest"> | string
+    title?: StringFilter<"FeatureRequest"> | string
+    description?: StringNullableFilter<"FeatureRequest"> | string | null
+    category?: EnumFeatureRequestCategoryFilter<"FeatureRequest"> | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFilter<"FeatureRequest"> | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFilter<"FeatureRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"FeatureRequest"> | Date | string
+  }
+
+  export type FeatureRequestVoteUpsertWithWhereUniqueWithoutUserInput = {
+    where: FeatureRequestVoteWhereUniqueInput
+    update: XOR<FeatureRequestVoteUpdateWithoutUserInput, FeatureRequestVoteUncheckedUpdateWithoutUserInput>
+    create: XOR<FeatureRequestVoteCreateWithoutUserInput, FeatureRequestVoteUncheckedCreateWithoutUserInput>
+  }
+
+  export type FeatureRequestVoteUpdateWithWhereUniqueWithoutUserInput = {
+    where: FeatureRequestVoteWhereUniqueInput
+    data: XOR<FeatureRequestVoteUpdateWithoutUserInput, FeatureRequestVoteUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FeatureRequestVoteUpdateManyWithWhereWithoutUserInput = {
+    where: FeatureRequestVoteScalarWhereInput
+    data: XOR<FeatureRequestVoteUpdateManyMutationInput, FeatureRequestVoteUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type FeatureRequestVoteScalarWhereInput = {
+    AND?: FeatureRequestVoteScalarWhereInput | FeatureRequestVoteScalarWhereInput[]
+    OR?: FeatureRequestVoteScalarWhereInput[]
+    NOT?: FeatureRequestVoteScalarWhereInput | FeatureRequestVoteScalarWhereInput[]
+    id?: StringFilter<"FeatureRequestVote"> | string
+    requestId?: StringFilter<"FeatureRequestVote"> | string
+    userId?: StringFilter<"FeatureRequestVote"> | string
+    createdAt?: DateTimeFilter<"FeatureRequestVote"> | Date | string
+  }
+
   export type UserCreateWithoutFollowingInput = {
     id?: string
     email: string
@@ -101717,6 +106611,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -101776,6 +106672,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFollowingInput = {
@@ -101812,6 +106711,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -101871,6 +106772,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFollowingInput = {
@@ -101912,6 +106816,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -101971,6 +106877,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFollowersInput = {
@@ -102007,6 +106916,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -102066,6 +106977,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFollowersInput = {
@@ -102118,6 +107032,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -102177,6 +107093,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFollowingInput = {
@@ -102213,6 +107132,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -102272,6 +107193,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutFollowersInput = {
@@ -102319,6 +107243,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -102378,6 +107304,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFollowersInput = {
@@ -102414,6 +107343,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -102473,6 +107404,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutBlocksMadeInput = {
@@ -102509,6 +107443,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -102568,6 +107504,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBlocksMadeInput = {
@@ -102604,6 +107543,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -102663,6 +107604,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBlocksMadeInput = {
@@ -102704,6 +107648,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -102763,6 +107709,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBlocksReceivedInput = {
@@ -102799,6 +107748,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -102858,6 +107809,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBlocksReceivedInput = {
@@ -102910,6 +107864,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -102969,6 +107925,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBlocksMadeInput = {
@@ -103005,6 +107964,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -103064,6 +108025,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutBlocksReceivedInput = {
@@ -103111,6 +108075,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -103170,6 +108136,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBlocksReceivedInput = {
@@ -103206,6 +108175,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -103265,6 +108236,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPostsInput = {
@@ -103301,6 +108275,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
     reposts?: RepostCreateNestedManyWithoutAuthorInput
@@ -103360,6 +108336,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
@@ -103396,6 +108375,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     reposts?: RepostUncheckedCreateNestedManyWithoutAuthorInput
@@ -103455,6 +108436,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostsInput = {
@@ -103637,6 +108621,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     reposts?: RepostUpdateManyWithoutAuthorNestedInput
@@ -103696,6 +108682,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
@@ -103732,6 +108721,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutAuthorNestedInput
@@ -103791,6 +108782,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PostReactionUpsertWithWhereUniqueWithoutPostInput = {
@@ -103944,6 +108938,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -104003,6 +108999,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReactionsInput = {
@@ -104039,6 +109038,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -104098,6 +109099,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReactionsInput = {
@@ -104193,6 +109197,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -104252,6 +109258,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReactionsInput = {
@@ -104288,6 +109297,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -104347,6 +109358,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PostCreateWithoutSharesInput = {
@@ -104420,6 +109434,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -104479,6 +109495,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSharesInput = {
@@ -104515,6 +109534,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -104574,6 +109595,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSharesInput = {
@@ -104669,6 +109693,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -104728,6 +109754,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSharesInput = {
@@ -104764,6 +109793,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -104823,6 +109854,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PostCreateWithoutCommentsInput = {
@@ -104896,6 +109930,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     reposts?: RepostCreateNestedManyWithoutAuthorInput
@@ -104955,6 +109991,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -104991,6 +110030,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     reposts?: RepostUncheckedCreateNestedManyWithoutAuthorInput
@@ -105050,6 +110091,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -105200,6 +110244,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     reposts?: RepostUpdateManyWithoutAuthorNestedInput
@@ -105259,6 +110305,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -105295,6 +110344,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutAuthorNestedInput
@@ -105354,6 +110405,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CommentUpsertWithoutRepliesInput = {
@@ -105474,6 +110528,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -105533,6 +110589,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRepostsInput = {
@@ -105569,6 +110628,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -105628,6 +110689,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRepostsInput = {
@@ -105723,6 +110787,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -105782,6 +110848,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRepostsInput = {
@@ -105818,6 +110887,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -105877,6 +110948,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutStoriesInput = {
@@ -105913,6 +110987,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -105972,6 +111048,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStoriesInput = {
@@ -106008,6 +111087,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -106067,6 +111148,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStoriesInput = {
@@ -106141,6 +111225,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -106200,6 +111286,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStoriesInput = {
@@ -106236,6 +111325,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -106295,6 +111386,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type StoryViewUpsertWithWhereUniqueWithoutStoryInput = {
@@ -106372,6 +111466,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -106431,6 +111527,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutStoryViewsInput = {
@@ -106467,6 +111566,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -106526,6 +111627,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutStoryViewsInput = {
@@ -106609,6 +111713,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -106668,6 +111774,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutStoryViewsInput = {
@@ -106704,6 +111813,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -106763,6 +111874,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ConversationMemberCreateWithoutConversationInput = {
@@ -106902,6 +112016,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -106961,6 +112077,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMembershipsInput = {
@@ -106997,6 +112116,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -107056,6 +112177,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMembershipsInput = {
@@ -107133,6 +112257,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -107192,6 +112318,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMembershipsInput = {
@@ -107228,6 +112357,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -107287,6 +112418,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ConversationCreateWithoutMessagesInput = {
@@ -107342,6 +112476,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -107401,6 +112537,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -107437,6 +112576,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -107496,6 +112637,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -107573,6 +112717,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -107632,6 +112778,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -107668,6 +112817,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -107727,6 +112878,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -107763,6 +112917,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -107822,6 +112978,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -107858,6 +113017,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -107917,6 +113078,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -107958,6 +113122,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -108017,6 +113183,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutActorNotificationsInput = {
@@ -108053,6 +113222,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -108112,6 +113283,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutActorNotificationsInput = {
@@ -108164,6 +113338,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -108223,6 +113399,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -108259,6 +113438,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -108318,6 +113499,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutActorNotificationsInput = {
@@ -108365,6 +113549,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -108424,6 +113610,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutActorNotificationsInput = {
@@ -108460,6 +113649,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -108519,6 +113710,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutReportsMadeInput = {
@@ -108555,6 +113749,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -108614,6 +113810,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReportsMadeInput = {
@@ -108650,6 +113849,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -108709,6 +113910,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReportsMadeInput = {
@@ -108750,6 +113954,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -108809,6 +114015,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReportsAgainstInput = {
@@ -108845,6 +114054,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -108904,6 +114115,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReportsAgainstInput = {
@@ -108993,6 +114207,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -109052,6 +114268,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReportsMadeInput = {
@@ -109088,6 +114307,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -109147,6 +114368,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutReportsAgainstInput = {
@@ -109194,6 +114418,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -109253,6 +114479,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReportsAgainstInput = {
@@ -109289,6 +114518,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -109348,6 +114579,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PostUpsertWithoutReportsInput = {
@@ -109776,6 +115010,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -109835,6 +115071,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOfficialReactionsInput = {
@@ -109871,6 +115110,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -109930,6 +115171,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOfficialReactionsInput = {
@@ -110031,6 +115275,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -110090,6 +115336,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOfficialReactionsInput = {
@@ -110126,6 +115375,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -110185,6 +115436,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OfficialFeedItemCreateWithoutCommentsInput = {
@@ -110264,6 +115518,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -110323,6 +115579,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOfficialCommentsInput = {
@@ -110359,6 +115618,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -110418,6 +115679,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOfficialCommentsInput = {
@@ -110519,6 +115783,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -110578,6 +115844,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOfficialCommentsInput = {
@@ -110614,6 +115883,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -110673,6 +115944,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OfficialFeedItemCreateWithoutSharesInput = {
@@ -110752,6 +116026,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -110811,6 +116087,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOfficialSharesInput = {
@@ -110847,6 +116126,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -110906,6 +116187,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOfficialSharesInput = {
@@ -111007,6 +116291,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -111066,6 +116352,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOfficialSharesInput = {
@@ -111102,6 +116391,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -111161,6 +116452,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CompanyFollowCreateWithoutCompanyInput = {
@@ -111388,6 +116682,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
     reposts?: RepostCreateNestedManyWithoutAuthorInput
@@ -111447,6 +116743,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCompanyFollowsInput = {
@@ -111483,6 +116782,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     reposts?: RepostUncheckedCreateNestedManyWithoutAuthorInput
@@ -111542,6 +116843,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCompanyFollowsInput = {
@@ -111627,6 +116931,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     reposts?: RepostUpdateManyWithoutAuthorNestedInput
@@ -111686,6 +116992,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCompanyFollowsInput = {
@@ -111722,6 +117031,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutAuthorNestedInput
@@ -111781,6 +117092,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutGroupsOwnedInput = {
@@ -111817,6 +117131,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -111876,6 +117192,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGroupsOwnedInput = {
@@ -111912,6 +117231,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -111971,6 +117292,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGroupsOwnedInput = {
@@ -112075,6 +117399,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -112134,6 +117460,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGroupsOwnedInput = {
@@ -112170,6 +117499,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -112229,6 +117560,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GroupMemberUpsertWithWhereUniqueWithoutGroupInput = {
@@ -112326,6 +117660,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -112385,6 +117721,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGroupMembershipsInput = {
@@ -112421,6 +117760,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -112480,6 +117821,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGroupMembershipsInput = {
@@ -112567,6 +117911,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -112626,6 +117972,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGroupMembershipsInput = {
@@ -112662,6 +118011,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -112721,6 +118072,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GroupCreateWithoutMessagesInput = {
@@ -112786,6 +118140,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -112845,6 +118201,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGroupMessagesInput = {
@@ -112881,6 +118240,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -112940,6 +118301,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGroupMessagesInput = {
@@ -113027,6 +118391,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -113086,6 +118452,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGroupMessagesInput = {
@@ -113122,6 +118491,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -113181,6 +118552,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutCallsMadeInput = {
@@ -113217,6 +118591,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -113276,6 +118652,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCallsMadeInput = {
@@ -113312,6 +118691,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -113371,6 +118752,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCallsMadeInput = {
@@ -113412,6 +118796,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -113471,6 +118857,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCallsReceivedInput = {
@@ -113507,6 +118896,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -113566,6 +118957,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCallsReceivedInput = {
@@ -113618,6 +119012,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -113677,6 +119073,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCallsMadeInput = {
@@ -113713,6 +119112,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -113772,6 +119173,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutCallsReceivedInput = {
@@ -113819,6 +119223,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -113878,6 +119284,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCallsReceivedInput = {
@@ -113914,6 +119323,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -113973,6 +119384,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutLiveStreamsInput = {
@@ -114009,6 +119423,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -114068,6 +119484,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLiveStreamsInput = {
@@ -114104,6 +119523,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -114163,6 +119584,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLiveStreamsInput = {
@@ -114215,6 +119639,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -114274,6 +119700,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLiveStreamsInput = {
@@ -114310,6 +119739,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -114369,6 +119800,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutFriendRequestsSentInput = {
@@ -114405,6 +119839,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -114464,6 +119900,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFriendRequestsSentInput = {
@@ -114500,6 +119939,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -114559,6 +120000,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFriendRequestsSentInput = {
@@ -114600,6 +120044,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -114659,6 +120105,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFriendRequestsReceivedInput = {
@@ -114695,6 +120144,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -114754,6 +120205,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFriendRequestsReceivedInput = {
@@ -114806,6 +120260,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -114865,6 +120321,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFriendRequestsSentInput = {
@@ -114901,6 +120360,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -114960,6 +120421,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutFriendRequestsReceivedInput = {
@@ -115007,6 +120471,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -115066,6 +120532,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFriendRequestsReceivedInput = {
@@ -115102,6 +120571,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -115161,6 +120632,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEventsOwnedInput = {
@@ -115197,6 +120671,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -115256,6 +120732,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEventsOwnedInput = {
@@ -115292,6 +120771,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -115351,6 +120832,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEventsOwnedInput = {
@@ -115427,6 +120911,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -115486,6 +120972,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEventsOwnedInput = {
@@ -115522,6 +121011,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -115581,6 +121072,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type EventAttendeeUpsertWithWhereUniqueWithoutEventInput = {
@@ -115664,6 +121158,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -115723,6 +121219,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEventAttendancesInput = {
@@ -115759,6 +121258,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -115818,6 +121319,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEventAttendancesInput = {
@@ -115907,6 +121411,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -115966,6 +121472,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEventAttendancesInput = {
@@ -116002,6 +121511,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -116061,6 +121572,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutMarketplaceListingsInput = {
@@ -116097,6 +121611,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -116156,6 +121672,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMarketplaceListingsInput = {
@@ -116192,6 +121711,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -116251,6 +121772,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMarketplaceListingsInput = {
@@ -116303,6 +121827,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -116362,6 +121888,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMarketplaceListingsInput = {
@@ -116398,6 +121927,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -116457,6 +121988,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutGamingTeamsOwnedInput = {
@@ -116493,6 +122027,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -116552,6 +122088,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGamingTeamsOwnedInput = {
@@ -116588,6 +122127,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -116647,6 +122188,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGamingTeamsOwnedInput = {
@@ -116723,6 +122267,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -116782,6 +122328,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGamingTeamsOwnedInput = {
@@ -116818,6 +122367,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -116877,6 +122428,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GamingTeamMemberUpsertWithWhereUniqueWithoutTeamInput = {
@@ -116960,6 +122514,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -117019,6 +122575,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGamingTeamMembershipsInput = {
@@ -117055,6 +122614,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -117114,6 +122675,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGamingTeamMembershipsInput = {
@@ -117203,6 +122767,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -117262,6 +122828,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGamingTeamMembershipsInput = {
@@ -117298,6 +122867,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -117357,6 +122928,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutTournamentsOwnedInput = {
@@ -117393,6 +122967,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -117452,6 +123028,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTournamentsOwnedInput = {
@@ -117488,6 +123067,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -117547,6 +123128,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTournamentsOwnedInput = {
@@ -117657,6 +123241,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -117716,6 +123302,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTournamentsOwnedInput = {
@@ -117752,6 +123341,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -117811,6 +123402,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TournamentRegistrationUpsertWithWhereUniqueWithoutTournamentInput = {
@@ -117914,6 +123508,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -117973,6 +123569,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTournamentRegistrationsInput = {
@@ -118009,6 +123608,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -118068,6 +123669,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTournamentRegistrationsInput = {
@@ -118161,6 +123765,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -118220,6 +123826,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTournamentRegistrationsInput = {
@@ -118256,6 +123865,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -118315,6 +123926,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TournamentCreateWithoutMatchesInput = {
@@ -118386,6 +124000,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -118445,6 +124061,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTournamentMatchesAInput = {
@@ -118481,6 +124100,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -118540,6 +124161,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTournamentMatchesAInput = {
@@ -118581,6 +124205,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -118640,6 +124266,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchCreateNestedManyWithoutPlayerAInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTournamentMatchesBInput = {
@@ -118676,6 +124305,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -118735,6 +124366,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerAInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTournamentMatchesBInput = {
@@ -118828,6 +124462,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -118887,6 +124523,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTournamentMatchesAInput = {
@@ -118923,6 +124562,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -118982,6 +124623,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutTournamentMatchesBInput = {
@@ -119029,6 +124673,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -119088,6 +124734,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchUpdateManyWithoutPlayerANestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTournamentMatchesBInput = {
@@ -119124,6 +124773,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -119183,6 +124834,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchUncheckedUpdateManyWithoutPlayerANestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSavedItemsInput = {
@@ -119219,6 +124873,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -119278,6 +124934,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchCreateNestedManyWithoutPlayerAInput
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSavedItemsInput = {
@@ -119314,6 +124973,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -119373,6 +125034,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerAInput
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSavedItemsInput = {
@@ -119425,6 +125089,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -119484,6 +125150,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchUpdateManyWithoutPlayerANestedInput
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSavedItemsInput = {
@@ -119520,6 +125189,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -119579,6 +125250,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchUncheckedUpdateManyWithoutPlayerANestedInput
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutMemoriesInput = {
@@ -119615,6 +125289,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -119674,6 +125350,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchCreateNestedManyWithoutPlayerAInput
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMemoriesInput = {
@@ -119710,6 +125389,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -119769,6 +125450,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerAInput
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMemoriesInput = {
@@ -119821,6 +125505,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -119880,6 +125566,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchUpdateManyWithoutPlayerANestedInput
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMemoriesInput = {
@@ -119916,6 +125605,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -119975,6 +125666,9 @@ export namespace Prisma {
     tournamentMatchesA?: TournamentMatchUncheckedUpdateManyWithoutPlayerANestedInput
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPlatformRecordsInput = {
@@ -120011,6 +125705,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -120070,6 +125766,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPlatformRecordsInput = {
@@ -120106,6 +125805,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -120165,6 +125866,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPlatformRecordsInput = {
@@ -120217,6 +125921,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -120276,6 +125982,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPlatformRecordsInput = {
@@ -120312,6 +126021,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -120371,6 +126082,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutOtpCodesInput = {
@@ -120407,6 +126121,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -120466,6 +126182,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOtpCodesInput = {
@@ -120502,6 +126221,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -120561,6 +126282,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOtpCodesInput = {
@@ -120613,6 +126337,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -120672,6 +126398,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOtpCodesInput = {
@@ -120708,6 +126437,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -120767,6 +126498,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAdminAuthCodesInput = {
@@ -120803,6 +126537,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -120862,6 +126598,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAdminAuthCodesInput = {
@@ -120898,6 +126637,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -120957,6 +126698,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAdminAuthCodesInput = {
@@ -121009,6 +126753,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -121068,6 +126814,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAdminAuthCodesInput = {
@@ -121104,6 +126853,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -121163,6 +126914,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEmailTokensInput = {
@@ -121199,6 +126953,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -121258,6 +127014,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmailTokensInput = {
@@ -121294,6 +127053,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -121353,6 +127114,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmailTokensInput = {
@@ -121405,6 +127169,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -121464,6 +127230,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmailTokensInput = {
@@ -121500,6 +127269,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -121559,6 +127330,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPasswordResetTokensInput = {
@@ -121595,6 +127369,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -121654,6 +127430,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPasswordResetTokensInput = {
@@ -121690,6 +127469,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -121749,6 +127530,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPasswordResetTokensInput = {
@@ -121801,6 +127585,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -121860,6 +127646,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPasswordResetTokensInput = {
@@ -121896,6 +127685,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -121955,6 +127746,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -121991,6 +127785,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -122050,6 +127846,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -122086,6 +127885,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -122145,6 +127946,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -122197,6 +128001,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -122256,6 +128062,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -122292,6 +128101,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -122351,6 +128162,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSecurityEventsInput = {
@@ -122387,6 +128201,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -122446,6 +128262,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSecurityEventsInput = {
@@ -122482,6 +128301,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -122541,6 +128362,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSecurityEventsInput = {
@@ -122593,6 +128417,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -122652,6 +128478,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSecurityEventsInput = {
@@ -122688,6 +128517,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -122747,6 +128578,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutNotificationPreferencesInput = {
@@ -122783,6 +128617,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -122842,6 +128678,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNotificationPreferencesInput = {
@@ -122878,6 +128717,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -122937,6 +128778,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNotificationPreferencesInput = {
@@ -122989,6 +128833,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -123048,6 +128894,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationPreferencesInput = {
@@ -123084,6 +128933,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -123143,6 +128994,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPushSubscriptionsInput = {
@@ -123179,6 +129033,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -123238,6 +129094,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPushSubscriptionsInput = {
@@ -123274,6 +129133,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -123333,6 +129194,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPushSubscriptionsInput = {
@@ -123385,6 +129249,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -123444,6 +129310,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPushSubscriptionsInput = {
@@ -123480,6 +129349,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -123539,6 +129410,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutMediaAssetsInput = {
@@ -123575,6 +129449,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -123634,6 +129510,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMediaAssetsInput = {
@@ -123670,6 +129549,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -123729,6 +129610,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMediaAssetsInput = {
@@ -123781,6 +129665,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -123840,6 +129726,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMediaAssetsInput = {
@@ -123876,6 +129765,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -123935,6 +129826,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAnalyticsEventsInput = {
@@ -123971,6 +129865,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -124030,6 +129926,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAnalyticsEventsInput = {
@@ -124066,6 +129965,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -124125,6 +130026,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAnalyticsEventsInput = {
@@ -124177,6 +130081,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -124236,6 +130142,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAnalyticsEventsInput = {
@@ -124272,6 +130181,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -124331,6 +130242,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutModerationCasesInput = {
@@ -124367,6 +130281,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -124426,6 +130342,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutModerationCasesInput = {
@@ -124462,6 +130381,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -124521,6 +130442,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutModerationCasesInput = {
@@ -124562,6 +130486,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -124621,6 +130547,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutModerationAgainstInput = {
@@ -124657,6 +130586,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -124716,6 +130647,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutModerationAgainstInput = {
@@ -124768,6 +130702,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -124827,6 +130763,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutModerationCasesInput = {
@@ -124863,6 +130802,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -124922,6 +130863,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutModerationAgainstInput = {
@@ -124969,6 +130913,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -125028,6 +130974,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutModerationAgainstInput = {
@@ -125064,6 +131013,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -125123,6 +131074,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAppealsInput = {
@@ -125159,6 +131113,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -125218,6 +131174,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAppealsInput = {
@@ -125254,6 +131213,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -125313,6 +131274,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAppealsInput = {
@@ -125365,6 +131329,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -125424,6 +131390,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAppealsInput = {
@@ -125460,6 +131429,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -125519,6 +131490,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutFeedActivitiesInput = {
@@ -125555,6 +131529,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -125614,6 +131590,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFeedActivitiesInput = {
@@ -125650,6 +131629,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -125709,6 +131690,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFeedActivitiesInput = {
@@ -125824,6 +131808,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -125883,6 +131869,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFeedActivitiesInput = {
@@ -125919,6 +131908,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -125978,6 +131969,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type FeedActivityUpsertWithoutRepliesInput = {
@@ -126065,6 +132059,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -126124,6 +132120,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRecommendationFeedbackInput = {
@@ -126160,6 +132159,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -126219,6 +132220,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRecommendationFeedbackInput = {
@@ -126271,6 +132275,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -126330,6 +132336,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRecommendationFeedbackInput = {
@@ -126366,6 +132375,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -126425,6 +132436,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SubscriptionCreateWithoutPlanInput = {
@@ -126511,6 +132525,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -126570,6 +132586,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSubscriptionsInput = {
@@ -126606,6 +132625,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -126665,6 +132686,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSubscriptionsInput = {
@@ -126744,6 +132768,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -126803,6 +132829,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSubscriptionsInput = {
@@ -126839,6 +132868,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -126898,6 +132929,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SubscriptionPlanUpsertWithoutSubscriptionsInput = {
@@ -126967,6 +133001,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -127026,6 +133062,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileBoostsTargetedInput = {
@@ -127062,6 +133101,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -127121,6 +133162,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileBoostsTargetedInput = {
@@ -127162,6 +133206,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -127221,6 +133267,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileBoostsRequestedInput = {
@@ -127257,6 +133306,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -127316,6 +133367,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileBoostsRequestedInput = {
@@ -127368,6 +133422,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -127427,6 +133483,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileBoostsTargetedInput = {
@@ -127463,6 +133522,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -127522,6 +133583,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutProfileBoostsRequestedInput = {
@@ -127569,6 +133633,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -127628,6 +133694,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileBoostsRequestedInput = {
@@ -127664,6 +133733,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -127723,6 +133794,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutPaymentRecordsInput = {
@@ -127759,6 +133833,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -127818,6 +133894,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemCreateNestedManyWithoutUserInput
     memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPaymentRecordsInput = {
@@ -127854,6 +133933,8 @@ export namespace Prisma {
     verified?: boolean
     verifiedAt?: Date | string | null
     profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -127913,6 +133994,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
     savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPaymentRecordsInput = {
@@ -127965,6 +134049,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -128024,6 +134110,9 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUpdateManyWithoutUserNestedInput
     memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPaymentRecordsInput = {
@@ -128060,6 +134149,8 @@ export namespace Prisma {
     verified?: BoolFieldUpdateOperationsInput | boolean
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -128119,6 +134210,1355 @@ export namespace Prisma {
     tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
     savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutOnboardingSurveysInput = {
+    id?: string
+    email: string
+    username: string
+    passwordHash: string
+    name: string
+    bio?: string
+    school?: string | null
+    schoolUrl?: string | null
+    workplace?: string | null
+    workplaceUrl?: string | null
+    jobTitle?: string | null
+    currentCity?: string | null
+    hometown?: string | null
+    website?: string | null
+    education?: string | null
+    interests?: string | null
+    avatarUrl?: string | null
+    coverUrl?: string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lastSeenAt?: Date | string | null
+    emailVerifiedAt?: Date | string | null
+    phoneNumber?: string | null
+    phoneVerifiedAt?: Date | string | null
+    dateOfBirth?: Date | string | null
+    gender?: string | null
+    verificationRequired?: boolean
+    twoFactorEnabled?: boolean
+    professionalMode?: boolean
+    verified?: boolean
+    verifiedAt?: Date | string | null
+    profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
+    posts?: PostCreateNestedManyWithoutAuthorInput
+    companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    reposts?: RepostCreateNestedManyWithoutAuthorInput
+    shares?: PostShareCreateNestedManyWithoutUserInput
+    reactions?: PostReactionCreateNestedManyWithoutUserInput
+    stories?: StoryCreateNestedManyWithoutAuthorInput
+    storyViews?: StoryViewCreateNestedManyWithoutViewerInput
+    sentMessages?: MessageCreateNestedManyWithoutSenderInput
+    notifications?: NotificationCreateNestedManyWithoutRecipientInput
+    otpCodes?: VerificationCodeCreateNestedManyWithoutUserInput
+    adminAuthCodes?: AdminAuthCodeCreateNestedManyWithoutUserInput
+    actorNotifications?: NotificationCreateNestedManyWithoutActorInput
+    following?: FollowCreateNestedManyWithoutFollowerInput
+    followers?: FollowCreateNestedManyWithoutFollowingInput
+    friendRequestsSent?: FriendshipCreateNestedManyWithoutRequesterInput
+    friendRequestsReceived?: FriendshipCreateNestedManyWithoutAddresseeInput
+    platformRecords?: PlatformRecordCreateNestedManyWithoutOwnerInput
+    blocksMade?: BlockCreateNestedManyWithoutBlockerInput
+    blocksReceived?: BlockCreateNestedManyWithoutBlockedInput
+    reportsMade?: ReportCreateNestedManyWithoutReporterInput
+    officialReactions?: OfficialFeedReactionCreateNestedManyWithoutUserInput
+    officialComments?: OfficialFeedCommentCreateNestedManyWithoutUserInput
+    officialShares?: OfficialFeedShareCreateNestedManyWithoutUserInput
+    reportsAgainst?: ReportCreateNestedManyWithoutReportedInput
+    memberships?: ConversationMemberCreateNestedManyWithoutUserInput
+    groupsOwned?: GroupCreateNestedManyWithoutOwnerInput
+    groupMemberships?: GroupMemberCreateNestedManyWithoutUserInput
+    groupMessages?: GroupMessageCreateNestedManyWithoutSenderInput
+    callsMade?: CallSessionCreateNestedManyWithoutCallerInput
+    callsReceived?: CallSessionCreateNestedManyWithoutCalleeInput
+    liveStreams?: LiveStreamCreateNestedManyWithoutHostInput
+    emailTokens?: EmailVerificationTokenCreateNestedManyWithoutUserInput
+    passwordResetTokens?: PasswordResetTokenCreateNestedManyWithoutUserInput
+    sessions?: UserSessionCreateNestedManyWithoutUserInput
+    securityEvents?: SecurityEventCreateNestedManyWithoutUserInput
+    notificationPreferences?: NotificationPreferenceCreateNestedOneWithoutUserInput
+    pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
+    mediaAssets?: MediaAssetCreateNestedManyWithoutOwnerInput
+    analyticsEvents?: AnalyticsEventCreateNestedManyWithoutUserInput
+    moderationCases?: ModerationCaseCreateNestedManyWithoutReporterInput
+    moderationAgainst?: ModerationCaseCreateNestedManyWithoutTargetInput
+    appeals?: AppealCreateNestedManyWithoutUserInput
+    recommendationFeedback?: RecommendationFeedbackCreateNestedManyWithoutUserInput
+    feedActivities?: FeedActivityCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    paymentRecords?: PaymentRecordCreateNestedManyWithoutUserInput
+    profileBoostsRequested?: ProfileBoostCreateNestedManyWithoutRequesterInput
+    profileBoostsTargeted?: ProfileBoostCreateNestedManyWithoutTargetUserInput
+    eventsOwned?: EventCreateNestedManyWithoutOwnerInput
+    eventAttendances?: EventAttendeeCreateNestedManyWithoutUserInput
+    marketplaceListings?: MarketplaceListingCreateNestedManyWithoutSellerInput
+    gamingTeamsOwned?: GamingTeamCreateNestedManyWithoutOwnerInput
+    gamingTeamMemberships?: GamingTeamMemberCreateNestedManyWithoutUserInput
+    tournamentsOwned?: TournamentCreateNestedManyWithoutOwnerInput
+    tournamentRegistrations?: TournamentRegistrationCreateNestedManyWithoutUserInput
+    tournamentMatchesA?: TournamentMatchCreateNestedManyWithoutPlayerAInput
+    tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
+    savedItems?: SavedItemCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutOnboardingSurveysInput = {
+    id?: string
+    email: string
+    username: string
+    passwordHash: string
+    name: string
+    bio?: string
+    school?: string | null
+    schoolUrl?: string | null
+    workplace?: string | null
+    workplaceUrl?: string | null
+    jobTitle?: string | null
+    currentCity?: string | null
+    hometown?: string | null
+    website?: string | null
+    education?: string | null
+    interests?: string | null
+    avatarUrl?: string | null
+    coverUrl?: string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lastSeenAt?: Date | string | null
+    emailVerifiedAt?: Date | string | null
+    phoneNumber?: string | null
+    phoneVerifiedAt?: Date | string | null
+    dateOfBirth?: Date | string | null
+    gender?: string | null
+    verificationRequired?: boolean
+    twoFactorEnabled?: boolean
+    professionalMode?: boolean
+    verified?: boolean
+    verifiedAt?: Date | string | null
+    profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    reposts?: RepostUncheckedCreateNestedManyWithoutAuthorInput
+    shares?: PostShareUncheckedCreateNestedManyWithoutUserInput
+    reactions?: PostReactionUncheckedCreateNestedManyWithoutUserInput
+    stories?: StoryUncheckedCreateNestedManyWithoutAuthorInput
+    storyViews?: StoryViewUncheckedCreateNestedManyWithoutViewerInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutRecipientInput
+    otpCodes?: VerificationCodeUncheckedCreateNestedManyWithoutUserInput
+    adminAuthCodes?: AdminAuthCodeUncheckedCreateNestedManyWithoutUserInput
+    actorNotifications?: NotificationUncheckedCreateNestedManyWithoutActorInput
+    following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    friendRequestsSent?: FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+    friendRequestsReceived?: FriendshipUncheckedCreateNestedManyWithoutAddresseeInput
+    platformRecords?: PlatformRecordUncheckedCreateNestedManyWithoutOwnerInput
+    blocksMade?: BlockUncheckedCreateNestedManyWithoutBlockerInput
+    blocksReceived?: BlockUncheckedCreateNestedManyWithoutBlockedInput
+    reportsMade?: ReportUncheckedCreateNestedManyWithoutReporterInput
+    officialReactions?: OfficialFeedReactionUncheckedCreateNestedManyWithoutUserInput
+    officialComments?: OfficialFeedCommentUncheckedCreateNestedManyWithoutUserInput
+    officialShares?: OfficialFeedShareUncheckedCreateNestedManyWithoutUserInput
+    reportsAgainst?: ReportUncheckedCreateNestedManyWithoutReportedInput
+    memberships?: ConversationMemberUncheckedCreateNestedManyWithoutUserInput
+    groupsOwned?: GroupUncheckedCreateNestedManyWithoutOwnerInput
+    groupMemberships?: GroupMemberUncheckedCreateNestedManyWithoutUserInput
+    groupMessages?: GroupMessageUncheckedCreateNestedManyWithoutSenderInput
+    callsMade?: CallSessionUncheckedCreateNestedManyWithoutCallerInput
+    callsReceived?: CallSessionUncheckedCreateNestedManyWithoutCalleeInput
+    liveStreams?: LiveStreamUncheckedCreateNestedManyWithoutHostInput
+    emailTokens?: EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+    passwordResetTokens?: PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+    sessions?: UserSessionUncheckedCreateNestedManyWithoutUserInput
+    securityEvents?: SecurityEventUncheckedCreateNestedManyWithoutUserInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
+    pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    mediaAssets?: MediaAssetUncheckedCreateNestedManyWithoutOwnerInput
+    analyticsEvents?: AnalyticsEventUncheckedCreateNestedManyWithoutUserInput
+    moderationCases?: ModerationCaseUncheckedCreateNestedManyWithoutReporterInput
+    moderationAgainst?: ModerationCaseUncheckedCreateNestedManyWithoutTargetInput
+    appeals?: AppealUncheckedCreateNestedManyWithoutUserInput
+    recommendationFeedback?: RecommendationFeedbackUncheckedCreateNestedManyWithoutUserInput
+    feedActivities?: FeedActivityUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    paymentRecords?: PaymentRecordUncheckedCreateNestedManyWithoutUserInput
+    profileBoostsRequested?: ProfileBoostUncheckedCreateNestedManyWithoutRequesterInput
+    profileBoostsTargeted?: ProfileBoostUncheckedCreateNestedManyWithoutTargetUserInput
+    eventsOwned?: EventUncheckedCreateNestedManyWithoutOwnerInput
+    eventAttendances?: EventAttendeeUncheckedCreateNestedManyWithoutUserInput
+    marketplaceListings?: MarketplaceListingUncheckedCreateNestedManyWithoutSellerInput
+    gamingTeamsOwned?: GamingTeamUncheckedCreateNestedManyWithoutOwnerInput
+    gamingTeamMemberships?: GamingTeamMemberUncheckedCreateNestedManyWithoutUserInput
+    tournamentsOwned?: TournamentUncheckedCreateNestedManyWithoutOwnerInput
+    tournamentRegistrations?: TournamentRegistrationUncheckedCreateNestedManyWithoutUserInput
+    tournamentMatchesA?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerAInput
+    tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
+    savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutOnboardingSurveysInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutOnboardingSurveysInput, UserUncheckedCreateWithoutOnboardingSurveysInput>
+  }
+
+  export type UserUpsertWithoutOnboardingSurveysInput = {
+    update: XOR<UserUpdateWithoutOnboardingSurveysInput, UserUncheckedUpdateWithoutOnboardingSurveysInput>
+    create: XOR<UserCreateWithoutOnboardingSurveysInput, UserUncheckedCreateWithoutOnboardingSurveysInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutOnboardingSurveysInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutOnboardingSurveysInput, UserUncheckedUpdateWithoutOnboardingSurveysInput>
+  }
+
+  export type UserUpdateWithoutOnboardingSurveysInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workplace?: NullableStringFieldUpdateOperationsInput | string | null
+    workplaceUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    jobTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    currentCity?: NullableStringFieldUpdateOperationsInput | string | null
+    hometown?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    education?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationRequired?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    professionalMode?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    posts?: PostUpdateManyWithoutAuthorNestedInput
+    companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    reposts?: RepostUpdateManyWithoutAuthorNestedInput
+    shares?: PostShareUpdateManyWithoutUserNestedInput
+    reactions?: PostReactionUpdateManyWithoutUserNestedInput
+    stories?: StoryUpdateManyWithoutAuthorNestedInput
+    storyViews?: StoryViewUpdateManyWithoutViewerNestedInput
+    sentMessages?: MessageUpdateManyWithoutSenderNestedInput
+    notifications?: NotificationUpdateManyWithoutRecipientNestedInput
+    otpCodes?: VerificationCodeUpdateManyWithoutUserNestedInput
+    adminAuthCodes?: AdminAuthCodeUpdateManyWithoutUserNestedInput
+    actorNotifications?: NotificationUpdateManyWithoutActorNestedInput
+    following?: FollowUpdateManyWithoutFollowerNestedInput
+    followers?: FollowUpdateManyWithoutFollowingNestedInput
+    friendRequestsSent?: FriendshipUpdateManyWithoutRequesterNestedInput
+    friendRequestsReceived?: FriendshipUpdateManyWithoutAddresseeNestedInput
+    platformRecords?: PlatformRecordUpdateManyWithoutOwnerNestedInput
+    blocksMade?: BlockUpdateManyWithoutBlockerNestedInput
+    blocksReceived?: BlockUpdateManyWithoutBlockedNestedInput
+    reportsMade?: ReportUpdateManyWithoutReporterNestedInput
+    officialReactions?: OfficialFeedReactionUpdateManyWithoutUserNestedInput
+    officialComments?: OfficialFeedCommentUpdateManyWithoutUserNestedInput
+    officialShares?: OfficialFeedShareUpdateManyWithoutUserNestedInput
+    reportsAgainst?: ReportUpdateManyWithoutReportedNestedInput
+    memberships?: ConversationMemberUpdateManyWithoutUserNestedInput
+    groupsOwned?: GroupUpdateManyWithoutOwnerNestedInput
+    groupMemberships?: GroupMemberUpdateManyWithoutUserNestedInput
+    groupMessages?: GroupMessageUpdateManyWithoutSenderNestedInput
+    callsMade?: CallSessionUpdateManyWithoutCallerNestedInput
+    callsReceived?: CallSessionUpdateManyWithoutCalleeNestedInput
+    liveStreams?: LiveStreamUpdateManyWithoutHostNestedInput
+    emailTokens?: EmailVerificationTokenUpdateManyWithoutUserNestedInput
+    passwordResetTokens?: PasswordResetTokenUpdateManyWithoutUserNestedInput
+    sessions?: UserSessionUpdateManyWithoutUserNestedInput
+    securityEvents?: SecurityEventUpdateManyWithoutUserNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateOneWithoutUserNestedInput
+    pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
+    mediaAssets?: MediaAssetUpdateManyWithoutOwnerNestedInput
+    analyticsEvents?: AnalyticsEventUpdateManyWithoutUserNestedInput
+    moderationCases?: ModerationCaseUpdateManyWithoutReporterNestedInput
+    moderationAgainst?: ModerationCaseUpdateManyWithoutTargetNestedInput
+    appeals?: AppealUpdateManyWithoutUserNestedInput
+    recommendationFeedback?: RecommendationFeedbackUpdateManyWithoutUserNestedInput
+    feedActivities?: FeedActivityUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    paymentRecords?: PaymentRecordUpdateManyWithoutUserNestedInput
+    profileBoostsRequested?: ProfileBoostUpdateManyWithoutRequesterNestedInput
+    profileBoostsTargeted?: ProfileBoostUpdateManyWithoutTargetUserNestedInput
+    eventsOwned?: EventUpdateManyWithoutOwnerNestedInput
+    eventAttendances?: EventAttendeeUpdateManyWithoutUserNestedInput
+    marketplaceListings?: MarketplaceListingUpdateManyWithoutSellerNestedInput
+    gamingTeamsOwned?: GamingTeamUpdateManyWithoutOwnerNestedInput
+    gamingTeamMemberships?: GamingTeamMemberUpdateManyWithoutUserNestedInput
+    tournamentsOwned?: TournamentUpdateManyWithoutOwnerNestedInput
+    tournamentRegistrations?: TournamentRegistrationUpdateManyWithoutUserNestedInput
+    tournamentMatchesA?: TournamentMatchUpdateManyWithoutPlayerANestedInput
+    tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
+    savedItems?: SavedItemUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutOnboardingSurveysInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workplace?: NullableStringFieldUpdateOperationsInput | string | null
+    workplaceUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    jobTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    currentCity?: NullableStringFieldUpdateOperationsInput | string | null
+    hometown?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    education?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationRequired?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    professionalMode?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    reposts?: RepostUncheckedUpdateManyWithoutAuthorNestedInput
+    shares?: PostShareUncheckedUpdateManyWithoutUserNestedInput
+    reactions?: PostReactionUncheckedUpdateManyWithoutUserNestedInput
+    stories?: StoryUncheckedUpdateManyWithoutAuthorNestedInput
+    storyViews?: StoryViewUncheckedUpdateManyWithoutViewerNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutRecipientNestedInput
+    otpCodes?: VerificationCodeUncheckedUpdateManyWithoutUserNestedInput
+    adminAuthCodes?: AdminAuthCodeUncheckedUpdateManyWithoutUserNestedInput
+    actorNotifications?: NotificationUncheckedUpdateManyWithoutActorNestedInput
+    following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    friendRequestsSent?: FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+    friendRequestsReceived?: FriendshipUncheckedUpdateManyWithoutAddresseeNestedInput
+    platformRecords?: PlatformRecordUncheckedUpdateManyWithoutOwnerNestedInput
+    blocksMade?: BlockUncheckedUpdateManyWithoutBlockerNestedInput
+    blocksReceived?: BlockUncheckedUpdateManyWithoutBlockedNestedInput
+    reportsMade?: ReportUncheckedUpdateManyWithoutReporterNestedInput
+    officialReactions?: OfficialFeedReactionUncheckedUpdateManyWithoutUserNestedInput
+    officialComments?: OfficialFeedCommentUncheckedUpdateManyWithoutUserNestedInput
+    officialShares?: OfficialFeedShareUncheckedUpdateManyWithoutUserNestedInput
+    reportsAgainst?: ReportUncheckedUpdateManyWithoutReportedNestedInput
+    memberships?: ConversationMemberUncheckedUpdateManyWithoutUserNestedInput
+    groupsOwned?: GroupUncheckedUpdateManyWithoutOwnerNestedInput
+    groupMemberships?: GroupMemberUncheckedUpdateManyWithoutUserNestedInput
+    groupMessages?: GroupMessageUncheckedUpdateManyWithoutSenderNestedInput
+    callsMade?: CallSessionUncheckedUpdateManyWithoutCallerNestedInput
+    callsReceived?: CallSessionUncheckedUpdateManyWithoutCalleeNestedInput
+    liveStreams?: LiveStreamUncheckedUpdateManyWithoutHostNestedInput
+    emailTokens?: EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+    passwordResetTokens?: PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: UserSessionUncheckedUpdateManyWithoutUserNestedInput
+    securityEvents?: SecurityEventUncheckedUpdateManyWithoutUserNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    mediaAssets?: MediaAssetUncheckedUpdateManyWithoutOwnerNestedInput
+    analyticsEvents?: AnalyticsEventUncheckedUpdateManyWithoutUserNestedInput
+    moderationCases?: ModerationCaseUncheckedUpdateManyWithoutReporterNestedInput
+    moderationAgainst?: ModerationCaseUncheckedUpdateManyWithoutTargetNestedInput
+    appeals?: AppealUncheckedUpdateManyWithoutUserNestedInput
+    recommendationFeedback?: RecommendationFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    feedActivities?: FeedActivityUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    paymentRecords?: PaymentRecordUncheckedUpdateManyWithoutUserNestedInput
+    profileBoostsRequested?: ProfileBoostUncheckedUpdateManyWithoutRequesterNestedInput
+    profileBoostsTargeted?: ProfileBoostUncheckedUpdateManyWithoutTargetUserNestedInput
+    eventsOwned?: EventUncheckedUpdateManyWithoutOwnerNestedInput
+    eventAttendances?: EventAttendeeUncheckedUpdateManyWithoutUserNestedInput
+    marketplaceListings?: MarketplaceListingUncheckedUpdateManyWithoutSellerNestedInput
+    gamingTeamsOwned?: GamingTeamUncheckedUpdateManyWithoutOwnerNestedInput
+    gamingTeamMemberships?: GamingTeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    tournamentsOwned?: TournamentUncheckedUpdateManyWithoutOwnerNestedInput
+    tournamentRegistrations?: TournamentRegistrationUncheckedUpdateManyWithoutUserNestedInput
+    tournamentMatchesA?: TournamentMatchUncheckedUpdateManyWithoutPlayerANestedInput
+    tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
+    savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutFeatureRequestsInput = {
+    id?: string
+    email: string
+    username: string
+    passwordHash: string
+    name: string
+    bio?: string
+    school?: string | null
+    schoolUrl?: string | null
+    workplace?: string | null
+    workplaceUrl?: string | null
+    jobTitle?: string | null
+    currentCity?: string | null
+    hometown?: string | null
+    website?: string | null
+    education?: string | null
+    interests?: string | null
+    avatarUrl?: string | null
+    coverUrl?: string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lastSeenAt?: Date | string | null
+    emailVerifiedAt?: Date | string | null
+    phoneNumber?: string | null
+    phoneVerifiedAt?: Date | string | null
+    dateOfBirth?: Date | string | null
+    gender?: string | null
+    verificationRequired?: boolean
+    twoFactorEnabled?: boolean
+    professionalMode?: boolean
+    verified?: boolean
+    verifiedAt?: Date | string | null
+    profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
+    posts?: PostCreateNestedManyWithoutAuthorInput
+    companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    reposts?: RepostCreateNestedManyWithoutAuthorInput
+    shares?: PostShareCreateNestedManyWithoutUserInput
+    reactions?: PostReactionCreateNestedManyWithoutUserInput
+    stories?: StoryCreateNestedManyWithoutAuthorInput
+    storyViews?: StoryViewCreateNestedManyWithoutViewerInput
+    sentMessages?: MessageCreateNestedManyWithoutSenderInput
+    notifications?: NotificationCreateNestedManyWithoutRecipientInput
+    otpCodes?: VerificationCodeCreateNestedManyWithoutUserInput
+    adminAuthCodes?: AdminAuthCodeCreateNestedManyWithoutUserInput
+    actorNotifications?: NotificationCreateNestedManyWithoutActorInput
+    following?: FollowCreateNestedManyWithoutFollowerInput
+    followers?: FollowCreateNestedManyWithoutFollowingInput
+    friendRequestsSent?: FriendshipCreateNestedManyWithoutRequesterInput
+    friendRequestsReceived?: FriendshipCreateNestedManyWithoutAddresseeInput
+    platformRecords?: PlatformRecordCreateNestedManyWithoutOwnerInput
+    blocksMade?: BlockCreateNestedManyWithoutBlockerInput
+    blocksReceived?: BlockCreateNestedManyWithoutBlockedInput
+    reportsMade?: ReportCreateNestedManyWithoutReporterInput
+    officialReactions?: OfficialFeedReactionCreateNestedManyWithoutUserInput
+    officialComments?: OfficialFeedCommentCreateNestedManyWithoutUserInput
+    officialShares?: OfficialFeedShareCreateNestedManyWithoutUserInput
+    reportsAgainst?: ReportCreateNestedManyWithoutReportedInput
+    memberships?: ConversationMemberCreateNestedManyWithoutUserInput
+    groupsOwned?: GroupCreateNestedManyWithoutOwnerInput
+    groupMemberships?: GroupMemberCreateNestedManyWithoutUserInput
+    groupMessages?: GroupMessageCreateNestedManyWithoutSenderInput
+    callsMade?: CallSessionCreateNestedManyWithoutCallerInput
+    callsReceived?: CallSessionCreateNestedManyWithoutCalleeInput
+    liveStreams?: LiveStreamCreateNestedManyWithoutHostInput
+    emailTokens?: EmailVerificationTokenCreateNestedManyWithoutUserInput
+    passwordResetTokens?: PasswordResetTokenCreateNestedManyWithoutUserInput
+    sessions?: UserSessionCreateNestedManyWithoutUserInput
+    securityEvents?: SecurityEventCreateNestedManyWithoutUserInput
+    notificationPreferences?: NotificationPreferenceCreateNestedOneWithoutUserInput
+    pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
+    mediaAssets?: MediaAssetCreateNestedManyWithoutOwnerInput
+    analyticsEvents?: AnalyticsEventCreateNestedManyWithoutUserInput
+    moderationCases?: ModerationCaseCreateNestedManyWithoutReporterInput
+    moderationAgainst?: ModerationCaseCreateNestedManyWithoutTargetInput
+    appeals?: AppealCreateNestedManyWithoutUserInput
+    recommendationFeedback?: RecommendationFeedbackCreateNestedManyWithoutUserInput
+    feedActivities?: FeedActivityCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    paymentRecords?: PaymentRecordCreateNestedManyWithoutUserInput
+    profileBoostsRequested?: ProfileBoostCreateNestedManyWithoutRequesterInput
+    profileBoostsTargeted?: ProfileBoostCreateNestedManyWithoutTargetUserInput
+    eventsOwned?: EventCreateNestedManyWithoutOwnerInput
+    eventAttendances?: EventAttendeeCreateNestedManyWithoutUserInput
+    marketplaceListings?: MarketplaceListingCreateNestedManyWithoutSellerInput
+    gamingTeamsOwned?: GamingTeamCreateNestedManyWithoutOwnerInput
+    gamingTeamMemberships?: GamingTeamMemberCreateNestedManyWithoutUserInput
+    tournamentsOwned?: TournamentCreateNestedManyWithoutOwnerInput
+    tournamentRegistrations?: TournamentRegistrationCreateNestedManyWithoutUserInput
+    tournamentMatchesA?: TournamentMatchCreateNestedManyWithoutPlayerAInput
+    tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
+    savedItems?: SavedItemCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutFeatureRequestsInput = {
+    id?: string
+    email: string
+    username: string
+    passwordHash: string
+    name: string
+    bio?: string
+    school?: string | null
+    schoolUrl?: string | null
+    workplace?: string | null
+    workplaceUrl?: string | null
+    jobTitle?: string | null
+    currentCity?: string | null
+    hometown?: string | null
+    website?: string | null
+    education?: string | null
+    interests?: string | null
+    avatarUrl?: string | null
+    coverUrl?: string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lastSeenAt?: Date | string | null
+    emailVerifiedAt?: Date | string | null
+    phoneNumber?: string | null
+    phoneVerifiedAt?: Date | string | null
+    dateOfBirth?: Date | string | null
+    gender?: string | null
+    verificationRequired?: boolean
+    twoFactorEnabled?: boolean
+    professionalMode?: boolean
+    verified?: boolean
+    verifiedAt?: Date | string | null
+    profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    reposts?: RepostUncheckedCreateNestedManyWithoutAuthorInput
+    shares?: PostShareUncheckedCreateNestedManyWithoutUserInput
+    reactions?: PostReactionUncheckedCreateNestedManyWithoutUserInput
+    stories?: StoryUncheckedCreateNestedManyWithoutAuthorInput
+    storyViews?: StoryViewUncheckedCreateNestedManyWithoutViewerInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutRecipientInput
+    otpCodes?: VerificationCodeUncheckedCreateNestedManyWithoutUserInput
+    adminAuthCodes?: AdminAuthCodeUncheckedCreateNestedManyWithoutUserInput
+    actorNotifications?: NotificationUncheckedCreateNestedManyWithoutActorInput
+    following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    friendRequestsSent?: FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+    friendRequestsReceived?: FriendshipUncheckedCreateNestedManyWithoutAddresseeInput
+    platformRecords?: PlatformRecordUncheckedCreateNestedManyWithoutOwnerInput
+    blocksMade?: BlockUncheckedCreateNestedManyWithoutBlockerInput
+    blocksReceived?: BlockUncheckedCreateNestedManyWithoutBlockedInput
+    reportsMade?: ReportUncheckedCreateNestedManyWithoutReporterInput
+    officialReactions?: OfficialFeedReactionUncheckedCreateNestedManyWithoutUserInput
+    officialComments?: OfficialFeedCommentUncheckedCreateNestedManyWithoutUserInput
+    officialShares?: OfficialFeedShareUncheckedCreateNestedManyWithoutUserInput
+    reportsAgainst?: ReportUncheckedCreateNestedManyWithoutReportedInput
+    memberships?: ConversationMemberUncheckedCreateNestedManyWithoutUserInput
+    groupsOwned?: GroupUncheckedCreateNestedManyWithoutOwnerInput
+    groupMemberships?: GroupMemberUncheckedCreateNestedManyWithoutUserInput
+    groupMessages?: GroupMessageUncheckedCreateNestedManyWithoutSenderInput
+    callsMade?: CallSessionUncheckedCreateNestedManyWithoutCallerInput
+    callsReceived?: CallSessionUncheckedCreateNestedManyWithoutCalleeInput
+    liveStreams?: LiveStreamUncheckedCreateNestedManyWithoutHostInput
+    emailTokens?: EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+    passwordResetTokens?: PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+    sessions?: UserSessionUncheckedCreateNestedManyWithoutUserInput
+    securityEvents?: SecurityEventUncheckedCreateNestedManyWithoutUserInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
+    pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    mediaAssets?: MediaAssetUncheckedCreateNestedManyWithoutOwnerInput
+    analyticsEvents?: AnalyticsEventUncheckedCreateNestedManyWithoutUserInput
+    moderationCases?: ModerationCaseUncheckedCreateNestedManyWithoutReporterInput
+    moderationAgainst?: ModerationCaseUncheckedCreateNestedManyWithoutTargetInput
+    appeals?: AppealUncheckedCreateNestedManyWithoutUserInput
+    recommendationFeedback?: RecommendationFeedbackUncheckedCreateNestedManyWithoutUserInput
+    feedActivities?: FeedActivityUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    paymentRecords?: PaymentRecordUncheckedCreateNestedManyWithoutUserInput
+    profileBoostsRequested?: ProfileBoostUncheckedCreateNestedManyWithoutRequesterInput
+    profileBoostsTargeted?: ProfileBoostUncheckedCreateNestedManyWithoutTargetUserInput
+    eventsOwned?: EventUncheckedCreateNestedManyWithoutOwnerInput
+    eventAttendances?: EventAttendeeUncheckedCreateNestedManyWithoutUserInput
+    marketplaceListings?: MarketplaceListingUncheckedCreateNestedManyWithoutSellerInput
+    gamingTeamsOwned?: GamingTeamUncheckedCreateNestedManyWithoutOwnerInput
+    gamingTeamMemberships?: GamingTeamMemberUncheckedCreateNestedManyWithoutUserInput
+    tournamentsOwned?: TournamentUncheckedCreateNestedManyWithoutOwnerInput
+    tournamentRegistrations?: TournamentRegistrationUncheckedCreateNestedManyWithoutUserInput
+    tournamentMatchesA?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerAInput
+    tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
+    savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureVotes?: FeatureRequestVoteUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutFeatureRequestsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFeatureRequestsInput, UserUncheckedCreateWithoutFeatureRequestsInput>
+  }
+
+  export type FeatureRequestVoteCreateWithoutRequestInput = {
+    id?: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutFeatureVotesInput
+  }
+
+  export type FeatureRequestVoteUncheckedCreateWithoutRequestInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type FeatureRequestVoteCreateOrConnectWithoutRequestInput = {
+    where: FeatureRequestVoteWhereUniqueInput
+    create: XOR<FeatureRequestVoteCreateWithoutRequestInput, FeatureRequestVoteUncheckedCreateWithoutRequestInput>
+  }
+
+  export type FeatureRequestVoteCreateManyRequestInputEnvelope = {
+    data: FeatureRequestVoteCreateManyRequestInput | FeatureRequestVoteCreateManyRequestInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutFeatureRequestsInput = {
+    update: XOR<UserUpdateWithoutFeatureRequestsInput, UserUncheckedUpdateWithoutFeatureRequestsInput>
+    create: XOR<UserCreateWithoutFeatureRequestsInput, UserUncheckedCreateWithoutFeatureRequestsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFeatureRequestsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFeatureRequestsInput, UserUncheckedUpdateWithoutFeatureRequestsInput>
+  }
+
+  export type UserUpdateWithoutFeatureRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workplace?: NullableStringFieldUpdateOperationsInput | string | null
+    workplaceUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    jobTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    currentCity?: NullableStringFieldUpdateOperationsInput | string | null
+    hometown?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    education?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationRequired?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    professionalMode?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    posts?: PostUpdateManyWithoutAuthorNestedInput
+    companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    reposts?: RepostUpdateManyWithoutAuthorNestedInput
+    shares?: PostShareUpdateManyWithoutUserNestedInput
+    reactions?: PostReactionUpdateManyWithoutUserNestedInput
+    stories?: StoryUpdateManyWithoutAuthorNestedInput
+    storyViews?: StoryViewUpdateManyWithoutViewerNestedInput
+    sentMessages?: MessageUpdateManyWithoutSenderNestedInput
+    notifications?: NotificationUpdateManyWithoutRecipientNestedInput
+    otpCodes?: VerificationCodeUpdateManyWithoutUserNestedInput
+    adminAuthCodes?: AdminAuthCodeUpdateManyWithoutUserNestedInput
+    actorNotifications?: NotificationUpdateManyWithoutActorNestedInput
+    following?: FollowUpdateManyWithoutFollowerNestedInput
+    followers?: FollowUpdateManyWithoutFollowingNestedInput
+    friendRequestsSent?: FriendshipUpdateManyWithoutRequesterNestedInput
+    friendRequestsReceived?: FriendshipUpdateManyWithoutAddresseeNestedInput
+    platformRecords?: PlatformRecordUpdateManyWithoutOwnerNestedInput
+    blocksMade?: BlockUpdateManyWithoutBlockerNestedInput
+    blocksReceived?: BlockUpdateManyWithoutBlockedNestedInput
+    reportsMade?: ReportUpdateManyWithoutReporterNestedInput
+    officialReactions?: OfficialFeedReactionUpdateManyWithoutUserNestedInput
+    officialComments?: OfficialFeedCommentUpdateManyWithoutUserNestedInput
+    officialShares?: OfficialFeedShareUpdateManyWithoutUserNestedInput
+    reportsAgainst?: ReportUpdateManyWithoutReportedNestedInput
+    memberships?: ConversationMemberUpdateManyWithoutUserNestedInput
+    groupsOwned?: GroupUpdateManyWithoutOwnerNestedInput
+    groupMemberships?: GroupMemberUpdateManyWithoutUserNestedInput
+    groupMessages?: GroupMessageUpdateManyWithoutSenderNestedInput
+    callsMade?: CallSessionUpdateManyWithoutCallerNestedInput
+    callsReceived?: CallSessionUpdateManyWithoutCalleeNestedInput
+    liveStreams?: LiveStreamUpdateManyWithoutHostNestedInput
+    emailTokens?: EmailVerificationTokenUpdateManyWithoutUserNestedInput
+    passwordResetTokens?: PasswordResetTokenUpdateManyWithoutUserNestedInput
+    sessions?: UserSessionUpdateManyWithoutUserNestedInput
+    securityEvents?: SecurityEventUpdateManyWithoutUserNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateOneWithoutUserNestedInput
+    pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
+    mediaAssets?: MediaAssetUpdateManyWithoutOwnerNestedInput
+    analyticsEvents?: AnalyticsEventUpdateManyWithoutUserNestedInput
+    moderationCases?: ModerationCaseUpdateManyWithoutReporterNestedInput
+    moderationAgainst?: ModerationCaseUpdateManyWithoutTargetNestedInput
+    appeals?: AppealUpdateManyWithoutUserNestedInput
+    recommendationFeedback?: RecommendationFeedbackUpdateManyWithoutUserNestedInput
+    feedActivities?: FeedActivityUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    paymentRecords?: PaymentRecordUpdateManyWithoutUserNestedInput
+    profileBoostsRequested?: ProfileBoostUpdateManyWithoutRequesterNestedInput
+    profileBoostsTargeted?: ProfileBoostUpdateManyWithoutTargetUserNestedInput
+    eventsOwned?: EventUpdateManyWithoutOwnerNestedInput
+    eventAttendances?: EventAttendeeUpdateManyWithoutUserNestedInput
+    marketplaceListings?: MarketplaceListingUpdateManyWithoutSellerNestedInput
+    gamingTeamsOwned?: GamingTeamUpdateManyWithoutOwnerNestedInput
+    gamingTeamMemberships?: GamingTeamMemberUpdateManyWithoutUserNestedInput
+    tournamentsOwned?: TournamentUpdateManyWithoutOwnerNestedInput
+    tournamentRegistrations?: TournamentRegistrationUpdateManyWithoutUserNestedInput
+    tournamentMatchesA?: TournamentMatchUpdateManyWithoutPlayerANestedInput
+    tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
+    savedItems?: SavedItemUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFeatureRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workplace?: NullableStringFieldUpdateOperationsInput | string | null
+    workplaceUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    jobTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    currentCity?: NullableStringFieldUpdateOperationsInput | string | null
+    hometown?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    education?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationRequired?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    professionalMode?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    reposts?: RepostUncheckedUpdateManyWithoutAuthorNestedInput
+    shares?: PostShareUncheckedUpdateManyWithoutUserNestedInput
+    reactions?: PostReactionUncheckedUpdateManyWithoutUserNestedInput
+    stories?: StoryUncheckedUpdateManyWithoutAuthorNestedInput
+    storyViews?: StoryViewUncheckedUpdateManyWithoutViewerNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutRecipientNestedInput
+    otpCodes?: VerificationCodeUncheckedUpdateManyWithoutUserNestedInput
+    adminAuthCodes?: AdminAuthCodeUncheckedUpdateManyWithoutUserNestedInput
+    actorNotifications?: NotificationUncheckedUpdateManyWithoutActorNestedInput
+    following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    friendRequestsSent?: FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+    friendRequestsReceived?: FriendshipUncheckedUpdateManyWithoutAddresseeNestedInput
+    platformRecords?: PlatformRecordUncheckedUpdateManyWithoutOwnerNestedInput
+    blocksMade?: BlockUncheckedUpdateManyWithoutBlockerNestedInput
+    blocksReceived?: BlockUncheckedUpdateManyWithoutBlockedNestedInput
+    reportsMade?: ReportUncheckedUpdateManyWithoutReporterNestedInput
+    officialReactions?: OfficialFeedReactionUncheckedUpdateManyWithoutUserNestedInput
+    officialComments?: OfficialFeedCommentUncheckedUpdateManyWithoutUserNestedInput
+    officialShares?: OfficialFeedShareUncheckedUpdateManyWithoutUserNestedInput
+    reportsAgainst?: ReportUncheckedUpdateManyWithoutReportedNestedInput
+    memberships?: ConversationMemberUncheckedUpdateManyWithoutUserNestedInput
+    groupsOwned?: GroupUncheckedUpdateManyWithoutOwnerNestedInput
+    groupMemberships?: GroupMemberUncheckedUpdateManyWithoutUserNestedInput
+    groupMessages?: GroupMessageUncheckedUpdateManyWithoutSenderNestedInput
+    callsMade?: CallSessionUncheckedUpdateManyWithoutCallerNestedInput
+    callsReceived?: CallSessionUncheckedUpdateManyWithoutCalleeNestedInput
+    liveStreams?: LiveStreamUncheckedUpdateManyWithoutHostNestedInput
+    emailTokens?: EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+    passwordResetTokens?: PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: UserSessionUncheckedUpdateManyWithoutUserNestedInput
+    securityEvents?: SecurityEventUncheckedUpdateManyWithoutUserNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    mediaAssets?: MediaAssetUncheckedUpdateManyWithoutOwnerNestedInput
+    analyticsEvents?: AnalyticsEventUncheckedUpdateManyWithoutUserNestedInput
+    moderationCases?: ModerationCaseUncheckedUpdateManyWithoutReporterNestedInput
+    moderationAgainst?: ModerationCaseUncheckedUpdateManyWithoutTargetNestedInput
+    appeals?: AppealUncheckedUpdateManyWithoutUserNestedInput
+    recommendationFeedback?: RecommendationFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    feedActivities?: FeedActivityUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    paymentRecords?: PaymentRecordUncheckedUpdateManyWithoutUserNestedInput
+    profileBoostsRequested?: ProfileBoostUncheckedUpdateManyWithoutRequesterNestedInput
+    profileBoostsTargeted?: ProfileBoostUncheckedUpdateManyWithoutTargetUserNestedInput
+    eventsOwned?: EventUncheckedUpdateManyWithoutOwnerNestedInput
+    eventAttendances?: EventAttendeeUncheckedUpdateManyWithoutUserNestedInput
+    marketplaceListings?: MarketplaceListingUncheckedUpdateManyWithoutSellerNestedInput
+    gamingTeamsOwned?: GamingTeamUncheckedUpdateManyWithoutOwnerNestedInput
+    gamingTeamMemberships?: GamingTeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    tournamentsOwned?: TournamentUncheckedUpdateManyWithoutOwnerNestedInput
+    tournamentRegistrations?: TournamentRegistrationUncheckedUpdateManyWithoutUserNestedInput
+    tournamentMatchesA?: TournamentMatchUncheckedUpdateManyWithoutPlayerANestedInput
+    tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
+    savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureVotes?: FeatureRequestVoteUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type FeatureRequestVoteUpsertWithWhereUniqueWithoutRequestInput = {
+    where: FeatureRequestVoteWhereUniqueInput
+    update: XOR<FeatureRequestVoteUpdateWithoutRequestInput, FeatureRequestVoteUncheckedUpdateWithoutRequestInput>
+    create: XOR<FeatureRequestVoteCreateWithoutRequestInput, FeatureRequestVoteUncheckedCreateWithoutRequestInput>
+  }
+
+  export type FeatureRequestVoteUpdateWithWhereUniqueWithoutRequestInput = {
+    where: FeatureRequestVoteWhereUniqueInput
+    data: XOR<FeatureRequestVoteUpdateWithoutRequestInput, FeatureRequestVoteUncheckedUpdateWithoutRequestInput>
+  }
+
+  export type FeatureRequestVoteUpdateManyWithWhereWithoutRequestInput = {
+    where: FeatureRequestVoteScalarWhereInput
+    data: XOR<FeatureRequestVoteUpdateManyMutationInput, FeatureRequestVoteUncheckedUpdateManyWithoutRequestInput>
+  }
+
+  export type FeatureRequestCreateWithoutVotesInput = {
+    id?: string
+    title: string
+    description?: string | null
+    category?: $Enums.FeatureRequestCategory
+    status?: $Enums.FeatureRequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutFeatureRequestsInput
+  }
+
+  export type FeatureRequestUncheckedCreateWithoutVotesInput = {
+    id?: string
+    userId: string
+    title: string
+    description?: string | null
+    category?: $Enums.FeatureRequestCategory
+    status?: $Enums.FeatureRequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeatureRequestCreateOrConnectWithoutVotesInput = {
+    where: FeatureRequestWhereUniqueInput
+    create: XOR<FeatureRequestCreateWithoutVotesInput, FeatureRequestUncheckedCreateWithoutVotesInput>
+  }
+
+  export type UserCreateWithoutFeatureVotesInput = {
+    id?: string
+    email: string
+    username: string
+    passwordHash: string
+    name: string
+    bio?: string
+    school?: string | null
+    schoolUrl?: string | null
+    workplace?: string | null
+    workplaceUrl?: string | null
+    jobTitle?: string | null
+    currentCity?: string | null
+    hometown?: string | null
+    website?: string | null
+    education?: string | null
+    interests?: string | null
+    avatarUrl?: string | null
+    coverUrl?: string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lastSeenAt?: Date | string | null
+    emailVerifiedAt?: Date | string | null
+    phoneNumber?: string | null
+    phoneVerifiedAt?: Date | string | null
+    dateOfBirth?: Date | string | null
+    gender?: string | null
+    verificationRequired?: boolean
+    twoFactorEnabled?: boolean
+    professionalMode?: boolean
+    verified?: boolean
+    verifiedAt?: Date | string | null
+    profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
+    posts?: PostCreateNestedManyWithoutAuthorInput
+    companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
+    comments?: CommentCreateNestedManyWithoutAuthorInput
+    reposts?: RepostCreateNestedManyWithoutAuthorInput
+    shares?: PostShareCreateNestedManyWithoutUserInput
+    reactions?: PostReactionCreateNestedManyWithoutUserInput
+    stories?: StoryCreateNestedManyWithoutAuthorInput
+    storyViews?: StoryViewCreateNestedManyWithoutViewerInput
+    sentMessages?: MessageCreateNestedManyWithoutSenderInput
+    notifications?: NotificationCreateNestedManyWithoutRecipientInput
+    otpCodes?: VerificationCodeCreateNestedManyWithoutUserInput
+    adminAuthCodes?: AdminAuthCodeCreateNestedManyWithoutUserInput
+    actorNotifications?: NotificationCreateNestedManyWithoutActorInput
+    following?: FollowCreateNestedManyWithoutFollowerInput
+    followers?: FollowCreateNestedManyWithoutFollowingInput
+    friendRequestsSent?: FriendshipCreateNestedManyWithoutRequesterInput
+    friendRequestsReceived?: FriendshipCreateNestedManyWithoutAddresseeInput
+    platformRecords?: PlatformRecordCreateNestedManyWithoutOwnerInput
+    blocksMade?: BlockCreateNestedManyWithoutBlockerInput
+    blocksReceived?: BlockCreateNestedManyWithoutBlockedInput
+    reportsMade?: ReportCreateNestedManyWithoutReporterInput
+    officialReactions?: OfficialFeedReactionCreateNestedManyWithoutUserInput
+    officialComments?: OfficialFeedCommentCreateNestedManyWithoutUserInput
+    officialShares?: OfficialFeedShareCreateNestedManyWithoutUserInput
+    reportsAgainst?: ReportCreateNestedManyWithoutReportedInput
+    memberships?: ConversationMemberCreateNestedManyWithoutUserInput
+    groupsOwned?: GroupCreateNestedManyWithoutOwnerInput
+    groupMemberships?: GroupMemberCreateNestedManyWithoutUserInput
+    groupMessages?: GroupMessageCreateNestedManyWithoutSenderInput
+    callsMade?: CallSessionCreateNestedManyWithoutCallerInput
+    callsReceived?: CallSessionCreateNestedManyWithoutCalleeInput
+    liveStreams?: LiveStreamCreateNestedManyWithoutHostInput
+    emailTokens?: EmailVerificationTokenCreateNestedManyWithoutUserInput
+    passwordResetTokens?: PasswordResetTokenCreateNestedManyWithoutUserInput
+    sessions?: UserSessionCreateNestedManyWithoutUserInput
+    securityEvents?: SecurityEventCreateNestedManyWithoutUserInput
+    notificationPreferences?: NotificationPreferenceCreateNestedOneWithoutUserInput
+    pushSubscriptions?: PushSubscriptionCreateNestedManyWithoutUserInput
+    mediaAssets?: MediaAssetCreateNestedManyWithoutOwnerInput
+    analyticsEvents?: AnalyticsEventCreateNestedManyWithoutUserInput
+    moderationCases?: ModerationCaseCreateNestedManyWithoutReporterInput
+    moderationAgainst?: ModerationCaseCreateNestedManyWithoutTargetInput
+    appeals?: AppealCreateNestedManyWithoutUserInput
+    recommendationFeedback?: RecommendationFeedbackCreateNestedManyWithoutUserInput
+    feedActivities?: FeedActivityCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionCreateNestedManyWithoutUserInput
+    paymentRecords?: PaymentRecordCreateNestedManyWithoutUserInput
+    profileBoostsRequested?: ProfileBoostCreateNestedManyWithoutRequesterInput
+    profileBoostsTargeted?: ProfileBoostCreateNestedManyWithoutTargetUserInput
+    eventsOwned?: EventCreateNestedManyWithoutOwnerInput
+    eventAttendances?: EventAttendeeCreateNestedManyWithoutUserInput
+    marketplaceListings?: MarketplaceListingCreateNestedManyWithoutSellerInput
+    gamingTeamsOwned?: GamingTeamCreateNestedManyWithoutOwnerInput
+    gamingTeamMemberships?: GamingTeamMemberCreateNestedManyWithoutUserInput
+    tournamentsOwned?: TournamentCreateNestedManyWithoutOwnerInput
+    tournamentRegistrations?: TournamentRegistrationCreateNestedManyWithoutUserInput
+    tournamentMatchesA?: TournamentMatchCreateNestedManyWithoutPlayerAInput
+    tournamentMatchesB?: TournamentMatchCreateNestedManyWithoutPlayerBInput
+    savedItems?: SavedItemCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutFeatureVotesInput = {
+    id?: string
+    email: string
+    username: string
+    passwordHash: string
+    name: string
+    bio?: string
+    school?: string | null
+    schoolUrl?: string | null
+    workplace?: string | null
+    workplaceUrl?: string | null
+    jobTitle?: string | null
+    currentCity?: string | null
+    hometown?: string | null
+    website?: string | null
+    education?: string | null
+    interests?: string | null
+    avatarUrl?: string | null
+    coverUrl?: string | null
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    lastSeenAt?: Date | string | null
+    emailVerifiedAt?: Date | string | null
+    phoneNumber?: string | null
+    phoneVerifiedAt?: Date | string | null
+    dateOfBirth?: Date | string | null
+    gender?: string | null
+    verificationRequired?: boolean
+    twoFactorEnabled?: boolean
+    professionalMode?: boolean
+    verified?: boolean
+    verifiedAt?: Date | string | null
+    profileBoostedUntil?: Date | string | null
+    coinBalance?: number
+    walletBonusAwardedAt?: Date | string | null
+    posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
+    companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
+    reposts?: RepostUncheckedCreateNestedManyWithoutAuthorInput
+    shares?: PostShareUncheckedCreateNestedManyWithoutUserInput
+    reactions?: PostReactionUncheckedCreateNestedManyWithoutUserInput
+    stories?: StoryUncheckedCreateNestedManyWithoutAuthorInput
+    storyViews?: StoryViewUncheckedCreateNestedManyWithoutViewerInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutRecipientInput
+    otpCodes?: VerificationCodeUncheckedCreateNestedManyWithoutUserInput
+    adminAuthCodes?: AdminAuthCodeUncheckedCreateNestedManyWithoutUserInput
+    actorNotifications?: NotificationUncheckedCreateNestedManyWithoutActorInput
+    following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+    friendRequestsSent?: FriendshipUncheckedCreateNestedManyWithoutRequesterInput
+    friendRequestsReceived?: FriendshipUncheckedCreateNestedManyWithoutAddresseeInput
+    platformRecords?: PlatformRecordUncheckedCreateNestedManyWithoutOwnerInput
+    blocksMade?: BlockUncheckedCreateNestedManyWithoutBlockerInput
+    blocksReceived?: BlockUncheckedCreateNestedManyWithoutBlockedInput
+    reportsMade?: ReportUncheckedCreateNestedManyWithoutReporterInput
+    officialReactions?: OfficialFeedReactionUncheckedCreateNestedManyWithoutUserInput
+    officialComments?: OfficialFeedCommentUncheckedCreateNestedManyWithoutUserInput
+    officialShares?: OfficialFeedShareUncheckedCreateNestedManyWithoutUserInput
+    reportsAgainst?: ReportUncheckedCreateNestedManyWithoutReportedInput
+    memberships?: ConversationMemberUncheckedCreateNestedManyWithoutUserInput
+    groupsOwned?: GroupUncheckedCreateNestedManyWithoutOwnerInput
+    groupMemberships?: GroupMemberUncheckedCreateNestedManyWithoutUserInput
+    groupMessages?: GroupMessageUncheckedCreateNestedManyWithoutSenderInput
+    callsMade?: CallSessionUncheckedCreateNestedManyWithoutCallerInput
+    callsReceived?: CallSessionUncheckedCreateNestedManyWithoutCalleeInput
+    liveStreams?: LiveStreamUncheckedCreateNestedManyWithoutHostInput
+    emailTokens?: EmailVerificationTokenUncheckedCreateNestedManyWithoutUserInput
+    passwordResetTokens?: PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+    sessions?: UserSessionUncheckedCreateNestedManyWithoutUserInput
+    securityEvents?: SecurityEventUncheckedCreateNestedManyWithoutUserInput
+    notificationPreferences?: NotificationPreferenceUncheckedCreateNestedOneWithoutUserInput
+    pushSubscriptions?: PushSubscriptionUncheckedCreateNestedManyWithoutUserInput
+    mediaAssets?: MediaAssetUncheckedCreateNestedManyWithoutOwnerInput
+    analyticsEvents?: AnalyticsEventUncheckedCreateNestedManyWithoutUserInput
+    moderationCases?: ModerationCaseUncheckedCreateNestedManyWithoutReporterInput
+    moderationAgainst?: ModerationCaseUncheckedCreateNestedManyWithoutTargetInput
+    appeals?: AppealUncheckedCreateNestedManyWithoutUserInput
+    recommendationFeedback?: RecommendationFeedbackUncheckedCreateNestedManyWithoutUserInput
+    feedActivities?: FeedActivityUncheckedCreateNestedManyWithoutUserInput
+    subscriptions?: SubscriptionUncheckedCreateNestedManyWithoutUserInput
+    paymentRecords?: PaymentRecordUncheckedCreateNestedManyWithoutUserInput
+    profileBoostsRequested?: ProfileBoostUncheckedCreateNestedManyWithoutRequesterInput
+    profileBoostsTargeted?: ProfileBoostUncheckedCreateNestedManyWithoutTargetUserInput
+    eventsOwned?: EventUncheckedCreateNestedManyWithoutOwnerInput
+    eventAttendances?: EventAttendeeUncheckedCreateNestedManyWithoutUserInput
+    marketplaceListings?: MarketplaceListingUncheckedCreateNestedManyWithoutSellerInput
+    gamingTeamsOwned?: GamingTeamUncheckedCreateNestedManyWithoutOwnerInput
+    gamingTeamMemberships?: GamingTeamMemberUncheckedCreateNestedManyWithoutUserInput
+    tournamentsOwned?: TournamentUncheckedCreateNestedManyWithoutOwnerInput
+    tournamentRegistrations?: TournamentRegistrationUncheckedCreateNestedManyWithoutUserInput
+    tournamentMatchesA?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerAInput
+    tournamentMatchesB?: TournamentMatchUncheckedCreateNestedManyWithoutPlayerBInput
+    savedItems?: SavedItemUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    onboardingSurveys?: OnboardingSurveyUncheckedCreateNestedManyWithoutUserInput
+    featureRequests?: FeatureRequestUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutFeatureVotesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFeatureVotesInput, UserUncheckedCreateWithoutFeatureVotesInput>
+  }
+
+  export type FeatureRequestUpsertWithoutVotesInput = {
+    update: XOR<FeatureRequestUpdateWithoutVotesInput, FeatureRequestUncheckedUpdateWithoutVotesInput>
+    create: XOR<FeatureRequestCreateWithoutVotesInput, FeatureRequestUncheckedCreateWithoutVotesInput>
+    where?: FeatureRequestWhereInput
+  }
+
+  export type FeatureRequestUpdateToOneWithWhereWithoutVotesInput = {
+    where?: FeatureRequestWhereInput
+    data: XOR<FeatureRequestUpdateWithoutVotesInput, FeatureRequestUncheckedUpdateWithoutVotesInput>
+  }
+
+  export type FeatureRequestUpdateWithoutVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: EnumFeatureRequestCategoryFieldUpdateOperationsInput | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFieldUpdateOperationsInput | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFeatureRequestsNestedInput
+  }
+
+  export type FeatureRequestUncheckedUpdateWithoutVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: EnumFeatureRequestCategoryFieldUpdateOperationsInput | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFieldUpdateOperationsInput | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutFeatureVotesInput = {
+    update: XOR<UserUpdateWithoutFeatureVotesInput, UserUncheckedUpdateWithoutFeatureVotesInput>
+    create: XOR<UserCreateWithoutFeatureVotesInput, UserUncheckedCreateWithoutFeatureVotesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFeatureVotesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFeatureVotesInput, UserUncheckedUpdateWithoutFeatureVotesInput>
+  }
+
+  export type UserUpdateWithoutFeatureVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workplace?: NullableStringFieldUpdateOperationsInput | string | null
+    workplaceUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    jobTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    currentCity?: NullableStringFieldUpdateOperationsInput | string | null
+    hometown?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    education?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationRequired?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    professionalMode?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    posts?: PostUpdateManyWithoutAuthorNestedInput
+    companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
+    comments?: CommentUpdateManyWithoutAuthorNestedInput
+    reposts?: RepostUpdateManyWithoutAuthorNestedInput
+    shares?: PostShareUpdateManyWithoutUserNestedInput
+    reactions?: PostReactionUpdateManyWithoutUserNestedInput
+    stories?: StoryUpdateManyWithoutAuthorNestedInput
+    storyViews?: StoryViewUpdateManyWithoutViewerNestedInput
+    sentMessages?: MessageUpdateManyWithoutSenderNestedInput
+    notifications?: NotificationUpdateManyWithoutRecipientNestedInput
+    otpCodes?: VerificationCodeUpdateManyWithoutUserNestedInput
+    adminAuthCodes?: AdminAuthCodeUpdateManyWithoutUserNestedInput
+    actorNotifications?: NotificationUpdateManyWithoutActorNestedInput
+    following?: FollowUpdateManyWithoutFollowerNestedInput
+    followers?: FollowUpdateManyWithoutFollowingNestedInput
+    friendRequestsSent?: FriendshipUpdateManyWithoutRequesterNestedInput
+    friendRequestsReceived?: FriendshipUpdateManyWithoutAddresseeNestedInput
+    platformRecords?: PlatformRecordUpdateManyWithoutOwnerNestedInput
+    blocksMade?: BlockUpdateManyWithoutBlockerNestedInput
+    blocksReceived?: BlockUpdateManyWithoutBlockedNestedInput
+    reportsMade?: ReportUpdateManyWithoutReporterNestedInput
+    officialReactions?: OfficialFeedReactionUpdateManyWithoutUserNestedInput
+    officialComments?: OfficialFeedCommentUpdateManyWithoutUserNestedInput
+    officialShares?: OfficialFeedShareUpdateManyWithoutUserNestedInput
+    reportsAgainst?: ReportUpdateManyWithoutReportedNestedInput
+    memberships?: ConversationMemberUpdateManyWithoutUserNestedInput
+    groupsOwned?: GroupUpdateManyWithoutOwnerNestedInput
+    groupMemberships?: GroupMemberUpdateManyWithoutUserNestedInput
+    groupMessages?: GroupMessageUpdateManyWithoutSenderNestedInput
+    callsMade?: CallSessionUpdateManyWithoutCallerNestedInput
+    callsReceived?: CallSessionUpdateManyWithoutCalleeNestedInput
+    liveStreams?: LiveStreamUpdateManyWithoutHostNestedInput
+    emailTokens?: EmailVerificationTokenUpdateManyWithoutUserNestedInput
+    passwordResetTokens?: PasswordResetTokenUpdateManyWithoutUserNestedInput
+    sessions?: UserSessionUpdateManyWithoutUserNestedInput
+    securityEvents?: SecurityEventUpdateManyWithoutUserNestedInput
+    notificationPreferences?: NotificationPreferenceUpdateOneWithoutUserNestedInput
+    pushSubscriptions?: PushSubscriptionUpdateManyWithoutUserNestedInput
+    mediaAssets?: MediaAssetUpdateManyWithoutOwnerNestedInput
+    analyticsEvents?: AnalyticsEventUpdateManyWithoutUserNestedInput
+    moderationCases?: ModerationCaseUpdateManyWithoutReporterNestedInput
+    moderationAgainst?: ModerationCaseUpdateManyWithoutTargetNestedInput
+    appeals?: AppealUpdateManyWithoutUserNestedInput
+    recommendationFeedback?: RecommendationFeedbackUpdateManyWithoutUserNestedInput
+    feedActivities?: FeedActivityUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUpdateManyWithoutUserNestedInput
+    paymentRecords?: PaymentRecordUpdateManyWithoutUserNestedInput
+    profileBoostsRequested?: ProfileBoostUpdateManyWithoutRequesterNestedInput
+    profileBoostsTargeted?: ProfileBoostUpdateManyWithoutTargetUserNestedInput
+    eventsOwned?: EventUpdateManyWithoutOwnerNestedInput
+    eventAttendances?: EventAttendeeUpdateManyWithoutUserNestedInput
+    marketplaceListings?: MarketplaceListingUpdateManyWithoutSellerNestedInput
+    gamingTeamsOwned?: GamingTeamUpdateManyWithoutOwnerNestedInput
+    gamingTeamMemberships?: GamingTeamMemberUpdateManyWithoutUserNestedInput
+    tournamentsOwned?: TournamentUpdateManyWithoutOwnerNestedInput
+    tournamentRegistrations?: TournamentRegistrationUpdateManyWithoutUserNestedInput
+    tournamentMatchesA?: TournamentMatchUpdateManyWithoutPlayerANestedInput
+    tournamentMatchesB?: TournamentMatchUpdateManyWithoutPlayerBNestedInput
+    savedItems?: SavedItemUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFeatureVotesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    workplace?: NullableStringFieldUpdateOperationsInput | string | null
+    workplaceUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    jobTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    currentCity?: NullableStringFieldUpdateOperationsInput | string | null
+    hometown?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    education?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    coverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    lastSeenAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    emailVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dateOfBirth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationRequired?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    professionalMode?: BoolFieldUpdateOperationsInput | boolean
+    verified?: BoolFieldUpdateOperationsInput | boolean
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    coinBalance?: IntFieldUpdateOperationsInput | number
+    walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
+    companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
+    reposts?: RepostUncheckedUpdateManyWithoutAuthorNestedInput
+    shares?: PostShareUncheckedUpdateManyWithoutUserNestedInput
+    reactions?: PostReactionUncheckedUpdateManyWithoutUserNestedInput
+    stories?: StoryUncheckedUpdateManyWithoutAuthorNestedInput
+    storyViews?: StoryViewUncheckedUpdateManyWithoutViewerNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutRecipientNestedInput
+    otpCodes?: VerificationCodeUncheckedUpdateManyWithoutUserNestedInput
+    adminAuthCodes?: AdminAuthCodeUncheckedUpdateManyWithoutUserNestedInput
+    actorNotifications?: NotificationUncheckedUpdateManyWithoutActorNestedInput
+    following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+    friendRequestsSent?: FriendshipUncheckedUpdateManyWithoutRequesterNestedInput
+    friendRequestsReceived?: FriendshipUncheckedUpdateManyWithoutAddresseeNestedInput
+    platformRecords?: PlatformRecordUncheckedUpdateManyWithoutOwnerNestedInput
+    blocksMade?: BlockUncheckedUpdateManyWithoutBlockerNestedInput
+    blocksReceived?: BlockUncheckedUpdateManyWithoutBlockedNestedInput
+    reportsMade?: ReportUncheckedUpdateManyWithoutReporterNestedInput
+    officialReactions?: OfficialFeedReactionUncheckedUpdateManyWithoutUserNestedInput
+    officialComments?: OfficialFeedCommentUncheckedUpdateManyWithoutUserNestedInput
+    officialShares?: OfficialFeedShareUncheckedUpdateManyWithoutUserNestedInput
+    reportsAgainst?: ReportUncheckedUpdateManyWithoutReportedNestedInput
+    memberships?: ConversationMemberUncheckedUpdateManyWithoutUserNestedInput
+    groupsOwned?: GroupUncheckedUpdateManyWithoutOwnerNestedInput
+    groupMemberships?: GroupMemberUncheckedUpdateManyWithoutUserNestedInput
+    groupMessages?: GroupMessageUncheckedUpdateManyWithoutSenderNestedInput
+    callsMade?: CallSessionUncheckedUpdateManyWithoutCallerNestedInput
+    callsReceived?: CallSessionUncheckedUpdateManyWithoutCalleeNestedInput
+    liveStreams?: LiveStreamUncheckedUpdateManyWithoutHostNestedInput
+    emailTokens?: EmailVerificationTokenUncheckedUpdateManyWithoutUserNestedInput
+    passwordResetTokens?: PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: UserSessionUncheckedUpdateManyWithoutUserNestedInput
+    securityEvents?: SecurityEventUncheckedUpdateManyWithoutUserNestedInput
+    notificationPreferences?: NotificationPreferenceUncheckedUpdateOneWithoutUserNestedInput
+    pushSubscriptions?: PushSubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    mediaAssets?: MediaAssetUncheckedUpdateManyWithoutOwnerNestedInput
+    analyticsEvents?: AnalyticsEventUncheckedUpdateManyWithoutUserNestedInput
+    moderationCases?: ModerationCaseUncheckedUpdateManyWithoutReporterNestedInput
+    moderationAgainst?: ModerationCaseUncheckedUpdateManyWithoutTargetNestedInput
+    appeals?: AppealUncheckedUpdateManyWithoutUserNestedInput
+    recommendationFeedback?: RecommendationFeedbackUncheckedUpdateManyWithoutUserNestedInput
+    feedActivities?: FeedActivityUncheckedUpdateManyWithoutUserNestedInput
+    subscriptions?: SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+    paymentRecords?: PaymentRecordUncheckedUpdateManyWithoutUserNestedInput
+    profileBoostsRequested?: ProfileBoostUncheckedUpdateManyWithoutRequesterNestedInput
+    profileBoostsTargeted?: ProfileBoostUncheckedUpdateManyWithoutTargetUserNestedInput
+    eventsOwned?: EventUncheckedUpdateManyWithoutOwnerNestedInput
+    eventAttendances?: EventAttendeeUncheckedUpdateManyWithoutUserNestedInput
+    marketplaceListings?: MarketplaceListingUncheckedUpdateManyWithoutSellerNestedInput
+    gamingTeamsOwned?: GamingTeamUncheckedUpdateManyWithoutOwnerNestedInput
+    gamingTeamMemberships?: GamingTeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    tournamentsOwned?: TournamentUncheckedUpdateManyWithoutOwnerNestedInput
+    tournamentRegistrations?: TournamentRegistrationUncheckedUpdateManyWithoutUserNestedInput
+    tournamentMatchesA?: TournamentMatchUncheckedUpdateManyWithoutPlayerANestedInput
+    tournamentMatchesB?: TournamentMatchUncheckedUpdateManyWithoutPlayerBNestedInput
+    savedItems?: SavedItemUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    onboardingSurveys?: OnboardingSurveyUncheckedUpdateManyWithoutUserNestedInput
+    featureRequests?: FeatureRequestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PostCreateManyAuthorInput = {
@@ -128674,6 +136114,29 @@ export namespace Prisma {
     title: string
     body: string
     memoryDate: Date | string
+    createdAt?: Date | string
+  }
+
+  export type OnboardingSurveyCreateManyUserInput = {
+    id?: string
+    source: $Enums.OnboardingSource
+    otherText?: string | null
+    createdAt?: Date | string
+  }
+
+  export type FeatureRequestCreateManyUserInput = {
+    id?: string
+    title: string
+    description?: string | null
+    category?: $Enums.FeatureRequestCategory
+    status?: $Enums.FeatureRequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FeatureRequestVoteCreateManyUserInput = {
+    id?: string
+    requestId: string
     createdAt?: Date | string
   }
 
@@ -130373,6 +137836,77 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type OnboardingSurveyUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumOnboardingSourceFieldUpdateOperationsInput | $Enums.OnboardingSource
+    otherText?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OnboardingSurveyUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumOnboardingSourceFieldUpdateOperationsInput | $Enums.OnboardingSource
+    otherText?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OnboardingSurveyUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    source?: EnumOnboardingSourceFieldUpdateOperationsInput | $Enums.OnboardingSource
+    otherText?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureRequestUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: EnumFeatureRequestCategoryFieldUpdateOperationsInput | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFieldUpdateOperationsInput | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    votes?: FeatureRequestVoteUpdateManyWithoutRequestNestedInput
+  }
+
+  export type FeatureRequestUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: EnumFeatureRequestCategoryFieldUpdateOperationsInput | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFieldUpdateOperationsInput | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    votes?: FeatureRequestVoteUncheckedUpdateManyWithoutRequestNestedInput
+  }
+
+  export type FeatureRequestUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: EnumFeatureRequestCategoryFieldUpdateOperationsInput | $Enums.FeatureRequestCategory
+    status?: EnumFeatureRequestStatusFieldUpdateOperationsInput | $Enums.FeatureRequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureRequestVoteUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    request?: FeatureRequestUpdateOneRequiredWithoutVotesNestedInput
+  }
+
+  export type FeatureRequestVoteUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureRequestVoteUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type PostReactionCreateManyPostInput = {
     id?: string
     userId: string
@@ -131167,6 +138701,30 @@ export namespace Prisma {
     endsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureRequestVoteCreateManyRequestInput = {
+    id?: string
+    userId: string
+    createdAt?: Date | string
+  }
+
+  export type FeatureRequestVoteUpdateWithoutRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFeatureVotesNestedInput
+  }
+
+  export type FeatureRequestVoteUncheckedUpdateWithoutRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeatureRequestVoteUncheckedUpdateManyWithoutRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
