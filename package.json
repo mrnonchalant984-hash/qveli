@@ -26,6 +26,7 @@
     "@prisma/client": "7.10.0",
     "@upstash/redis": "^1.35.6",
     "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "bcryptjs": "^3.0.2",
     "bullmq": "5.80.12",
     "dotenv": "^17.4.2",
