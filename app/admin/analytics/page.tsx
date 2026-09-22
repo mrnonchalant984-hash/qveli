@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Activity, BarChart3, FileText, Heart, MessageCircle, Users, UserPlus, Eye, Globe2, Smartphone, Monitor, Compass, ShieldAlert, Radio, ShoppingBag, Gamepad2, CalendarDays, Layers3 } from 'lucide-react';
+import { ArrowLeft, Activity, BarChart3, FileText, Heart, MessageCircle, Users, UserPlus, Eye, Globe2, Smartphone, Monitor, Compass, ShieldAlert, Radio, ShoppingBag, Gamepad2, CalendarDays, Layers3, Coins, Handshake } from 'lucide-react';
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 const labels: Record<string, string> = { SCHOOL: 'School', FRIEND: 'Friend', GOOGLE: 'Google', TIKTOK: 'TikTok', INSTAGRAM: 'Instagram', TWITTER: 'X / Twitter', AI: 'ChatGPT / AI', OTHER: 'Other' };
@@ -37,6 +37,10 @@ export default function AdminAnalytics() {
       <section className="analyticsStats compact">
         <Stat icon={FileText} value={o.posts} label="Posts"/><Stat icon={Heart} value={o.reactions} label="Reactions"/><Stat icon={MessageCircle} value={o.comments} label="Comments"/><Stat icon={MessageCircle} value={o.messages} label="Messages"/><Stat icon={UserPlus} value={o.follows} label="Follows"/><Stat icon={Radio} value={o.stories} label="Stories"/><Stat icon={Eye} value={o.storyViews} label="Story views"/><Stat icon={Layers3} value={o.groups} label="Groups"/><Stat icon={CalendarDays} value={o.events} label="Events"/><Stat icon={ShoppingBag} value={o.listings} label="Marketplace listings"/><Stat icon={Gamepad2} value={o.teams} label="Gaming teams"/><Stat icon={ShieldAlert} value={o.reports} label="Reports"/>
       </section>
+      <section className="analyticsStats compact">
+        <Stat icon={Coins} value={o.totalCoins} label="Coins in wallets"/><Stat icon={Coins} value={o.totalCoinsEarned} label="Coins earned"/><Stat icon={Coins} value={o.totalCoinsSpent} label="Coins spent"/><Stat icon={Users} value={o.coinHolders} label="Coin holders"/><Stat icon={UserPlus} value={o.bonusRecipients} label="Bonus recipients"/><Stat icon={Handshake} value={`${o.configuredCollaborators || 0}/${o.collaborators || 0}`} label="Collaborators ready"/>
+      </section>
+      <section className="analyticsPanel"><div className="analyticsPanelHead"><div><h2>Collaborator services</h2><p>Configured infrastructure and platform partners.</p></div><Handshake size={18}/></div>{(data?.collaboratorServices || []).map((service: any) => <div className="analyticsRow" key={service.name}><b>{service.name}</b><span>{service.configured ? 'Configured' : 'Not configured'}</span></div>)}</section>
       <div className="analyticsGrid two"><MiniList title="Top pages" rows={data?.topPages || []}/><MiniList title="Top events" rows={data?.eventCounts || []}/></div>
       <div className="analyticsGrid four"><MiniList title="Devices" rows={data?.devices || []}/><MiniList title="Browsers" rows={data?.browsers || []}/><MiniList title="Operating systems" rows={data?.operatingSystems || []}/><MiniList title="Referrers" rows={data?.referrers || []}/></div>
       <section className="analyticsPanel onboardingPanel"><div className="analyticsPanelHead"><div><h2>How people discovered Qevli</h2><p>Onboarding answers from registered users.</p></div><Compass size={18}/></div>{(data?.onboarding || []).map((r: any) => <div className="analyticsBarRow" key={r.source}><div><b>{labels[r.source] || r.source}</b><span>{r.count.toLocaleString()}</span></div><i style={{ width: `${Math.max(4, ((r.count / Math.max(...(data?.onboarding || [{count:1}]).map((x:any)=>x.count))) * 100))}%` }}/></div>)}</section>

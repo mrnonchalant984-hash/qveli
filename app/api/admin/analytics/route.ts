@@ -32,7 +32,7 @@ export async function GET() {
     const since30 = daysAgo(30);
     const since7 = daysAgo(7);
     const since24 = daysAgo(1);
-    const [dauSet, wauSet, mauSet, active7, users, posts, messages, comments, reactions, follows, stories, storyViews, groups, events, listings, teams, liveStreams, notifications, reports, newUsers30, pageViews, eventRows, onboarding] = await Promise.all([
+    const [dauSet, wauSet, mauSet, active7, users, posts, messages, comments, reactions, follows, stories, storyViews, groups, events, listings, teams, liveStreams, notifications, reports, newUsers30, pageViews, eventRows, onboarding, coinBalances, bonusRecipients] = await Promise.all([
       distinctUsers(since24), distinctUsers(since7), distinctUsers(since30),
       prisma.analyticsEvent.findMany({ where: { createdAt: { gte: since7 }, userId: { not: null } }, select: { userId: true }, distinct: ['userId'] }),
       prisma.user.count(), prisma.post.count(), prisma.message.count(), prisma.comment.count(), prisma.postReaction.count(), prisma.follow.count(),
@@ -41,6 +41,8 @@ export async function GET() {
       prisma.analyticsEvent.findMany({ where: { createdAt: { gte: since30 }, name: 'page_view' }, select: { path: true, metadata: true, createdAt: true } }),
       prisma.analyticsEvent.findMany({ where: { createdAt: { gte: since30 } }, select: { name: true, metadata: true, createdAt: true }, orderBy: { createdAt: 'desc' }, take: 50000 }),
       prisma.onboardingSurvey.groupBy({ by: ['source'], _count: { _all: true }, orderBy: { _count: { source: 'desc' } } }),
+      prisma.user.aggregate({ _sum: { coinBalance: true } }),
+      prisma.user.count({ where: { walletBonusAwardedAt: { not: null } } }),
     ]);
 
     const daily = Array.from({ length: 30 }, (_, index) => {
@@ -60,17 +62,36 @@ export async function GET() {
     const returning7 = active7.filter((r) => r.userId).length;
     const metadataRows = eventRows.map((e) => ({ metadata: e.metadata }));
 
+    const totalCoins = coinBalances._sum.coinBalance || 0;
+    const totalCoinsEarned = bonusRecipients * 100;
+    const collaboratorServices = [
+      { name: 'Supabase', configured: Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) },
+      { name: 'Neon', configured: Boolean(process.env.DATABASE_URL) },
+      { name: 'LiveKit', configured: Boolean(process.env.NEXT_PUBLIC_LIVEKIT_URL && process.env.LIVEKIT_API_KEY && process.env.LIVEKIT_API_SECRET) },
+      { name: 'Resend', configured: Boolean(process.env.RESEND_API_KEY) },
+      { name: 'Monnify', configured: process.env.QEVLI_MONETIZATION_ENABLED === 'true' },
+      { name: 'OpenAI', configured: Boolean(process.env.OPENAI_API_KEY) },
+    ];
+
     return ok({
       generatedAt: new Date().toISOString(), period: '30d',
       overview: {
         users, newUsers30, dau: dauSet.size, wau: wauSet.size, mau: mauSet.size,
         posts, messages, comments, reactions, follows, stories, storyViews, groups, events, listings, teams, liveStreams, notifications, reports,
         pageViews: pageViews.length, returning7,
+        coinHolders: totalCoins > 0 ? await prisma.user.count({ where: { coinBalance: { gt: 0 } } }) : 0,
+        totalCoins,
+        totalCoinsEarned,
+        totalCoinsSpent: Math.max(0, totalCoinsEarned - totalCoins),
+        bonusRecipients,
+        collaborators: collaboratorServices.length,
+        configuredCollaborators: collaboratorServices.filter((service) => service.configured).length,
       },
       daily, topPages, eventCounts,
       devices: countMetadata(metadataRows, 'device'), browsers: countMetadata(metadataRows, 'browser'), operatingSystems: countMetadata(metadataRows, 'os'),
       referrers: countMetadata(metadataRows, 'referrer'), languages: countMetadata(metadataRows, 'language'), timezones: countMetadata(metadataRows, 'timezone'),
       onboarding: onboarding.map((r) => ({ source: r.source, count: r._count._all })),
+      collaboratorServices,
     });
   } catch (error) {
     console.error('admin analytics', error);
