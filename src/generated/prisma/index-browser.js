@@ -155,7 +155,9 @@ exports.Prisma.UserScalarFieldEnum = {
   verifiedAt: 'verifiedAt',
   profileBoostedUntil: 'profileBoostedUntil',
   coinBalance: 'coinBalance',
-  walletBonusAwardedAt: 'walletBonusAwardedAt'
+  walletBonusAwardedAt: 'walletBonusAwardedAt',
+  profileVisibility: 'profileVisibility',
+  lastProfileCompletionAwardAt: 'lastProfileCompletionAwardAt'
 };
 
 exports.Prisma.FollowScalarFieldEnum = {
@@ -182,6 +184,17 @@ exports.Prisma.PostScalarFieldEnum = {
   visibility: 'visibility',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HashtagScalarFieldEnum = {
+  id: 'id',
+  tag: 'tag',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PostHashtagScalarFieldEnum = {
+  postId: 'postId',
+  hashtagId: 'hashtagId'
 };
 
 exports.Prisma.PostReactionScalarFieldEnum = {
@@ -223,6 +236,7 @@ exports.Prisma.StoryScalarFieldEnum = {
   text: 'text',
   mediaUrl: 'mediaUrl',
   mediaType: 'mediaType',
+  visibility: 'visibility',
   expiresAt: 'expiresAt',
   createdAt: 'createdAt'
 };
@@ -943,6 +957,8 @@ exports.Prisma.ModelName = {
   Follow: 'Follow',
   Block: 'Block',
   Post: 'Post',
+  Hashtag: 'Hashtag',
+  PostHashtag: 'PostHashtag',
   PostReaction: 'PostReaction',
   PostShare: 'PostShare',
   Comment: 'Comment',

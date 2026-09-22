@@ -34,6 +34,16 @@ export type Block = $Result.DefaultSelection<Prisma.$BlockPayload>
  */
 export type Post = $Result.DefaultSelection<Prisma.$PostPayload>
 /**
+ * Model Hashtag
+ * 
+ */
+export type Hashtag = $Result.DefaultSelection<Prisma.$HashtagPayload>
+/**
+ * Model PostHashtag
+ * 
+ */
+export type PostHashtag = $Result.DefaultSelection<Prisma.$PostHashtagPayload>
+/**
  * Model PostReaction
  * 
  */
@@ -636,6 +646,26 @@ export class PrismaClient<
     * ```
     */
   get post(): Prisma.PostDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.hashtag`: Exposes CRUD operations for the **Hashtag** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Hashtags
+    * const hashtags = await prisma.hashtag.findMany()
+    * ```
+    */
+  get hashtag(): Prisma.HashtagDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.postHashtag`: Exposes CRUD operations for the **PostHashtag** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PostHashtags
+    * const postHashtags = await prisma.postHashtag.findMany()
+    * ```
+    */
+  get postHashtag(): Prisma.PostHashtagDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.postReaction`: Exposes CRUD operations for the **PostReaction** model.
@@ -1697,6 +1727,8 @@ export namespace Prisma {
     Follow: 'Follow',
     Block: 'Block',
     Post: 'Post',
+    Hashtag: 'Hashtag',
+    PostHashtag: 'PostHashtag',
     PostReaction: 'PostReaction',
     PostShare: 'PostShare',
     Comment: 'Comment',
@@ -1773,7 +1805,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "follow" | "block" | "post" | "postReaction" | "postShare" | "comment" | "repost" | "story" | "storyView" | "conversation" | "conversationMember" | "message" | "notification" | "report" | "officialFeedSource" | "officialFeedItem" | "officialFeedReaction" | "officialFeedComment" | "officialFeedShare" | "company" | "companyUpdate" | "companyFollow" | "group" | "groupMember" | "groupMessage" | "callSession" | "liveStream" | "friendship" | "event" | "eventAttendee" | "marketplaceListing" | "gamingTeam" | "gamingTeamMember" | "tournament" | "tournamentRegistration" | "tournamentMatch" | "savedItem" | "memory" | "platformRecord" | "verificationCode" | "adminAuthCode" | "emailVerificationToken" | "passwordResetToken" | "userSession" | "securityEvent" | "notificationPreference" | "pushSubscription" | "mediaAsset" | "analyticsEvent" | "moderationCase" | "appeal" | "feedActivity" | "recommendationFeedback" | "subscriptionPlan" | "subscription" | "profileBoost" | "paymentRecord" | "adCampaign" | "webhookEvent" | "backgroundJob" | "outboxEvent" | "onboardingSurvey" | "featureRequest" | "featureRequestVote"
+      modelProps: "user" | "follow" | "block" | "post" | "hashtag" | "postHashtag" | "postReaction" | "postShare" | "comment" | "repost" | "story" | "storyView" | "conversation" | "conversationMember" | "message" | "notification" | "report" | "officialFeedSource" | "officialFeedItem" | "officialFeedReaction" | "officialFeedComment" | "officialFeedShare" | "company" | "companyUpdate" | "companyFollow" | "group" | "groupMember" | "groupMessage" | "callSession" | "liveStream" | "friendship" | "event" | "eventAttendee" | "marketplaceListing" | "gamingTeam" | "gamingTeamMember" | "tournament" | "tournamentRegistration" | "tournamentMatch" | "savedItem" | "memory" | "platformRecord" | "verificationCode" | "adminAuthCode" | "emailVerificationToken" | "passwordResetToken" | "userSession" | "securityEvent" | "notificationPreference" | "pushSubscription" | "mediaAsset" | "analyticsEvent" | "moderationCase" | "appeal" | "feedActivity" | "recommendationFeedback" | "subscriptionPlan" | "subscription" | "profileBoost" | "paymentRecord" | "adCampaign" | "webhookEvent" | "backgroundJob" | "outboxEvent" | "onboardingSurvey" | "featureRequest" | "featureRequestVote"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2070,6 +2102,154 @@ export namespace Prisma {
           count: {
             args: Prisma.PostCountArgs<ExtArgs>
             result: $Utils.Optional<PostCountAggregateOutputType> | number
+          }
+        }
+      }
+      Hashtag: {
+        payload: Prisma.$HashtagPayload<ExtArgs>
+        fields: Prisma.HashtagFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HashtagFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HashtagFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload>
+          }
+          findFirst: {
+            args: Prisma.HashtagFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HashtagFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload>
+          }
+          findMany: {
+            args: Prisma.HashtagFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload>[]
+          }
+          create: {
+            args: Prisma.HashtagCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload>
+          }
+          createMany: {
+            args: Prisma.HashtagCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HashtagCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload>[]
+          }
+          delete: {
+            args: Prisma.HashtagDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload>
+          }
+          update: {
+            args: Prisma.HashtagUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload>
+          }
+          deleteMany: {
+            args: Prisma.HashtagDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HashtagUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.HashtagUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload>[]
+          }
+          upsert: {
+            args: Prisma.HashtagUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HashtagPayload>
+          }
+          aggregate: {
+            args: Prisma.HashtagAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHashtag>
+          }
+          groupBy: {
+            args: Prisma.HashtagGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HashtagGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HashtagCountArgs<ExtArgs>
+            result: $Utils.Optional<HashtagCountAggregateOutputType> | number
+          }
+        }
+      }
+      PostHashtag: {
+        payload: Prisma.$PostHashtagPayload<ExtArgs>
+        fields: Prisma.PostHashtagFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PostHashtagFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PostHashtagFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload>
+          }
+          findFirst: {
+            args: Prisma.PostHashtagFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PostHashtagFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload>
+          }
+          findMany: {
+            args: Prisma.PostHashtagFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload>[]
+          }
+          create: {
+            args: Prisma.PostHashtagCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload>
+          }
+          createMany: {
+            args: Prisma.PostHashtagCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PostHashtagCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload>[]
+          }
+          delete: {
+            args: Prisma.PostHashtagDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload>
+          }
+          update: {
+            args: Prisma.PostHashtagUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload>
+          }
+          deleteMany: {
+            args: Prisma.PostHashtagDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PostHashtagUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PostHashtagUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload>[]
+          }
+          upsert: {
+            args: Prisma.PostHashtagUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostHashtagPayload>
+          }
+          aggregate: {
+            args: Prisma.PostHashtagAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePostHashtag>
+          }
+          groupBy: {
+            args: Prisma.PostHashtagGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PostHashtagGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PostHashtagCountArgs<ExtArgs>
+            result: $Utils.Optional<PostHashtagCountAggregateOutputType> | number
           }
         }
       }
@@ -6714,6 +6894,8 @@ export namespace Prisma {
     follow?: FollowOmit
     block?: BlockOmit
     post?: PostOmit
+    hashtag?: HashtagOmit
+    postHashtag?: PostHashtagOmit
     postReaction?: PostReactionOmit
     postShare?: PostShareOmit
     comment?: CommentOmit
@@ -7440,6 +7622,7 @@ export namespace Prisma {
     reports: number
     shares: number
     reposts: number
+    hashtags: number
   }
 
   export type PostCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7448,6 +7631,7 @@ export namespace Prisma {
     reports?: boolean | PostCountOutputTypeCountReportsArgs
     shares?: boolean | PostCountOutputTypeCountSharesArgs
     reposts?: boolean | PostCountOutputTypeCountRepostsArgs
+    hashtags?: boolean | PostCountOutputTypeCountHashtagsArgs
   }
 
   // Custom InputTypes
@@ -7494,6 +7678,44 @@ export namespace Prisma {
    */
   export type PostCountOutputTypeCountRepostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RepostWhereInput
+  }
+
+  /**
+   * PostCountOutputType without action
+   */
+  export type PostCountOutputTypeCountHashtagsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostHashtagWhereInput
+  }
+
+
+  /**
+   * Count Type HashtagCountOutputType
+   */
+
+  export type HashtagCountOutputType = {
+    posts: number
+  }
+
+  export type HashtagCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    posts?: boolean | HashtagCountOutputTypeCountPostsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * HashtagCountOutputType without action
+   */
+  export type HashtagCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HashtagCountOutputType
+     */
+    select?: HashtagCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * HashtagCountOutputType without action
+   */
+  export type HashtagCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostHashtagWhereInput
   }
 
 
@@ -8014,6 +8236,8 @@ export namespace Prisma {
     profileBoostedUntil: Date | null
     coinBalance: number | null
     walletBonusAwardedAt: Date | null
+    profileVisibility: string | null
+    lastProfileCompletionAwardAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -8052,6 +8276,8 @@ export namespace Prisma {
     profileBoostedUntil: Date | null
     coinBalance: number | null
     walletBonusAwardedAt: Date | null
+    profileVisibility: string | null
+    lastProfileCompletionAwardAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -8090,6 +8316,8 @@ export namespace Prisma {
     profileBoostedUntil: number
     coinBalance: number
     walletBonusAwardedAt: number
+    profileVisibility: number
+    lastProfileCompletionAwardAt: number
     _all: number
   }
 
@@ -8138,6 +8366,8 @@ export namespace Prisma {
     profileBoostedUntil?: true
     coinBalance?: true
     walletBonusAwardedAt?: true
+    profileVisibility?: true
+    lastProfileCompletionAwardAt?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -8176,6 +8406,8 @@ export namespace Prisma {
     profileBoostedUntil?: true
     coinBalance?: true
     walletBonusAwardedAt?: true
+    profileVisibility?: true
+    lastProfileCompletionAwardAt?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -8214,6 +8446,8 @@ export namespace Prisma {
     profileBoostedUntil?: true
     coinBalance?: true
     walletBonusAwardedAt?: true
+    profileVisibility?: true
+    lastProfileCompletionAwardAt?: true
     _all?: true
   }
 
@@ -8339,6 +8573,8 @@ export namespace Prisma {
     profileBoostedUntil: Date | null
     coinBalance: number
     walletBonusAwardedAt: Date | null
+    profileVisibility: string
+    lastProfileCompletionAwardAt: Date | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -8396,6 +8632,8 @@ export namespace Prisma {
     profileBoostedUntil?: boolean
     coinBalance?: boolean
     walletBonusAwardedAt?: boolean
+    profileVisibility?: boolean
+    lastProfileCompletionAwardAt?: boolean
     posts?: boolean | User$postsArgs<ExtArgs>
     companyFollows?: boolean | User$companyFollowsArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
@@ -8498,6 +8736,8 @@ export namespace Prisma {
     profileBoostedUntil?: boolean
     coinBalance?: boolean
     walletBonusAwardedAt?: boolean
+    profileVisibility?: boolean
+    lastProfileCompletionAwardAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8536,6 +8776,8 @@ export namespace Prisma {
     profileBoostedUntil?: boolean
     coinBalance?: boolean
     walletBonusAwardedAt?: boolean
+    profileVisibility?: boolean
+    lastProfileCompletionAwardAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -8574,9 +8816,11 @@ export namespace Prisma {
     profileBoostedUntil?: boolean
     coinBalance?: boolean
     walletBonusAwardedAt?: boolean
+    profileVisibility?: boolean
+    lastProfileCompletionAwardAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "passwordHash" | "name" | "bio" | "school" | "schoolUrl" | "workplace" | "workplaceUrl" | "jobTitle" | "currentCity" | "hometown" | "website" | "education" | "interests" | "avatarUrl" | "coverUrl" | "role" | "createdAt" | "updatedAt" | "lastSeenAt" | "emailVerifiedAt" | "phoneNumber" | "phoneVerifiedAt" | "dateOfBirth" | "gender" | "verificationRequired" | "twoFactorEnabled" | "professionalMode" | "verified" | "verifiedAt" | "profileBoostedUntil" | "coinBalance" | "walletBonusAwardedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "passwordHash" | "name" | "bio" | "school" | "schoolUrl" | "workplace" | "workplaceUrl" | "jobTitle" | "currentCity" | "hometown" | "website" | "education" | "interests" | "avatarUrl" | "coverUrl" | "role" | "createdAt" | "updatedAt" | "lastSeenAt" | "emailVerifiedAt" | "phoneNumber" | "phoneVerifiedAt" | "dateOfBirth" | "gender" | "verificationRequired" | "twoFactorEnabled" | "professionalMode" | "verified" | "verifiedAt" | "profileBoostedUntil" | "coinBalance" | "walletBonusAwardedAt" | "profileVisibility" | "lastProfileCompletionAwardAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
     companyFollows?: boolean | User$companyFollowsArgs<ExtArgs>
@@ -8749,6 +8993,8 @@ export namespace Prisma {
       profileBoostedUntil: Date | null
       coinBalance: number
       walletBonusAwardedAt: Date | null
+      profileVisibility: string
+      lastProfileCompletionAwardAt: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -9270,6 +9516,8 @@ export namespace Prisma {
     readonly profileBoostedUntil: FieldRef<"User", 'DateTime'>
     readonly coinBalance: FieldRef<"User", 'Int'>
     readonly walletBonusAwardedAt: FieldRef<"User", 'DateTime'>
+    readonly profileVisibility: FieldRef<"User", 'String'>
+    readonly lastProfileCompletionAwardAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -13506,6 +13754,7 @@ export namespace Prisma {
     reports?: boolean | Post$reportsArgs<ExtArgs>
     shares?: boolean | Post$sharesArgs<ExtArgs>
     reposts?: boolean | Post$repostsArgs<ExtArgs>
+    hashtags?: boolean | Post$hashtagsArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -13555,6 +13804,7 @@ export namespace Prisma {
     reports?: boolean | Post$reportsArgs<ExtArgs>
     shares?: boolean | Post$sharesArgs<ExtArgs>
     reposts?: boolean | Post$repostsArgs<ExtArgs>
+    hashtags?: boolean | Post$hashtagsArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13573,6 +13823,7 @@ export namespace Prisma {
       reports: Prisma.$ReportPayload<ExtArgs>[]
       shares: Prisma.$PostSharePayload<ExtArgs>[]
       reposts: Prisma.$RepostPayload<ExtArgs>[]
+      hashtags: Prisma.$PostHashtagPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -13984,6 +14235,7 @@ export namespace Prisma {
     reports<T extends Post$reportsArgs<ExtArgs> = {}>(args?: Subset<T, Post$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     shares<T extends Post$sharesArgs<ExtArgs> = {}>(args?: Subset<T, Post$sharesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostSharePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reposts<T extends Post$repostsArgs<ExtArgs> = {}>(args?: Subset<T, Post$repostsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RepostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    hashtags<T extends Post$hashtagsArgs<ExtArgs> = {}>(args?: Subset<T, Post$hashtagsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14543,6 +14795,30 @@ export namespace Prisma {
   }
 
   /**
+   * Post.hashtags
+   */
+  export type Post$hashtagsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    where?: PostHashtagWhereInput
+    orderBy?: PostHashtagOrderByWithRelationInput | PostHashtagOrderByWithRelationInput[]
+    cursor?: PostHashtagWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PostHashtagScalarFieldEnum | PostHashtagScalarFieldEnum[]
+  }
+
+  /**
    * Post without action
    */
   export type PostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14558,6 +14834,2087 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: PostInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Hashtag
+   */
+
+  export type AggregateHashtag = {
+    _count: HashtagCountAggregateOutputType | null
+    _min: HashtagMinAggregateOutputType | null
+    _max: HashtagMaxAggregateOutputType | null
+  }
+
+  export type HashtagMinAggregateOutputType = {
+    id: string | null
+    tag: string | null
+    createdAt: Date | null
+  }
+
+  export type HashtagMaxAggregateOutputType = {
+    id: string | null
+    tag: string | null
+    createdAt: Date | null
+  }
+
+  export type HashtagCountAggregateOutputType = {
+    id: number
+    tag: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type HashtagMinAggregateInputType = {
+    id?: true
+    tag?: true
+    createdAt?: true
+  }
+
+  export type HashtagMaxAggregateInputType = {
+    id?: true
+    tag?: true
+    createdAt?: true
+  }
+
+  export type HashtagCountAggregateInputType = {
+    id?: true
+    tag?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type HashtagAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hashtag to aggregate.
+     */
+    where?: HashtagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hashtags to fetch.
+     */
+    orderBy?: HashtagOrderByWithRelationInput | HashtagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HashtagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hashtags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hashtags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Hashtags
+    **/
+    _count?: true | HashtagCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HashtagMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HashtagMaxAggregateInputType
+  }
+
+  export type GetHashtagAggregateType<T extends HashtagAggregateArgs> = {
+        [P in keyof T & keyof AggregateHashtag]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHashtag[P]>
+      : GetScalarType<T[P], AggregateHashtag[P]>
+  }
+
+
+
+
+  export type HashtagGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HashtagWhereInput
+    orderBy?: HashtagOrderByWithAggregationInput | HashtagOrderByWithAggregationInput[]
+    by: HashtagScalarFieldEnum[] | HashtagScalarFieldEnum
+    having?: HashtagScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HashtagCountAggregateInputType | true
+    _min?: HashtagMinAggregateInputType
+    _max?: HashtagMaxAggregateInputType
+  }
+
+  export type HashtagGroupByOutputType = {
+    id: string
+    tag: string
+    createdAt: Date
+    _count: HashtagCountAggregateOutputType | null
+    _min: HashtagMinAggregateOutputType | null
+    _max: HashtagMaxAggregateOutputType | null
+  }
+
+  type GetHashtagGroupByPayload<T extends HashtagGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HashtagGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HashtagGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HashtagGroupByOutputType[P]>
+            : GetScalarType<T[P], HashtagGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HashtagSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tag?: boolean
+    createdAt?: boolean
+    posts?: boolean | Hashtag$postsArgs<ExtArgs>
+    _count?: boolean | HashtagCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hashtag"]>
+
+  export type HashtagSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tag?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["hashtag"]>
+
+  export type HashtagSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tag?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["hashtag"]>
+
+  export type HashtagSelectScalar = {
+    id?: boolean
+    tag?: boolean
+    createdAt?: boolean
+  }
+
+  export type HashtagOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tag" | "createdAt", ExtArgs["result"]["hashtag"]>
+  export type HashtagInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    posts?: boolean | Hashtag$postsArgs<ExtArgs>
+    _count?: boolean | HashtagCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type HashtagIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type HashtagIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $HashtagPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Hashtag"
+    objects: {
+      posts: Prisma.$PostHashtagPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      tag: string
+      createdAt: Date
+    }, ExtArgs["result"]["hashtag"]>
+    composites: {}
+  }
+
+  type HashtagGetPayload<S extends boolean | null | undefined | HashtagDefaultArgs> = $Result.GetResult<Prisma.$HashtagPayload, S>
+
+  type HashtagCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<HashtagFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: HashtagCountAggregateInputType | true
+    }
+
+  export interface HashtagDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Hashtag'], meta: { name: 'Hashtag' } }
+    /**
+     * Find zero or one Hashtag that matches the filter.
+     * @param {HashtagFindUniqueArgs} args - Arguments to find a Hashtag
+     * @example
+     * // Get one Hashtag
+     * const hashtag = await prisma.hashtag.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HashtagFindUniqueArgs>(args: SelectSubset<T, HashtagFindUniqueArgs<ExtArgs>>): Prisma__HashtagClient<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Hashtag that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {HashtagFindUniqueOrThrowArgs} args - Arguments to find a Hashtag
+     * @example
+     * // Get one Hashtag
+     * const hashtag = await prisma.hashtag.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HashtagFindUniqueOrThrowArgs>(args: SelectSubset<T, HashtagFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HashtagClient<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hashtag that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HashtagFindFirstArgs} args - Arguments to find a Hashtag
+     * @example
+     * // Get one Hashtag
+     * const hashtag = await prisma.hashtag.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HashtagFindFirstArgs>(args?: SelectSubset<T, HashtagFindFirstArgs<ExtArgs>>): Prisma__HashtagClient<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Hashtag that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HashtagFindFirstOrThrowArgs} args - Arguments to find a Hashtag
+     * @example
+     * // Get one Hashtag
+     * const hashtag = await prisma.hashtag.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HashtagFindFirstOrThrowArgs>(args?: SelectSubset<T, HashtagFindFirstOrThrowArgs<ExtArgs>>): Prisma__HashtagClient<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Hashtags that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HashtagFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Hashtags
+     * const hashtags = await prisma.hashtag.findMany()
+     * 
+     * // Get first 10 Hashtags
+     * const hashtags = await prisma.hashtag.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const hashtagWithIdOnly = await prisma.hashtag.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HashtagFindManyArgs>(args?: SelectSubset<T, HashtagFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Hashtag.
+     * @param {HashtagCreateArgs} args - Arguments to create a Hashtag.
+     * @example
+     * // Create one Hashtag
+     * const Hashtag = await prisma.hashtag.create({
+     *   data: {
+     *     // ... data to create a Hashtag
+     *   }
+     * })
+     * 
+     */
+    create<T extends HashtagCreateArgs>(args: SelectSubset<T, HashtagCreateArgs<ExtArgs>>): Prisma__HashtagClient<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Hashtags.
+     * @param {HashtagCreateManyArgs} args - Arguments to create many Hashtags.
+     * @example
+     * // Create many Hashtags
+     * const hashtag = await prisma.hashtag.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HashtagCreateManyArgs>(args?: SelectSubset<T, HashtagCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Hashtags and returns the data saved in the database.
+     * @param {HashtagCreateManyAndReturnArgs} args - Arguments to create many Hashtags.
+     * @example
+     * // Create many Hashtags
+     * const hashtag = await prisma.hashtag.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Hashtags and only return the `id`
+     * const hashtagWithIdOnly = await prisma.hashtag.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HashtagCreateManyAndReturnArgs>(args?: SelectSubset<T, HashtagCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Hashtag.
+     * @param {HashtagDeleteArgs} args - Arguments to delete one Hashtag.
+     * @example
+     * // Delete one Hashtag
+     * const Hashtag = await prisma.hashtag.delete({
+     *   where: {
+     *     // ... filter to delete one Hashtag
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HashtagDeleteArgs>(args: SelectSubset<T, HashtagDeleteArgs<ExtArgs>>): Prisma__HashtagClient<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Hashtag.
+     * @param {HashtagUpdateArgs} args - Arguments to update one Hashtag.
+     * @example
+     * // Update one Hashtag
+     * const hashtag = await prisma.hashtag.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HashtagUpdateArgs>(args: SelectSubset<T, HashtagUpdateArgs<ExtArgs>>): Prisma__HashtagClient<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Hashtags.
+     * @param {HashtagDeleteManyArgs} args - Arguments to filter Hashtags to delete.
+     * @example
+     * // Delete a few Hashtags
+     * const { count } = await prisma.hashtag.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HashtagDeleteManyArgs>(args?: SelectSubset<T, HashtagDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hashtags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HashtagUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Hashtags
+     * const hashtag = await prisma.hashtag.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HashtagUpdateManyArgs>(args: SelectSubset<T, HashtagUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Hashtags and returns the data updated in the database.
+     * @param {HashtagUpdateManyAndReturnArgs} args - Arguments to update many Hashtags.
+     * @example
+     * // Update many Hashtags
+     * const hashtag = await prisma.hashtag.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Hashtags and only return the `id`
+     * const hashtagWithIdOnly = await prisma.hashtag.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends HashtagUpdateManyAndReturnArgs>(args: SelectSubset<T, HashtagUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Hashtag.
+     * @param {HashtagUpsertArgs} args - Arguments to update or create a Hashtag.
+     * @example
+     * // Update or create a Hashtag
+     * const hashtag = await prisma.hashtag.upsert({
+     *   create: {
+     *     // ... data to create a Hashtag
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hashtag we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HashtagUpsertArgs>(args: SelectSubset<T, HashtagUpsertArgs<ExtArgs>>): Prisma__HashtagClient<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Hashtags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HashtagCountArgs} args - Arguments to filter Hashtags to count.
+     * @example
+     * // Count the number of Hashtags
+     * const count = await prisma.hashtag.count({
+     *   where: {
+     *     // ... the filter for the Hashtags we want to count
+     *   }
+     * })
+    **/
+    count<T extends HashtagCountArgs>(
+      args?: Subset<T, HashtagCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HashtagCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hashtag.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HashtagAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HashtagAggregateArgs>(args: Subset<T, HashtagAggregateArgs>): Prisma.PrismaPromise<GetHashtagAggregateType<T>>
+
+    /**
+     * Group by Hashtag.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HashtagGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HashtagGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HashtagGroupByArgs['orderBy'] }
+        : { orderBy?: HashtagGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HashtagGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHashtagGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Hashtag model
+   */
+  readonly fields: HashtagFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Hashtag.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HashtagClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    posts<T extends Hashtag$postsArgs<ExtArgs> = {}>(args?: Subset<T, Hashtag$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Hashtag model
+   */
+  interface HashtagFieldRefs {
+    readonly id: FieldRef<"Hashtag", 'String'>
+    readonly tag: FieldRef<"Hashtag", 'String'>
+    readonly createdAt: FieldRef<"Hashtag", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Hashtag findUnique
+   */
+  export type HashtagFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HashtagInclude<ExtArgs> | null
+    /**
+     * Filter, which Hashtag to fetch.
+     */
+    where: HashtagWhereUniqueInput
+  }
+
+  /**
+   * Hashtag findUniqueOrThrow
+   */
+  export type HashtagFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HashtagInclude<ExtArgs> | null
+    /**
+     * Filter, which Hashtag to fetch.
+     */
+    where: HashtagWhereUniqueInput
+  }
+
+  /**
+   * Hashtag findFirst
+   */
+  export type HashtagFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HashtagInclude<ExtArgs> | null
+    /**
+     * Filter, which Hashtag to fetch.
+     */
+    where?: HashtagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hashtags to fetch.
+     */
+    orderBy?: HashtagOrderByWithRelationInput | HashtagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Hashtags.
+     */
+    cursor?: HashtagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hashtags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hashtags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Hashtags.
+     */
+    distinct?: HashtagScalarFieldEnum | HashtagScalarFieldEnum[]
+  }
+
+  /**
+   * Hashtag findFirstOrThrow
+   */
+  export type HashtagFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HashtagInclude<ExtArgs> | null
+    /**
+     * Filter, which Hashtag to fetch.
+     */
+    where?: HashtagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hashtags to fetch.
+     */
+    orderBy?: HashtagOrderByWithRelationInput | HashtagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Hashtags.
+     */
+    cursor?: HashtagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hashtags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hashtags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Hashtags.
+     */
+    distinct?: HashtagScalarFieldEnum | HashtagScalarFieldEnum[]
+  }
+
+  /**
+   * Hashtag findMany
+   */
+  export type HashtagFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HashtagInclude<ExtArgs> | null
+    /**
+     * Filter, which Hashtags to fetch.
+     */
+    where?: HashtagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Hashtags to fetch.
+     */
+    orderBy?: HashtagOrderByWithRelationInput | HashtagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Hashtags.
+     */
+    cursor?: HashtagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Hashtags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Hashtags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Hashtags.
+     */
+    distinct?: HashtagScalarFieldEnum | HashtagScalarFieldEnum[]
+  }
+
+  /**
+   * Hashtag create
+   */
+  export type HashtagCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HashtagInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Hashtag.
+     */
+    data: XOR<HashtagCreateInput, HashtagUncheckedCreateInput>
+  }
+
+  /**
+   * Hashtag createMany
+   */
+  export type HashtagCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Hashtags.
+     */
+    data: HashtagCreateManyInput | HashtagCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Hashtag createManyAndReturn
+   */
+  export type HashtagCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * The data used to create many Hashtags.
+     */
+    data: HashtagCreateManyInput | HashtagCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Hashtag update
+   */
+  export type HashtagUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HashtagInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Hashtag.
+     */
+    data: XOR<HashtagUpdateInput, HashtagUncheckedUpdateInput>
+    /**
+     * Choose, which Hashtag to update.
+     */
+    where: HashtagWhereUniqueInput
+  }
+
+  /**
+   * Hashtag updateMany
+   */
+  export type HashtagUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Hashtags.
+     */
+    data: XOR<HashtagUpdateManyMutationInput, HashtagUncheckedUpdateManyInput>
+    /**
+     * Filter which Hashtags to update
+     */
+    where?: HashtagWhereInput
+    /**
+     * Limit how many Hashtags to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hashtag updateManyAndReturn
+   */
+  export type HashtagUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * The data used to update Hashtags.
+     */
+    data: XOR<HashtagUpdateManyMutationInput, HashtagUncheckedUpdateManyInput>
+    /**
+     * Filter which Hashtags to update
+     */
+    where?: HashtagWhereInput
+    /**
+     * Limit how many Hashtags to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hashtag upsert
+   */
+  export type HashtagUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HashtagInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Hashtag to update in case it exists.
+     */
+    where: HashtagWhereUniqueInput
+    /**
+     * In case the Hashtag found by the `where` argument doesn't exist, create a new Hashtag with this data.
+     */
+    create: XOR<HashtagCreateInput, HashtagUncheckedCreateInput>
+    /**
+     * In case the Hashtag was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HashtagUpdateInput, HashtagUncheckedUpdateInput>
+  }
+
+  /**
+   * Hashtag delete
+   */
+  export type HashtagDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HashtagInclude<ExtArgs> | null
+    /**
+     * Filter which Hashtag to delete.
+     */
+    where: HashtagWhereUniqueInput
+  }
+
+  /**
+   * Hashtag deleteMany
+   */
+  export type HashtagDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hashtags to delete
+     */
+    where?: HashtagWhereInput
+    /**
+     * Limit how many Hashtags to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Hashtag.posts
+   */
+  export type Hashtag$postsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    where?: PostHashtagWhereInput
+    orderBy?: PostHashtagOrderByWithRelationInput | PostHashtagOrderByWithRelationInput[]
+    cursor?: PostHashtagWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PostHashtagScalarFieldEnum | PostHashtagScalarFieldEnum[]
+  }
+
+  /**
+   * Hashtag without action
+   */
+  export type HashtagDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hashtag
+     */
+    select?: HashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Hashtag
+     */
+    omit?: HashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HashtagInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PostHashtag
+   */
+
+  export type AggregatePostHashtag = {
+    _count: PostHashtagCountAggregateOutputType | null
+    _min: PostHashtagMinAggregateOutputType | null
+    _max: PostHashtagMaxAggregateOutputType | null
+  }
+
+  export type PostHashtagMinAggregateOutputType = {
+    postId: string | null
+    hashtagId: string | null
+  }
+
+  export type PostHashtagMaxAggregateOutputType = {
+    postId: string | null
+    hashtagId: string | null
+  }
+
+  export type PostHashtagCountAggregateOutputType = {
+    postId: number
+    hashtagId: number
+    _all: number
+  }
+
+
+  export type PostHashtagMinAggregateInputType = {
+    postId?: true
+    hashtagId?: true
+  }
+
+  export type PostHashtagMaxAggregateInputType = {
+    postId?: true
+    hashtagId?: true
+  }
+
+  export type PostHashtagCountAggregateInputType = {
+    postId?: true
+    hashtagId?: true
+    _all?: true
+  }
+
+  export type PostHashtagAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PostHashtag to aggregate.
+     */
+    where?: PostHashtagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PostHashtags to fetch.
+     */
+    orderBy?: PostHashtagOrderByWithRelationInput | PostHashtagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PostHashtagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PostHashtags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PostHashtags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PostHashtags
+    **/
+    _count?: true | PostHashtagCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PostHashtagMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PostHashtagMaxAggregateInputType
+  }
+
+  export type GetPostHashtagAggregateType<T extends PostHashtagAggregateArgs> = {
+        [P in keyof T & keyof AggregatePostHashtag]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePostHashtag[P]>
+      : GetScalarType<T[P], AggregatePostHashtag[P]>
+  }
+
+
+
+
+  export type PostHashtagGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostHashtagWhereInput
+    orderBy?: PostHashtagOrderByWithAggregationInput | PostHashtagOrderByWithAggregationInput[]
+    by: PostHashtagScalarFieldEnum[] | PostHashtagScalarFieldEnum
+    having?: PostHashtagScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PostHashtagCountAggregateInputType | true
+    _min?: PostHashtagMinAggregateInputType
+    _max?: PostHashtagMaxAggregateInputType
+  }
+
+  export type PostHashtagGroupByOutputType = {
+    postId: string
+    hashtagId: string
+    _count: PostHashtagCountAggregateOutputType | null
+    _min: PostHashtagMinAggregateOutputType | null
+    _max: PostHashtagMaxAggregateOutputType | null
+  }
+
+  type GetPostHashtagGroupByPayload<T extends PostHashtagGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PostHashtagGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PostHashtagGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PostHashtagGroupByOutputType[P]>
+            : GetScalarType<T[P], PostHashtagGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PostHashtagSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    postId?: boolean
+    hashtagId?: boolean
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    hashtag?: boolean | HashtagDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["postHashtag"]>
+
+  export type PostHashtagSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    postId?: boolean
+    hashtagId?: boolean
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    hashtag?: boolean | HashtagDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["postHashtag"]>
+
+  export type PostHashtagSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    postId?: boolean
+    hashtagId?: boolean
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    hashtag?: boolean | HashtagDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["postHashtag"]>
+
+  export type PostHashtagSelectScalar = {
+    postId?: boolean
+    hashtagId?: boolean
+  }
+
+  export type PostHashtagOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"postId" | "hashtagId", ExtArgs["result"]["postHashtag"]>
+  export type PostHashtagInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    hashtag?: boolean | HashtagDefaultArgs<ExtArgs>
+  }
+  export type PostHashtagIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    hashtag?: boolean | HashtagDefaultArgs<ExtArgs>
+  }
+  export type PostHashtagIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    hashtag?: boolean | HashtagDefaultArgs<ExtArgs>
+  }
+
+  export type $PostHashtagPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PostHashtag"
+    objects: {
+      post: Prisma.$PostPayload<ExtArgs>
+      hashtag: Prisma.$HashtagPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      postId: string
+      hashtagId: string
+    }, ExtArgs["result"]["postHashtag"]>
+    composites: {}
+  }
+
+  type PostHashtagGetPayload<S extends boolean | null | undefined | PostHashtagDefaultArgs> = $Result.GetResult<Prisma.$PostHashtagPayload, S>
+
+  type PostHashtagCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PostHashtagFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PostHashtagCountAggregateInputType | true
+    }
+
+  export interface PostHashtagDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PostHashtag'], meta: { name: 'PostHashtag' } }
+    /**
+     * Find zero or one PostHashtag that matches the filter.
+     * @param {PostHashtagFindUniqueArgs} args - Arguments to find a PostHashtag
+     * @example
+     * // Get one PostHashtag
+     * const postHashtag = await prisma.postHashtag.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PostHashtagFindUniqueArgs>(args: SelectSubset<T, PostHashtagFindUniqueArgs<ExtArgs>>): Prisma__PostHashtagClient<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PostHashtag that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PostHashtagFindUniqueOrThrowArgs} args - Arguments to find a PostHashtag
+     * @example
+     * // Get one PostHashtag
+     * const postHashtag = await prisma.postHashtag.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PostHashtagFindUniqueOrThrowArgs>(args: SelectSubset<T, PostHashtagFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PostHashtagClient<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PostHashtag that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostHashtagFindFirstArgs} args - Arguments to find a PostHashtag
+     * @example
+     * // Get one PostHashtag
+     * const postHashtag = await prisma.postHashtag.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PostHashtagFindFirstArgs>(args?: SelectSubset<T, PostHashtagFindFirstArgs<ExtArgs>>): Prisma__PostHashtagClient<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PostHashtag that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostHashtagFindFirstOrThrowArgs} args - Arguments to find a PostHashtag
+     * @example
+     * // Get one PostHashtag
+     * const postHashtag = await prisma.postHashtag.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PostHashtagFindFirstOrThrowArgs>(args?: SelectSubset<T, PostHashtagFindFirstOrThrowArgs<ExtArgs>>): Prisma__PostHashtagClient<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PostHashtags that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostHashtagFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PostHashtags
+     * const postHashtags = await prisma.postHashtag.findMany()
+     * 
+     * // Get first 10 PostHashtags
+     * const postHashtags = await prisma.postHashtag.findMany({ take: 10 })
+     * 
+     * // Only select the `postId`
+     * const postHashtagWithPostIdOnly = await prisma.postHashtag.findMany({ select: { postId: true } })
+     * 
+     */
+    findMany<T extends PostHashtagFindManyArgs>(args?: SelectSubset<T, PostHashtagFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PostHashtag.
+     * @param {PostHashtagCreateArgs} args - Arguments to create a PostHashtag.
+     * @example
+     * // Create one PostHashtag
+     * const PostHashtag = await prisma.postHashtag.create({
+     *   data: {
+     *     // ... data to create a PostHashtag
+     *   }
+     * })
+     * 
+     */
+    create<T extends PostHashtagCreateArgs>(args: SelectSubset<T, PostHashtagCreateArgs<ExtArgs>>): Prisma__PostHashtagClient<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PostHashtags.
+     * @param {PostHashtagCreateManyArgs} args - Arguments to create many PostHashtags.
+     * @example
+     * // Create many PostHashtags
+     * const postHashtag = await prisma.postHashtag.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PostHashtagCreateManyArgs>(args?: SelectSubset<T, PostHashtagCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PostHashtags and returns the data saved in the database.
+     * @param {PostHashtagCreateManyAndReturnArgs} args - Arguments to create many PostHashtags.
+     * @example
+     * // Create many PostHashtags
+     * const postHashtag = await prisma.postHashtag.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PostHashtags and only return the `postId`
+     * const postHashtagWithPostIdOnly = await prisma.postHashtag.createManyAndReturn({
+     *   select: { postId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PostHashtagCreateManyAndReturnArgs>(args?: SelectSubset<T, PostHashtagCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PostHashtag.
+     * @param {PostHashtagDeleteArgs} args - Arguments to delete one PostHashtag.
+     * @example
+     * // Delete one PostHashtag
+     * const PostHashtag = await prisma.postHashtag.delete({
+     *   where: {
+     *     // ... filter to delete one PostHashtag
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PostHashtagDeleteArgs>(args: SelectSubset<T, PostHashtagDeleteArgs<ExtArgs>>): Prisma__PostHashtagClient<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PostHashtag.
+     * @param {PostHashtagUpdateArgs} args - Arguments to update one PostHashtag.
+     * @example
+     * // Update one PostHashtag
+     * const postHashtag = await prisma.postHashtag.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PostHashtagUpdateArgs>(args: SelectSubset<T, PostHashtagUpdateArgs<ExtArgs>>): Prisma__PostHashtagClient<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PostHashtags.
+     * @param {PostHashtagDeleteManyArgs} args - Arguments to filter PostHashtags to delete.
+     * @example
+     * // Delete a few PostHashtags
+     * const { count } = await prisma.postHashtag.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PostHashtagDeleteManyArgs>(args?: SelectSubset<T, PostHashtagDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PostHashtags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostHashtagUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PostHashtags
+     * const postHashtag = await prisma.postHashtag.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PostHashtagUpdateManyArgs>(args: SelectSubset<T, PostHashtagUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PostHashtags and returns the data updated in the database.
+     * @param {PostHashtagUpdateManyAndReturnArgs} args - Arguments to update many PostHashtags.
+     * @example
+     * // Update many PostHashtags
+     * const postHashtag = await prisma.postHashtag.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PostHashtags and only return the `postId`
+     * const postHashtagWithPostIdOnly = await prisma.postHashtag.updateManyAndReturn({
+     *   select: { postId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PostHashtagUpdateManyAndReturnArgs>(args: SelectSubset<T, PostHashtagUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PostHashtag.
+     * @param {PostHashtagUpsertArgs} args - Arguments to update or create a PostHashtag.
+     * @example
+     * // Update or create a PostHashtag
+     * const postHashtag = await prisma.postHashtag.upsert({
+     *   create: {
+     *     // ... data to create a PostHashtag
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PostHashtag we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PostHashtagUpsertArgs>(args: SelectSubset<T, PostHashtagUpsertArgs<ExtArgs>>): Prisma__PostHashtagClient<$Result.GetResult<Prisma.$PostHashtagPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PostHashtags.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostHashtagCountArgs} args - Arguments to filter PostHashtags to count.
+     * @example
+     * // Count the number of PostHashtags
+     * const count = await prisma.postHashtag.count({
+     *   where: {
+     *     // ... the filter for the PostHashtags we want to count
+     *   }
+     * })
+    **/
+    count<T extends PostHashtagCountArgs>(
+      args?: Subset<T, PostHashtagCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PostHashtagCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PostHashtag.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostHashtagAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PostHashtagAggregateArgs>(args: Subset<T, PostHashtagAggregateArgs>): Prisma.PrismaPromise<GetPostHashtagAggregateType<T>>
+
+    /**
+     * Group by PostHashtag.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostHashtagGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PostHashtagGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PostHashtagGroupByArgs['orderBy'] }
+        : { orderBy?: PostHashtagGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PostHashtagGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPostHashtagGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PostHashtag model
+   */
+  readonly fields: PostHashtagFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PostHashtag.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PostHashtagClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    post<T extends PostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PostDefaultArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    hashtag<T extends HashtagDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HashtagDefaultArgs<ExtArgs>>): Prisma__HashtagClient<$Result.GetResult<Prisma.$HashtagPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PostHashtag model
+   */
+  interface PostHashtagFieldRefs {
+    readonly postId: FieldRef<"PostHashtag", 'String'>
+    readonly hashtagId: FieldRef<"PostHashtag", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PostHashtag findUnique
+   */
+  export type PostHashtagFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    /**
+     * Filter, which PostHashtag to fetch.
+     */
+    where: PostHashtagWhereUniqueInput
+  }
+
+  /**
+   * PostHashtag findUniqueOrThrow
+   */
+  export type PostHashtagFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    /**
+     * Filter, which PostHashtag to fetch.
+     */
+    where: PostHashtagWhereUniqueInput
+  }
+
+  /**
+   * PostHashtag findFirst
+   */
+  export type PostHashtagFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    /**
+     * Filter, which PostHashtag to fetch.
+     */
+    where?: PostHashtagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PostHashtags to fetch.
+     */
+    orderBy?: PostHashtagOrderByWithRelationInput | PostHashtagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PostHashtags.
+     */
+    cursor?: PostHashtagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PostHashtags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PostHashtags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PostHashtags.
+     */
+    distinct?: PostHashtagScalarFieldEnum | PostHashtagScalarFieldEnum[]
+  }
+
+  /**
+   * PostHashtag findFirstOrThrow
+   */
+  export type PostHashtagFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    /**
+     * Filter, which PostHashtag to fetch.
+     */
+    where?: PostHashtagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PostHashtags to fetch.
+     */
+    orderBy?: PostHashtagOrderByWithRelationInput | PostHashtagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PostHashtags.
+     */
+    cursor?: PostHashtagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PostHashtags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PostHashtags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PostHashtags.
+     */
+    distinct?: PostHashtagScalarFieldEnum | PostHashtagScalarFieldEnum[]
+  }
+
+  /**
+   * PostHashtag findMany
+   */
+  export type PostHashtagFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    /**
+     * Filter, which PostHashtags to fetch.
+     */
+    where?: PostHashtagWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PostHashtags to fetch.
+     */
+    orderBy?: PostHashtagOrderByWithRelationInput | PostHashtagOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PostHashtags.
+     */
+    cursor?: PostHashtagWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PostHashtags from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PostHashtags.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PostHashtags.
+     */
+    distinct?: PostHashtagScalarFieldEnum | PostHashtagScalarFieldEnum[]
+  }
+
+  /**
+   * PostHashtag create
+   */
+  export type PostHashtagCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PostHashtag.
+     */
+    data: XOR<PostHashtagCreateInput, PostHashtagUncheckedCreateInput>
+  }
+
+  /**
+   * PostHashtag createMany
+   */
+  export type PostHashtagCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PostHashtags.
+     */
+    data: PostHashtagCreateManyInput | PostHashtagCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PostHashtag createManyAndReturn
+   */
+  export type PostHashtagCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * The data used to create many PostHashtags.
+     */
+    data: PostHashtagCreateManyInput | PostHashtagCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PostHashtag update
+   */
+  export type PostHashtagUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PostHashtag.
+     */
+    data: XOR<PostHashtagUpdateInput, PostHashtagUncheckedUpdateInput>
+    /**
+     * Choose, which PostHashtag to update.
+     */
+    where: PostHashtagWhereUniqueInput
+  }
+
+  /**
+   * PostHashtag updateMany
+   */
+  export type PostHashtagUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PostHashtags.
+     */
+    data: XOR<PostHashtagUpdateManyMutationInput, PostHashtagUncheckedUpdateManyInput>
+    /**
+     * Filter which PostHashtags to update
+     */
+    where?: PostHashtagWhereInput
+    /**
+     * Limit how many PostHashtags to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PostHashtag updateManyAndReturn
+   */
+  export type PostHashtagUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * The data used to update PostHashtags.
+     */
+    data: XOR<PostHashtagUpdateManyMutationInput, PostHashtagUncheckedUpdateManyInput>
+    /**
+     * Filter which PostHashtags to update
+     */
+    where?: PostHashtagWhereInput
+    /**
+     * Limit how many PostHashtags to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PostHashtag upsert
+   */
+  export type PostHashtagUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PostHashtag to update in case it exists.
+     */
+    where: PostHashtagWhereUniqueInput
+    /**
+     * In case the PostHashtag found by the `where` argument doesn't exist, create a new PostHashtag with this data.
+     */
+    create: XOR<PostHashtagCreateInput, PostHashtagUncheckedCreateInput>
+    /**
+     * In case the PostHashtag was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PostHashtagUpdateInput, PostHashtagUncheckedUpdateInput>
+  }
+
+  /**
+   * PostHashtag delete
+   */
+  export type PostHashtagDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
+    /**
+     * Filter which PostHashtag to delete.
+     */
+    where: PostHashtagWhereUniqueInput
+  }
+
+  /**
+   * PostHashtag deleteMany
+   */
+  export type PostHashtagDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PostHashtags to delete
+     */
+    where?: PostHashtagWhereInput
+    /**
+     * Limit how many PostHashtags to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PostHashtag without action
+   */
+  export type PostHashtagDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostHashtag
+     */
+    select?: PostHashtagSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PostHashtag
+     */
+    omit?: PostHashtagOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostHashtagInclude<ExtArgs> | null
   }
 
 
@@ -18931,6 +21288,7 @@ export namespace Prisma {
     text: string | null
     mediaUrl: string | null
     mediaType: string | null
+    visibility: string | null
     expiresAt: Date | null
     createdAt: Date | null
   }
@@ -18941,6 +21299,7 @@ export namespace Prisma {
     text: string | null
     mediaUrl: string | null
     mediaType: string | null
+    visibility: string | null
     expiresAt: Date | null
     createdAt: Date | null
   }
@@ -18951,6 +21310,7 @@ export namespace Prisma {
     text: number
     mediaUrl: number
     mediaType: number
+    visibility: number
     expiresAt: number
     createdAt: number
     _all: number
@@ -18963,6 +21323,7 @@ export namespace Prisma {
     text?: true
     mediaUrl?: true
     mediaType?: true
+    visibility?: true
     expiresAt?: true
     createdAt?: true
   }
@@ -18973,6 +21334,7 @@ export namespace Prisma {
     text?: true
     mediaUrl?: true
     mediaType?: true
+    visibility?: true
     expiresAt?: true
     createdAt?: true
   }
@@ -18983,6 +21345,7 @@ export namespace Prisma {
     text?: true
     mediaUrl?: true
     mediaType?: true
+    visibility?: true
     expiresAt?: true
     createdAt?: true
     _all?: true
@@ -19066,6 +21429,7 @@ export namespace Prisma {
     text: string
     mediaUrl: string | null
     mediaType: string | null
+    visibility: string
     expiresAt: Date
     createdAt: Date
     _count: StoryCountAggregateOutputType | null
@@ -19093,6 +21457,7 @@ export namespace Prisma {
     text?: boolean
     mediaUrl?: boolean
     mediaType?: boolean
+    visibility?: boolean
     expiresAt?: boolean
     createdAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
@@ -19106,6 +21471,7 @@ export namespace Prisma {
     text?: boolean
     mediaUrl?: boolean
     mediaType?: boolean
+    visibility?: boolean
     expiresAt?: boolean
     createdAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
@@ -19117,6 +21483,7 @@ export namespace Prisma {
     text?: boolean
     mediaUrl?: boolean
     mediaType?: boolean
+    visibility?: boolean
     expiresAt?: boolean
     createdAt?: boolean
     author?: boolean | UserDefaultArgs<ExtArgs>
@@ -19128,11 +21495,12 @@ export namespace Prisma {
     text?: boolean
     mediaUrl?: boolean
     mediaType?: boolean
+    visibility?: boolean
     expiresAt?: boolean
     createdAt?: boolean
   }
 
-  export type StoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "text" | "mediaUrl" | "mediaType" | "expiresAt" | "createdAt", ExtArgs["result"]["story"]>
+  export type StoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "authorId" | "text" | "mediaUrl" | "mediaType" | "visibility" | "expiresAt" | "createdAt", ExtArgs["result"]["story"]>
   export type StoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     views?: boolean | Story$viewsArgs<ExtArgs>
@@ -19157,6 +21525,7 @@ export namespace Prisma {
       text: string
       mediaUrl: string | null
       mediaType: string | null
+      visibility: string
       expiresAt: Date
       createdAt: Date
     }, ExtArgs["result"]["story"]>
@@ -19589,6 +21958,7 @@ export namespace Prisma {
     readonly text: FieldRef<"Story", 'String'>
     readonly mediaUrl: FieldRef<"Story", 'String'>
     readonly mediaType: FieldRef<"Story", 'String'>
+    readonly visibility: FieldRef<"Story", 'String'>
     readonly expiresAt: FieldRef<"Story", 'DateTime'>
     readonly createdAt: FieldRef<"Story", 'DateTime'>
   }
@@ -82768,7 +85138,9 @@ export namespace Prisma {
     verifiedAt: 'verifiedAt',
     profileBoostedUntil: 'profileBoostedUntil',
     coinBalance: 'coinBalance',
-    walletBonusAwardedAt: 'walletBonusAwardedAt'
+    walletBonusAwardedAt: 'walletBonusAwardedAt',
+    profileVisibility: 'profileVisibility',
+    lastProfileCompletionAwardAt: 'lastProfileCompletionAwardAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -82807,6 +85179,23 @@ export namespace Prisma {
   };
 
   export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+
+
+  export const HashtagScalarFieldEnum: {
+    id: 'id',
+    tag: 'tag',
+    createdAt: 'createdAt'
+  };
+
+  export type HashtagScalarFieldEnum = (typeof HashtagScalarFieldEnum)[keyof typeof HashtagScalarFieldEnum]
+
+
+  export const PostHashtagScalarFieldEnum: {
+    postId: 'postId',
+    hashtagId: 'hashtagId'
+  };
+
+  export type PostHashtagScalarFieldEnum = (typeof PostHashtagScalarFieldEnum)[keyof typeof PostHashtagScalarFieldEnum]
 
 
   export const PostReactionScalarFieldEnum: {
@@ -82860,6 +85249,7 @@ export namespace Prisma {
     text: 'text',
     mediaUrl: 'mediaUrl',
     mediaType: 'mediaType',
+    visibility: 'visibility',
     expiresAt: 'expiresAt',
     createdAt: 'createdAt'
   };
@@ -83946,6 +86336,8 @@ export namespace Prisma {
     profileBoostedUntil?: DateTimeNullableFilter<"User"> | Date | string | null
     coinBalance?: IntFilter<"User"> | number
     walletBonusAwardedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    profileVisibility?: StringFilter<"User"> | string
+    lastProfileCompletionAwardAt?: DateTimeNullableFilter<"User"> | Date | string | null
     posts?: PostListRelationFilter
     companyFollows?: CompanyFollowListRelationFilter
     comments?: CommentListRelationFilter
@@ -84047,6 +86439,8 @@ export namespace Prisma {
     profileBoostedUntil?: SortOrderInput | SortOrder
     coinBalance?: SortOrder
     walletBonusAwardedAt?: SortOrderInput | SortOrder
+    profileVisibility?: SortOrder
+    lastProfileCompletionAwardAt?: SortOrderInput | SortOrder
     posts?: PostOrderByRelationAggregateInput
     companyFollows?: CompanyFollowOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
@@ -84151,6 +86545,8 @@ export namespace Prisma {
     profileBoostedUntil?: DateTimeNullableFilter<"User"> | Date | string | null
     coinBalance?: IntFilter<"User"> | number
     walletBonusAwardedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    profileVisibility?: StringFilter<"User"> | string
+    lastProfileCompletionAwardAt?: DateTimeNullableFilter<"User"> | Date | string | null
     posts?: PostListRelationFilter
     companyFollows?: CompanyFollowListRelationFilter
     comments?: CommentListRelationFilter
@@ -84252,6 +86648,8 @@ export namespace Prisma {
     profileBoostedUntil?: SortOrderInput | SortOrder
     coinBalance?: SortOrder
     walletBonusAwardedAt?: SortOrderInput | SortOrder
+    profileVisibility?: SortOrder
+    lastProfileCompletionAwardAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -84298,6 +86696,8 @@ export namespace Prisma {
     profileBoostedUntil?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     coinBalance?: IntWithAggregatesFilter<"User"> | number
     walletBonusAwardedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    profileVisibility?: StringWithAggregatesFilter<"User"> | string
+    lastProfileCompletionAwardAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
 
   export type FollowWhereInput = {
@@ -84427,6 +86827,7 @@ export namespace Prisma {
     reports?: ReportListRelationFilter
     shares?: PostShareListRelationFilter
     reposts?: RepostListRelationFilter
+    hashtags?: PostHashtagListRelationFilter
   }
 
   export type PostOrderByWithRelationInput = {
@@ -84445,6 +86846,7 @@ export namespace Prisma {
     reports?: ReportOrderByRelationAggregateInput
     shares?: PostShareOrderByRelationAggregateInput
     reposts?: RepostOrderByRelationAggregateInput
+    hashtags?: PostHashtagOrderByRelationAggregateInput
   }
 
   export type PostWhereUniqueInput = Prisma.AtLeast<{
@@ -84466,6 +86868,7 @@ export namespace Prisma {
     reports?: ReportListRelationFilter
     shares?: PostShareListRelationFilter
     reposts?: RepostListRelationFilter
+    hashtags?: PostHashtagListRelationFilter
   }, "id">
 
   export type PostOrderByWithAggregationInput = {
@@ -84496,6 +86899,95 @@ export namespace Prisma {
     visibility?: StringWithAggregatesFilter<"Post"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
+  }
+
+  export type HashtagWhereInput = {
+    AND?: HashtagWhereInput | HashtagWhereInput[]
+    OR?: HashtagWhereInput[]
+    NOT?: HashtagWhereInput | HashtagWhereInput[]
+    id?: StringFilter<"Hashtag"> | string
+    tag?: StringFilter<"Hashtag"> | string
+    createdAt?: DateTimeFilter<"Hashtag"> | Date | string
+    posts?: PostHashtagListRelationFilter
+  }
+
+  export type HashtagOrderByWithRelationInput = {
+    id?: SortOrder
+    tag?: SortOrder
+    createdAt?: SortOrder
+    posts?: PostHashtagOrderByRelationAggregateInput
+  }
+
+  export type HashtagWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tag?: string
+    AND?: HashtagWhereInput | HashtagWhereInput[]
+    OR?: HashtagWhereInput[]
+    NOT?: HashtagWhereInput | HashtagWhereInput[]
+    createdAt?: DateTimeFilter<"Hashtag"> | Date | string
+    posts?: PostHashtagListRelationFilter
+  }, "id" | "tag">
+
+  export type HashtagOrderByWithAggregationInput = {
+    id?: SortOrder
+    tag?: SortOrder
+    createdAt?: SortOrder
+    _count?: HashtagCountOrderByAggregateInput
+    _max?: HashtagMaxOrderByAggregateInput
+    _min?: HashtagMinOrderByAggregateInput
+  }
+
+  export type HashtagScalarWhereWithAggregatesInput = {
+    AND?: HashtagScalarWhereWithAggregatesInput | HashtagScalarWhereWithAggregatesInput[]
+    OR?: HashtagScalarWhereWithAggregatesInput[]
+    NOT?: HashtagScalarWhereWithAggregatesInput | HashtagScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Hashtag"> | string
+    tag?: StringWithAggregatesFilter<"Hashtag"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Hashtag"> | Date | string
+  }
+
+  export type PostHashtagWhereInput = {
+    AND?: PostHashtagWhereInput | PostHashtagWhereInput[]
+    OR?: PostHashtagWhereInput[]
+    NOT?: PostHashtagWhereInput | PostHashtagWhereInput[]
+    postId?: StringFilter<"PostHashtag"> | string
+    hashtagId?: StringFilter<"PostHashtag"> | string
+    post?: XOR<PostScalarRelationFilter, PostWhereInput>
+    hashtag?: XOR<HashtagScalarRelationFilter, HashtagWhereInput>
+  }
+
+  export type PostHashtagOrderByWithRelationInput = {
+    postId?: SortOrder
+    hashtagId?: SortOrder
+    post?: PostOrderByWithRelationInput
+    hashtag?: HashtagOrderByWithRelationInput
+  }
+
+  export type PostHashtagWhereUniqueInput = Prisma.AtLeast<{
+    postId_hashtagId?: PostHashtagPostIdHashtagIdCompoundUniqueInput
+    AND?: PostHashtagWhereInput | PostHashtagWhereInput[]
+    OR?: PostHashtagWhereInput[]
+    NOT?: PostHashtagWhereInput | PostHashtagWhereInput[]
+    postId?: StringFilter<"PostHashtag"> | string
+    hashtagId?: StringFilter<"PostHashtag"> | string
+    post?: XOR<PostScalarRelationFilter, PostWhereInput>
+    hashtag?: XOR<HashtagScalarRelationFilter, HashtagWhereInput>
+  }, "postId_hashtagId">
+
+  export type PostHashtagOrderByWithAggregationInput = {
+    postId?: SortOrder
+    hashtagId?: SortOrder
+    _count?: PostHashtagCountOrderByAggregateInput
+    _max?: PostHashtagMaxOrderByAggregateInput
+    _min?: PostHashtagMinOrderByAggregateInput
+  }
+
+  export type PostHashtagScalarWhereWithAggregatesInput = {
+    AND?: PostHashtagScalarWhereWithAggregatesInput | PostHashtagScalarWhereWithAggregatesInput[]
+    OR?: PostHashtagScalarWhereWithAggregatesInput[]
+    NOT?: PostHashtagScalarWhereWithAggregatesInput | PostHashtagScalarWhereWithAggregatesInput[]
+    postId?: StringWithAggregatesFilter<"PostHashtag"> | string
+    hashtagId?: StringWithAggregatesFilter<"PostHashtag"> | string
   }
 
   export type PostReactionWhereInput = {
@@ -84753,6 +87245,7 @@ export namespace Prisma {
     text?: StringFilter<"Story"> | string
     mediaUrl?: StringNullableFilter<"Story"> | string | null
     mediaType?: StringNullableFilter<"Story"> | string | null
+    visibility?: StringFilter<"Story"> | string
     expiresAt?: DateTimeFilter<"Story"> | Date | string
     createdAt?: DateTimeFilter<"Story"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -84765,6 +87258,7 @@ export namespace Prisma {
     text?: SortOrder
     mediaUrl?: SortOrderInput | SortOrder
     mediaType?: SortOrderInput | SortOrder
+    visibility?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
     author?: UserOrderByWithRelationInput
@@ -84780,6 +87274,7 @@ export namespace Prisma {
     text?: StringFilter<"Story"> | string
     mediaUrl?: StringNullableFilter<"Story"> | string | null
     mediaType?: StringNullableFilter<"Story"> | string | null
+    visibility?: StringFilter<"Story"> | string
     expiresAt?: DateTimeFilter<"Story"> | Date | string
     createdAt?: DateTimeFilter<"Story"> | Date | string
     author?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -84792,6 +87287,7 @@ export namespace Prisma {
     text?: SortOrder
     mediaUrl?: SortOrderInput | SortOrder
     mediaType?: SortOrderInput | SortOrder
+    visibility?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
     _count?: StoryCountOrderByAggregateInput
@@ -84808,6 +87304,7 @@ export namespace Prisma {
     text?: StringWithAggregatesFilter<"Story"> | string
     mediaUrl?: StringNullableWithAggregatesFilter<"Story"> | string | null
     mediaType?: StringNullableWithAggregatesFilter<"Story"> | string | null
+    visibility?: StringWithAggregatesFilter<"Story"> | string
     expiresAt?: DateTimeWithAggregatesFilter<"Story"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"Story"> | Date | string
   }
@@ -88894,6 +91391,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -88995,6 +91494,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -89096,6 +91597,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -89197,6 +91700,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -89298,6 +91803,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -89336,6 +91843,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -89374,6 +91883,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type FollowCreateInput = {
@@ -89485,6 +91996,7 @@ export namespace Prisma {
     reports?: ReportCreateNestedManyWithoutPostInput
     shares?: PostShareCreateNestedManyWithoutPostInput
     reposts?: RepostCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateInput = {
@@ -89502,6 +92014,7 @@ export namespace Prisma {
     reports?: ReportUncheckedCreateNestedManyWithoutPostInput
     shares?: PostShareUncheckedCreateNestedManyWithoutPostInput
     reposts?: RepostUncheckedCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostUpdateInput = {
@@ -89519,6 +92032,7 @@ export namespace Prisma {
     reports?: ReportUpdateManyWithoutPostNestedInput
     shares?: PostShareUpdateManyWithoutPostNestedInput
     reposts?: RepostUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateInput = {
@@ -89536,6 +92050,7 @@ export namespace Prisma {
     reports?: ReportUncheckedUpdateManyWithoutPostNestedInput
     shares?: PostShareUncheckedUpdateManyWithoutPostNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type PostCreateManyInput = {
@@ -89571,6 +92086,86 @@ export namespace Prisma {
     visibility?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HashtagCreateInput = {
+    id?: string
+    tag: string
+    createdAt?: Date | string
+    posts?: PostHashtagCreateNestedManyWithoutHashtagInput
+  }
+
+  export type HashtagUncheckedCreateInput = {
+    id?: string
+    tag: string
+    createdAt?: Date | string
+    posts?: PostHashtagUncheckedCreateNestedManyWithoutHashtagInput
+  }
+
+  export type HashtagUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tag?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posts?: PostHashtagUpdateManyWithoutHashtagNestedInput
+  }
+
+  export type HashtagUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tag?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    posts?: PostHashtagUncheckedUpdateManyWithoutHashtagNestedInput
+  }
+
+  export type HashtagCreateManyInput = {
+    id?: string
+    tag: string
+    createdAt?: Date | string
+  }
+
+  export type HashtagUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tag?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HashtagUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tag?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostHashtagCreateInput = {
+    post: PostCreateNestedOneWithoutHashtagsInput
+    hashtag: HashtagCreateNestedOneWithoutPostsInput
+  }
+
+  export type PostHashtagUncheckedCreateInput = {
+    postId: string
+    hashtagId: string
+  }
+
+  export type PostHashtagUpdateInput = {
+    post?: PostUpdateOneRequiredWithoutHashtagsNestedInput
+    hashtag?: HashtagUpdateOneRequiredWithoutPostsNestedInput
+  }
+
+  export type PostHashtagUncheckedUpdateInput = {
+    postId?: StringFieldUpdateOperationsInput | string
+    hashtagId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PostHashtagCreateManyInput = {
+    postId: string
+    hashtagId: string
+  }
+
+  export type PostHashtagUpdateManyMutationInput = {
+
+  }
+
+  export type PostHashtagUncheckedUpdateManyInput = {
+    postId?: StringFieldUpdateOperationsInput | string
+    hashtagId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PostReactionCreateInput = {
@@ -89804,6 +92399,7 @@ export namespace Prisma {
     text: string
     mediaUrl?: string | null
     mediaType?: string | null
+    visibility?: string
     expiresAt: Date | string
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutStoriesInput
@@ -89816,6 +92412,7 @@ export namespace Prisma {
     text: string
     mediaUrl?: string | null
     mediaType?: string | null
+    visibility?: string
     expiresAt: Date | string
     createdAt?: Date | string
     views?: StoryViewUncheckedCreateNestedManyWithoutStoryInput
@@ -89826,6 +92423,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
     mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutStoriesNestedInput
@@ -89838,6 +92436,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
     mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: StoryViewUncheckedUpdateManyWithoutStoryNestedInput
@@ -89849,6 +92448,7 @@ export namespace Prisma {
     text: string
     mediaUrl?: string | null
     mediaType?: string | null
+    visibility?: string
     expiresAt: Date | string
     createdAt?: Date | string
   }
@@ -89858,6 +92458,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
     mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -89868,6 +92469,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
     mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -94810,6 +97412,8 @@ export namespace Prisma {
     profileBoostedUntil?: SortOrder
     coinBalance?: SortOrder
     walletBonusAwardedAt?: SortOrder
+    profileVisibility?: SortOrder
+    lastProfileCompletionAwardAt?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -94852,6 +97456,8 @@ export namespace Prisma {
     profileBoostedUntil?: SortOrder
     coinBalance?: SortOrder
     walletBonusAwardedAt?: SortOrder
+    profileVisibility?: SortOrder
+    lastProfileCompletionAwardAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -94890,6 +97496,8 @@ export namespace Prisma {
     profileBoostedUntil?: SortOrder
     coinBalance?: SortOrder
     walletBonusAwardedAt?: SortOrder
+    profileVisibility?: SortOrder
+    lastProfileCompletionAwardAt?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -95051,6 +97659,16 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type PostHashtagListRelationFilter = {
+    every?: PostHashtagWhereInput
+    some?: PostHashtagWhereInput
+    none?: PostHashtagWhereInput
+  }
+
+  export type PostHashtagOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type PostCountOrderByAggregateInput = {
     id?: SortOrder
     authorId?: SortOrder
@@ -95087,16 +97705,59 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type EnumReactionTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.ReactionType | EnumReactionTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumReactionTypeFilter<$PrismaModel> | $Enums.ReactionType
+  export type HashtagCountOrderByAggregateInput = {
+    id?: SortOrder
+    tag?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HashtagMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tag?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type HashtagMinOrderByAggregateInput = {
+    id?: SortOrder
+    tag?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type PostScalarRelationFilter = {
     is?: PostWhereInput
     isNot?: PostWhereInput
+  }
+
+  export type HashtagScalarRelationFilter = {
+    is?: HashtagWhereInput
+    isNot?: HashtagWhereInput
+  }
+
+  export type PostHashtagPostIdHashtagIdCompoundUniqueInput = {
+    postId: string
+    hashtagId: string
+  }
+
+  export type PostHashtagCountOrderByAggregateInput = {
+    postId?: SortOrder
+    hashtagId?: SortOrder
+  }
+
+  export type PostHashtagMaxOrderByAggregateInput = {
+    postId?: SortOrder
+    hashtagId?: SortOrder
+  }
+
+  export type PostHashtagMinOrderByAggregateInput = {
+    postId?: SortOrder
+    hashtagId?: SortOrder
+  }
+
+  export type EnumReactionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ReactionType | EnumReactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ReactionType[] | ListEnumReactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumReactionTypeFilter<$PrismaModel> | $Enums.ReactionType
   }
 
   export type PostReactionPostIdUserIdCompoundUniqueInput = {
@@ -95234,6 +97895,7 @@ export namespace Prisma {
     text?: SortOrder
     mediaUrl?: SortOrder
     mediaType?: SortOrder
+    visibility?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -95244,6 +97906,7 @@ export namespace Prisma {
     text?: SortOrder
     mediaUrl?: SortOrder
     mediaType?: SortOrder
+    visibility?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -95254,6 +97917,7 @@ export namespace Prisma {
     text?: SortOrder
     mediaUrl?: SortOrder
     mediaType?: SortOrder
+    visibility?: SortOrder
     expiresAt?: SortOrder
     createdAt?: SortOrder
   }
@@ -100396,6 +103060,13 @@ export namespace Prisma {
     connect?: RepostWhereUniqueInput | RepostWhereUniqueInput[]
   }
 
+  export type PostHashtagCreateNestedManyWithoutPostInput = {
+    create?: XOR<PostHashtagCreateWithoutPostInput, PostHashtagUncheckedCreateWithoutPostInput> | PostHashtagCreateWithoutPostInput[] | PostHashtagUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: PostHashtagCreateOrConnectWithoutPostInput | PostHashtagCreateOrConnectWithoutPostInput[]
+    createMany?: PostHashtagCreateManyPostInputEnvelope
+    connect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+  }
+
   export type PostReactionUncheckedCreateNestedManyWithoutPostInput = {
     create?: XOR<PostReactionCreateWithoutPostInput, PostReactionUncheckedCreateWithoutPostInput> | PostReactionCreateWithoutPostInput[] | PostReactionUncheckedCreateWithoutPostInput[]
     connectOrCreate?: PostReactionCreateOrConnectWithoutPostInput | PostReactionCreateOrConnectWithoutPostInput[]
@@ -100429,6 +103100,13 @@ export namespace Prisma {
     connectOrCreate?: RepostCreateOrConnectWithoutPostInput | RepostCreateOrConnectWithoutPostInput[]
     createMany?: RepostCreateManyPostInputEnvelope
     connect?: RepostWhereUniqueInput | RepostWhereUniqueInput[]
+  }
+
+  export type PostHashtagUncheckedCreateNestedManyWithoutPostInput = {
+    create?: XOR<PostHashtagCreateWithoutPostInput, PostHashtagUncheckedCreateWithoutPostInput> | PostHashtagCreateWithoutPostInput[] | PostHashtagUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: PostHashtagCreateOrConnectWithoutPostInput | PostHashtagCreateOrConnectWithoutPostInput[]
+    createMany?: PostHashtagCreateManyPostInputEnvelope
+    connect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
@@ -100509,6 +103187,20 @@ export namespace Prisma {
     deleteMany?: RepostScalarWhereInput | RepostScalarWhereInput[]
   }
 
+  export type PostHashtagUpdateManyWithoutPostNestedInput = {
+    create?: XOR<PostHashtagCreateWithoutPostInput, PostHashtagUncheckedCreateWithoutPostInput> | PostHashtagCreateWithoutPostInput[] | PostHashtagUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: PostHashtagCreateOrConnectWithoutPostInput | PostHashtagCreateOrConnectWithoutPostInput[]
+    upsert?: PostHashtagUpsertWithWhereUniqueWithoutPostInput | PostHashtagUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: PostHashtagCreateManyPostInputEnvelope
+    set?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    disconnect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    delete?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    connect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    update?: PostHashtagUpdateWithWhereUniqueWithoutPostInput | PostHashtagUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: PostHashtagUpdateManyWithWhereWithoutPostInput | PostHashtagUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: PostHashtagScalarWhereInput | PostHashtagScalarWhereInput[]
+  }
+
   export type PostReactionUncheckedUpdateManyWithoutPostNestedInput = {
     create?: XOR<PostReactionCreateWithoutPostInput, PostReactionUncheckedCreateWithoutPostInput> | PostReactionCreateWithoutPostInput[] | PostReactionUncheckedCreateWithoutPostInput[]
     connectOrCreate?: PostReactionCreateOrConnectWithoutPostInput | PostReactionCreateOrConnectWithoutPostInput[]
@@ -100577,6 +103269,90 @@ export namespace Prisma {
     update?: RepostUpdateWithWhereUniqueWithoutPostInput | RepostUpdateWithWhereUniqueWithoutPostInput[]
     updateMany?: RepostUpdateManyWithWhereWithoutPostInput | RepostUpdateManyWithWhereWithoutPostInput[]
     deleteMany?: RepostScalarWhereInput | RepostScalarWhereInput[]
+  }
+
+  export type PostHashtagUncheckedUpdateManyWithoutPostNestedInput = {
+    create?: XOR<PostHashtagCreateWithoutPostInput, PostHashtagUncheckedCreateWithoutPostInput> | PostHashtagCreateWithoutPostInput[] | PostHashtagUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: PostHashtagCreateOrConnectWithoutPostInput | PostHashtagCreateOrConnectWithoutPostInput[]
+    upsert?: PostHashtagUpsertWithWhereUniqueWithoutPostInput | PostHashtagUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: PostHashtagCreateManyPostInputEnvelope
+    set?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    disconnect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    delete?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    connect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    update?: PostHashtagUpdateWithWhereUniqueWithoutPostInput | PostHashtagUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: PostHashtagUpdateManyWithWhereWithoutPostInput | PostHashtagUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: PostHashtagScalarWhereInput | PostHashtagScalarWhereInput[]
+  }
+
+  export type PostHashtagCreateNestedManyWithoutHashtagInput = {
+    create?: XOR<PostHashtagCreateWithoutHashtagInput, PostHashtagUncheckedCreateWithoutHashtagInput> | PostHashtagCreateWithoutHashtagInput[] | PostHashtagUncheckedCreateWithoutHashtagInput[]
+    connectOrCreate?: PostHashtagCreateOrConnectWithoutHashtagInput | PostHashtagCreateOrConnectWithoutHashtagInput[]
+    createMany?: PostHashtagCreateManyHashtagInputEnvelope
+    connect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+  }
+
+  export type PostHashtagUncheckedCreateNestedManyWithoutHashtagInput = {
+    create?: XOR<PostHashtagCreateWithoutHashtagInput, PostHashtagUncheckedCreateWithoutHashtagInput> | PostHashtagCreateWithoutHashtagInput[] | PostHashtagUncheckedCreateWithoutHashtagInput[]
+    connectOrCreate?: PostHashtagCreateOrConnectWithoutHashtagInput | PostHashtagCreateOrConnectWithoutHashtagInput[]
+    createMany?: PostHashtagCreateManyHashtagInputEnvelope
+    connect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+  }
+
+  export type PostHashtagUpdateManyWithoutHashtagNestedInput = {
+    create?: XOR<PostHashtagCreateWithoutHashtagInput, PostHashtagUncheckedCreateWithoutHashtagInput> | PostHashtagCreateWithoutHashtagInput[] | PostHashtagUncheckedCreateWithoutHashtagInput[]
+    connectOrCreate?: PostHashtagCreateOrConnectWithoutHashtagInput | PostHashtagCreateOrConnectWithoutHashtagInput[]
+    upsert?: PostHashtagUpsertWithWhereUniqueWithoutHashtagInput | PostHashtagUpsertWithWhereUniqueWithoutHashtagInput[]
+    createMany?: PostHashtagCreateManyHashtagInputEnvelope
+    set?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    disconnect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    delete?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    connect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    update?: PostHashtagUpdateWithWhereUniqueWithoutHashtagInput | PostHashtagUpdateWithWhereUniqueWithoutHashtagInput[]
+    updateMany?: PostHashtagUpdateManyWithWhereWithoutHashtagInput | PostHashtagUpdateManyWithWhereWithoutHashtagInput[]
+    deleteMany?: PostHashtagScalarWhereInput | PostHashtagScalarWhereInput[]
+  }
+
+  export type PostHashtagUncheckedUpdateManyWithoutHashtagNestedInput = {
+    create?: XOR<PostHashtagCreateWithoutHashtagInput, PostHashtagUncheckedCreateWithoutHashtagInput> | PostHashtagCreateWithoutHashtagInput[] | PostHashtagUncheckedCreateWithoutHashtagInput[]
+    connectOrCreate?: PostHashtagCreateOrConnectWithoutHashtagInput | PostHashtagCreateOrConnectWithoutHashtagInput[]
+    upsert?: PostHashtagUpsertWithWhereUniqueWithoutHashtagInput | PostHashtagUpsertWithWhereUniqueWithoutHashtagInput[]
+    createMany?: PostHashtagCreateManyHashtagInputEnvelope
+    set?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    disconnect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    delete?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    connect?: PostHashtagWhereUniqueInput | PostHashtagWhereUniqueInput[]
+    update?: PostHashtagUpdateWithWhereUniqueWithoutHashtagInput | PostHashtagUpdateWithWhereUniqueWithoutHashtagInput[]
+    updateMany?: PostHashtagUpdateManyWithWhereWithoutHashtagInput | PostHashtagUpdateManyWithWhereWithoutHashtagInput[]
+    deleteMany?: PostHashtagScalarWhereInput | PostHashtagScalarWhereInput[]
+  }
+
+  export type PostCreateNestedOneWithoutHashtagsInput = {
+    create?: XOR<PostCreateWithoutHashtagsInput, PostUncheckedCreateWithoutHashtagsInput>
+    connectOrCreate?: PostCreateOrConnectWithoutHashtagsInput
+    connect?: PostWhereUniqueInput
+  }
+
+  export type HashtagCreateNestedOneWithoutPostsInput = {
+    create?: XOR<HashtagCreateWithoutPostsInput, HashtagUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: HashtagCreateOrConnectWithoutPostsInput
+    connect?: HashtagWhereUniqueInput
+  }
+
+  export type PostUpdateOneRequiredWithoutHashtagsNestedInput = {
+    create?: XOR<PostCreateWithoutHashtagsInput, PostUncheckedCreateWithoutHashtagsInput>
+    connectOrCreate?: PostCreateOrConnectWithoutHashtagsInput
+    upsert?: PostUpsertWithoutHashtagsInput
+    connect?: PostWhereUniqueInput
+    update?: XOR<XOR<PostUpdateToOneWithWhereWithoutHashtagsInput, PostUpdateWithoutHashtagsInput>, PostUncheckedUpdateWithoutHashtagsInput>
+  }
+
+  export type HashtagUpdateOneRequiredWithoutPostsNestedInput = {
+    create?: XOR<HashtagCreateWithoutPostsInput, HashtagUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: HashtagCreateOrConnectWithoutPostsInput
+    upsert?: HashtagUpsertWithoutPostsInput
+    connect?: HashtagWhereUniqueInput
+    update?: XOR<XOR<HashtagUpdateToOneWithWhereWithoutPostsInput, HashtagUpdateWithoutPostsInput>, HashtagUncheckedUpdateWithoutPostsInput>
   }
 
   export type PostCreateNestedOneWithoutReactionsInput = {
@@ -103025,6 +105801,7 @@ export namespace Prisma {
     reports?: ReportCreateNestedManyWithoutPostInput
     shares?: PostShareCreateNestedManyWithoutPostInput
     reposts?: RepostCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutAuthorInput = {
@@ -103041,6 +105818,7 @@ export namespace Prisma {
     reports?: ReportUncheckedCreateNestedManyWithoutPostInput
     shares?: PostShareUncheckedCreateNestedManyWithoutPostInput
     reposts?: RepostUncheckedCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostCreateOrConnectWithoutAuthorInput = {
@@ -103180,6 +105958,7 @@ export namespace Prisma {
     text: string
     mediaUrl?: string | null
     mediaType?: string | null
+    visibility?: string
     expiresAt: Date | string
     createdAt?: Date | string
     views?: StoryViewCreateNestedManyWithoutStoryInput
@@ -103190,6 +105969,7 @@ export namespace Prisma {
     text: string
     mediaUrl?: string | null
     mediaType?: string | null
+    visibility?: string
     expiresAt: Date | string
     createdAt?: Date | string
     views?: StoryViewUncheckedCreateNestedManyWithoutStoryInput
@@ -105041,6 +107821,7 @@ export namespace Prisma {
     text?: StringFilter<"Story"> | string
     mediaUrl?: StringNullableFilter<"Story"> | string | null
     mediaType?: StringNullableFilter<"Story"> | string | null
+    visibility?: StringFilter<"Story"> | string
     expiresAt?: DateTimeFilter<"Story"> | Date | string
     createdAt?: DateTimeFilter<"Story"> | Date | string
   }
@@ -106613,6 +109394,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -106713,6 +109496,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -106818,6 +109603,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -106918,6 +109705,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -107034,6 +109823,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -107134,6 +109925,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -107245,6 +110038,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -107345,6 +110140,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -107445,6 +110242,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -107545,6 +110344,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -107650,6 +110451,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -107750,6 +110553,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -107866,6 +110671,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -107966,6 +110773,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -108077,6 +110886,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -108177,6 +110988,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -108277,6 +111090,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
     reposts?: RepostCreateNestedManyWithoutAuthorInput
@@ -108377,6 +111192,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     reposts?: RepostUncheckedCreateNestedManyWithoutAuthorInput
@@ -108576,6 +111393,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PostHashtagCreateWithoutPostInput = {
+    hashtag: HashtagCreateNestedOneWithoutPostsInput
+  }
+
+  export type PostHashtagUncheckedCreateWithoutPostInput = {
+    hashtagId: string
+  }
+
+  export type PostHashtagCreateOrConnectWithoutPostInput = {
+    where: PostHashtagWhereUniqueInput
+    create: XOR<PostHashtagCreateWithoutPostInput, PostHashtagUncheckedCreateWithoutPostInput>
+  }
+
+  export type PostHashtagCreateManyPostInputEnvelope = {
+    data: PostHashtagCreateManyPostInput | PostHashtagCreateManyPostInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutPostsInput = {
     update: XOR<UserUpdateWithoutPostsInput, UserUncheckedUpdateWithoutPostsInput>
     create: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
@@ -108623,6 +111458,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     reposts?: RepostUpdateManyWithoutAuthorNestedInput
@@ -108723,6 +111560,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutAuthorNestedInput
@@ -108867,6 +111706,188 @@ export namespace Prisma {
     data: XOR<RepostUpdateManyMutationInput, RepostUncheckedUpdateManyWithoutPostInput>
   }
 
+  export type PostHashtagUpsertWithWhereUniqueWithoutPostInput = {
+    where: PostHashtagWhereUniqueInput
+    update: XOR<PostHashtagUpdateWithoutPostInput, PostHashtagUncheckedUpdateWithoutPostInput>
+    create: XOR<PostHashtagCreateWithoutPostInput, PostHashtagUncheckedCreateWithoutPostInput>
+  }
+
+  export type PostHashtagUpdateWithWhereUniqueWithoutPostInput = {
+    where: PostHashtagWhereUniqueInput
+    data: XOR<PostHashtagUpdateWithoutPostInput, PostHashtagUncheckedUpdateWithoutPostInput>
+  }
+
+  export type PostHashtagUpdateManyWithWhereWithoutPostInput = {
+    where: PostHashtagScalarWhereInput
+    data: XOR<PostHashtagUpdateManyMutationInput, PostHashtagUncheckedUpdateManyWithoutPostInput>
+  }
+
+  export type PostHashtagScalarWhereInput = {
+    AND?: PostHashtagScalarWhereInput | PostHashtagScalarWhereInput[]
+    OR?: PostHashtagScalarWhereInput[]
+    NOT?: PostHashtagScalarWhereInput | PostHashtagScalarWhereInput[]
+    postId?: StringFilter<"PostHashtag"> | string
+    hashtagId?: StringFilter<"PostHashtag"> | string
+  }
+
+  export type PostHashtagCreateWithoutHashtagInput = {
+    post: PostCreateNestedOneWithoutHashtagsInput
+  }
+
+  export type PostHashtagUncheckedCreateWithoutHashtagInput = {
+    postId: string
+  }
+
+  export type PostHashtagCreateOrConnectWithoutHashtagInput = {
+    where: PostHashtagWhereUniqueInput
+    create: XOR<PostHashtagCreateWithoutHashtagInput, PostHashtagUncheckedCreateWithoutHashtagInput>
+  }
+
+  export type PostHashtagCreateManyHashtagInputEnvelope = {
+    data: PostHashtagCreateManyHashtagInput | PostHashtagCreateManyHashtagInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PostHashtagUpsertWithWhereUniqueWithoutHashtagInput = {
+    where: PostHashtagWhereUniqueInput
+    update: XOR<PostHashtagUpdateWithoutHashtagInput, PostHashtagUncheckedUpdateWithoutHashtagInput>
+    create: XOR<PostHashtagCreateWithoutHashtagInput, PostHashtagUncheckedCreateWithoutHashtagInput>
+  }
+
+  export type PostHashtagUpdateWithWhereUniqueWithoutHashtagInput = {
+    where: PostHashtagWhereUniqueInput
+    data: XOR<PostHashtagUpdateWithoutHashtagInput, PostHashtagUncheckedUpdateWithoutHashtagInput>
+  }
+
+  export type PostHashtagUpdateManyWithWhereWithoutHashtagInput = {
+    where: PostHashtagScalarWhereInput
+    data: XOR<PostHashtagUpdateManyMutationInput, PostHashtagUncheckedUpdateManyWithoutHashtagInput>
+  }
+
+  export type PostCreateWithoutHashtagsInput = {
+    id?: string
+    text: string
+    imageUrl?: string | null
+    mediaUrl?: string | null
+    mediaType?: string | null
+    visibility?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    author: UserCreateNestedOneWithoutPostsInput
+    reactions?: PostReactionCreateNestedManyWithoutPostInput
+    comments?: CommentCreateNestedManyWithoutPostInput
+    reports?: ReportCreateNestedManyWithoutPostInput
+    shares?: PostShareCreateNestedManyWithoutPostInput
+    reposts?: RepostCreateNestedManyWithoutPostInput
+  }
+
+  export type PostUncheckedCreateWithoutHashtagsInput = {
+    id?: string
+    authorId: string
+    text: string
+    imageUrl?: string | null
+    mediaUrl?: string | null
+    mediaType?: string | null
+    visibility?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    reactions?: PostReactionUncheckedCreateNestedManyWithoutPostInput
+    comments?: CommentUncheckedCreateNestedManyWithoutPostInput
+    reports?: ReportUncheckedCreateNestedManyWithoutPostInput
+    shares?: PostShareUncheckedCreateNestedManyWithoutPostInput
+    reposts?: RepostUncheckedCreateNestedManyWithoutPostInput
+  }
+
+  export type PostCreateOrConnectWithoutHashtagsInput = {
+    where: PostWhereUniqueInput
+    create: XOR<PostCreateWithoutHashtagsInput, PostUncheckedCreateWithoutHashtagsInput>
+  }
+
+  export type HashtagCreateWithoutPostsInput = {
+    id?: string
+    tag: string
+    createdAt?: Date | string
+  }
+
+  export type HashtagUncheckedCreateWithoutPostsInput = {
+    id?: string
+    tag: string
+    createdAt?: Date | string
+  }
+
+  export type HashtagCreateOrConnectWithoutPostsInput = {
+    where: HashtagWhereUniqueInput
+    create: XOR<HashtagCreateWithoutPostsInput, HashtagUncheckedCreateWithoutPostsInput>
+  }
+
+  export type PostUpsertWithoutHashtagsInput = {
+    update: XOR<PostUpdateWithoutHashtagsInput, PostUncheckedUpdateWithoutHashtagsInput>
+    create: XOR<PostCreateWithoutHashtagsInput, PostUncheckedCreateWithoutHashtagsInput>
+    where?: PostWhereInput
+  }
+
+  export type PostUpdateToOneWithWhereWithoutHashtagsInput = {
+    where?: PostWhereInput
+    data: XOR<PostUpdateWithoutHashtagsInput, PostUncheckedUpdateWithoutHashtagsInput>
+  }
+
+  export type PostUpdateWithoutHashtagsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UserUpdateOneRequiredWithoutPostsNestedInput
+    reactions?: PostReactionUpdateManyWithoutPostNestedInput
+    comments?: CommentUpdateManyWithoutPostNestedInput
+    reports?: ReportUpdateManyWithoutPostNestedInput
+    shares?: PostShareUpdateManyWithoutPostNestedInput
+    reposts?: RepostUpdateManyWithoutPostNestedInput
+  }
+
+  export type PostUncheckedUpdateWithoutHashtagsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reactions?: PostReactionUncheckedUpdateManyWithoutPostNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
+    reports?: ReportUncheckedUpdateManyWithoutPostNestedInput
+    shares?: PostShareUncheckedUpdateManyWithoutPostNestedInput
+    reposts?: RepostUncheckedUpdateManyWithoutPostNestedInput
+  }
+
+  export type HashtagUpsertWithoutPostsInput = {
+    update: XOR<HashtagUpdateWithoutPostsInput, HashtagUncheckedUpdateWithoutPostsInput>
+    create: XOR<HashtagCreateWithoutPostsInput, HashtagUncheckedCreateWithoutPostsInput>
+    where?: HashtagWhereInput
+  }
+
+  export type HashtagUpdateToOneWithWhereWithoutPostsInput = {
+    where?: HashtagWhereInput
+    data: XOR<HashtagUpdateWithoutPostsInput, HashtagUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type HashtagUpdateWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tag?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HashtagUncheckedUpdateWithoutPostsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tag?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type PostCreateWithoutReactionsInput = {
     id?: string
     text: string
@@ -108881,6 +111902,7 @@ export namespace Prisma {
     reports?: ReportCreateNestedManyWithoutPostInput
     shares?: PostShareCreateNestedManyWithoutPostInput
     reposts?: RepostCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutReactionsInput = {
@@ -108897,6 +111919,7 @@ export namespace Prisma {
     reports?: ReportUncheckedCreateNestedManyWithoutPostInput
     shares?: PostShareUncheckedCreateNestedManyWithoutPostInput
     reposts?: RepostUncheckedCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostCreateOrConnectWithoutReactionsInput = {
@@ -108940,6 +111963,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -109040,6 +112065,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -109134,6 +112161,7 @@ export namespace Prisma {
     reports?: ReportUpdateManyWithoutPostNestedInput
     shares?: PostShareUpdateManyWithoutPostNestedInput
     reposts?: RepostUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutReactionsInput = {
@@ -109150,6 +112178,7 @@ export namespace Prisma {
     reports?: ReportUncheckedUpdateManyWithoutPostNestedInput
     shares?: PostShareUncheckedUpdateManyWithoutPostNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type UserUpsertWithoutReactionsInput = {
@@ -109199,6 +112228,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -109299,6 +112330,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -109377,6 +112410,7 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutPostInput
     reports?: ReportCreateNestedManyWithoutPostInput
     reposts?: RepostCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutSharesInput = {
@@ -109393,6 +112427,7 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
     reports?: ReportUncheckedCreateNestedManyWithoutPostInput
     reposts?: RepostUncheckedCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostCreateOrConnectWithoutSharesInput = {
@@ -109436,6 +112471,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -109536,6 +112573,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -109630,6 +112669,7 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutPostNestedInput
     reports?: ReportUpdateManyWithoutPostNestedInput
     reposts?: RepostUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutSharesInput = {
@@ -109646,6 +112686,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
     reports?: ReportUncheckedUpdateManyWithoutPostNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type UserUpsertWithoutSharesInput = {
@@ -109695,6 +112736,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -109795,6 +112838,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -109873,6 +112918,7 @@ export namespace Prisma {
     reports?: ReportCreateNestedManyWithoutPostInput
     shares?: PostShareCreateNestedManyWithoutPostInput
     reposts?: RepostCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutCommentsInput = {
@@ -109889,6 +112935,7 @@ export namespace Prisma {
     reports?: ReportUncheckedCreateNestedManyWithoutPostInput
     shares?: PostShareUncheckedCreateNestedManyWithoutPostInput
     reposts?: RepostUncheckedCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostCreateOrConnectWithoutCommentsInput = {
@@ -109932,6 +112979,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     reposts?: RepostCreateNestedManyWithoutAuthorInput
@@ -110032,6 +113081,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     reposts?: RepostUncheckedCreateNestedManyWithoutAuthorInput
@@ -110181,6 +113232,7 @@ export namespace Prisma {
     reports?: ReportUpdateManyWithoutPostNestedInput
     shares?: PostShareUpdateManyWithoutPostNestedInput
     reposts?: RepostUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutCommentsInput = {
@@ -110197,6 +113249,7 @@ export namespace Prisma {
     reports?: ReportUncheckedUpdateManyWithoutPostNestedInput
     shares?: PostShareUncheckedUpdateManyWithoutPostNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type UserUpsertWithoutCommentsInput = {
@@ -110246,6 +113299,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     reposts?: RepostUpdateManyWithoutAuthorNestedInput
@@ -110346,6 +113401,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutAuthorNestedInput
@@ -110471,6 +113528,7 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutPostInput
     reports?: ReportCreateNestedManyWithoutPostInput
     shares?: PostShareCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutRepostsInput = {
@@ -110487,6 +113545,7 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
     reports?: ReportUncheckedCreateNestedManyWithoutPostInput
     shares?: PostShareUncheckedCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostCreateOrConnectWithoutRepostsInput = {
@@ -110530,6 +113589,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -110630,6 +113691,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -110724,6 +113787,7 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutPostNestedInput
     reports?: ReportUpdateManyWithoutPostNestedInput
     shares?: PostShareUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutRepostsInput = {
@@ -110740,6 +113804,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
     reports?: ReportUncheckedUpdateManyWithoutPostNestedInput
     shares?: PostShareUncheckedUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type UserUpsertWithoutRepostsInput = {
@@ -110789,6 +113854,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -110889,6 +113956,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -110989,6 +114058,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -111089,6 +114160,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -111227,6 +114300,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -111327,6 +114402,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -111412,6 +114489,7 @@ export namespace Prisma {
     text: string
     mediaUrl?: string | null
     mediaType?: string | null
+    visibility?: string
     expiresAt: Date | string
     createdAt?: Date | string
     author: UserCreateNestedOneWithoutStoriesInput
@@ -111423,6 +114501,7 @@ export namespace Prisma {
     text: string
     mediaUrl?: string | null
     mediaType?: string | null
+    visibility?: string
     expiresAt: Date | string
     createdAt?: Date | string
   }
@@ -111468,6 +114547,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -111568,6 +114649,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -111653,6 +114736,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
     mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: UserUpdateOneRequiredWithoutStoriesNestedInput
@@ -111664,6 +114748,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
     mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -111715,6 +114800,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -111815,6 +114902,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -112018,6 +115107,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -112118,6 +115209,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -112259,6 +115352,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -112359,6 +115454,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -112478,6 +115575,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -112578,6 +115677,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -112719,6 +115820,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -112819,6 +115922,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -112919,6 +116024,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -113019,6 +116126,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -113124,6 +116233,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -113224,6 +116335,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -113340,6 +116453,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -113440,6 +116555,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -113551,6 +116668,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -113651,6 +116770,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -113751,6 +116872,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -113851,6 +116974,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -113956,6 +117081,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -114056,6 +117183,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -114139,6 +117268,7 @@ export namespace Prisma {
     comments?: CommentCreateNestedManyWithoutPostInput
     shares?: PostShareCreateNestedManyWithoutPostInput
     reposts?: RepostCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutReportsInput = {
@@ -114155,6 +117285,7 @@ export namespace Prisma {
     comments?: CommentUncheckedCreateNestedManyWithoutPostInput
     shares?: PostShareUncheckedCreateNestedManyWithoutPostInput
     reposts?: RepostUncheckedCreateNestedManyWithoutPostInput
+    hashtags?: PostHashtagUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostCreateOrConnectWithoutReportsInput = {
@@ -114209,6 +117340,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -114309,6 +117442,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -114420,6 +117555,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -114520,6 +117657,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -114609,6 +117748,7 @@ export namespace Prisma {
     comments?: CommentUpdateManyWithoutPostNestedInput
     shares?: PostShareUpdateManyWithoutPostNestedInput
     reposts?: RepostUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutReportsInput = {
@@ -114625,6 +117765,7 @@ export namespace Prisma {
     comments?: CommentUncheckedUpdateManyWithoutPostNestedInput
     shares?: PostShareUncheckedUpdateManyWithoutPostNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type OfficialFeedItemCreateWithoutSourceInput = {
@@ -115012,6 +118153,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -115112,6 +118255,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -115277,6 +118422,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -115377,6 +118524,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -115520,6 +118669,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -115620,6 +118771,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -115785,6 +118938,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -115885,6 +119040,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -116028,6 +119185,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -116128,6 +119287,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -116293,6 +119454,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -116393,6 +119556,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -116684,6 +119849,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
     reposts?: RepostCreateNestedManyWithoutAuthorInput
@@ -116784,6 +119951,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
     reposts?: RepostUncheckedCreateNestedManyWithoutAuthorInput
@@ -116933,6 +120102,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
     reposts?: RepostUpdateManyWithoutAuthorNestedInput
@@ -117033,6 +120204,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutAuthorNestedInput
@@ -117133,6 +120306,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -117233,6 +120408,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -117401,6 +120578,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -117501,6 +120680,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -117662,6 +120843,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -117762,6 +120945,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -117913,6 +121098,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -118013,6 +121200,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -118142,6 +121331,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -118242,6 +121433,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -118393,6 +121586,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -118493,6 +121688,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -118593,6 +121790,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -118693,6 +121892,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -118798,6 +121999,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -118898,6 +122101,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -119014,6 +122219,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -119114,6 +122321,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -119225,6 +122434,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -119325,6 +122536,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -119425,6 +122638,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -119525,6 +122740,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -119641,6 +122858,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -119741,6 +122960,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -119841,6 +123062,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -119941,6 +123164,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -120046,6 +123271,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -120146,6 +123373,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -120262,6 +123491,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -120362,6 +123593,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -120473,6 +123706,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -120573,6 +123808,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -120673,6 +123910,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -120773,6 +124012,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -120913,6 +124154,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -121013,6 +124256,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -121160,6 +124405,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -121260,6 +124507,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -121413,6 +124662,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -121513,6 +124764,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -121613,6 +124866,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -121713,6 +124968,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -121829,6 +125086,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -121929,6 +125188,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -122029,6 +125290,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -122129,6 +125392,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -122269,6 +125534,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -122369,6 +125636,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -122516,6 +125785,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -122616,6 +125887,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -122769,6 +126042,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -122869,6 +126144,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -122969,6 +126246,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -123069,6 +126348,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -123243,6 +126524,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -123343,6 +126626,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -123510,6 +126795,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -123610,6 +126897,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -123767,6 +127056,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -123867,6 +127158,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -124002,6 +127295,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -124102,6 +127397,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -124207,6 +127504,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -124307,6 +127606,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -124464,6 +127765,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -124564,6 +127867,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -124675,6 +127980,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -124775,6 +128082,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -124875,6 +128184,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -124975,6 +128286,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -125091,6 +128404,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -125191,6 +128506,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -125291,6 +128608,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -125391,6 +128710,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -125507,6 +128828,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -125607,6 +128930,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -125707,6 +129032,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -125807,6 +129134,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -125923,6 +129252,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -126023,6 +129354,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -126123,6 +129456,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -126223,6 +129558,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -126339,6 +129676,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -126439,6 +129778,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -126539,6 +129880,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -126639,6 +129982,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -126755,6 +130100,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -126855,6 +130202,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -126955,6 +130304,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -127055,6 +130406,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -127171,6 +130524,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -127271,6 +130626,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -127371,6 +130728,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -127471,6 +130830,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -127587,6 +130948,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -127687,6 +131050,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -127787,6 +131152,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -127887,6 +131254,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -128003,6 +131372,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -128103,6 +131474,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -128203,6 +131576,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -128303,6 +131678,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -128419,6 +131796,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -128519,6 +131898,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -128619,6 +132000,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -128719,6 +132102,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -128835,6 +132220,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -128935,6 +132322,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -129035,6 +132424,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -129135,6 +132526,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -129251,6 +132644,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -129351,6 +132746,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -129451,6 +132848,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -129551,6 +132950,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -129667,6 +133068,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -129767,6 +133170,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -129867,6 +133272,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -129967,6 +133374,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -130083,6 +133492,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -130183,6 +133594,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -130283,6 +133696,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -130383,6 +133798,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -130488,6 +133905,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -130588,6 +134007,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -130704,6 +134125,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -130804,6 +134227,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -130915,6 +134340,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -131015,6 +134442,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -131115,6 +134544,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -131215,6 +134646,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -131331,6 +134764,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -131431,6 +134866,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -131531,6 +134968,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -131631,6 +135070,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -131810,6 +135251,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -131910,6 +135353,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -132061,6 +135506,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -132161,6 +135608,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -132277,6 +135726,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -132377,6 +135828,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -132527,6 +135980,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -132627,6 +136082,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -132770,6 +136227,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -132870,6 +136329,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -133003,6 +136464,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -133103,6 +136566,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -133208,6 +136673,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -133308,6 +136775,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -133424,6 +136893,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -133524,6 +136995,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -133635,6 +137108,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -133735,6 +137210,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -133835,6 +137312,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -133935,6 +137414,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -134051,6 +137532,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -134151,6 +137634,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -134251,6 +137736,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -134351,6 +137838,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -134467,6 +137956,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -134567,6 +138058,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -134667,6 +138160,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -134767,6 +138262,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -134905,6 +138402,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -135005,6 +138504,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -135148,6 +138649,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutAuthorInput
@@ -135248,6 +138751,8 @@ export namespace Prisma {
     profileBoostedUntil?: Date | string | null
     coinBalance?: number
     walletBonusAwardedAt?: Date | string | null
+    profileVisibility?: string
+    lastProfileCompletionAwardAt?: Date | string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     companyFollows?: CompanyFollowUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutAuthorInput
@@ -135397,6 +138902,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutAuthorNestedInput
@@ -135497,6 +139004,8 @@ export namespace Prisma {
     profileBoostedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     coinBalance?: IntFieldUpdateOperationsInput | number
     walletBonusAwardedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    profileVisibility?: StringFieldUpdateOperationsInput | string
+    lastProfileCompletionAwardAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     companyFollows?: CompanyFollowUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAuthorNestedInput
@@ -135612,6 +139121,7 @@ export namespace Prisma {
     text: string
     mediaUrl?: string | null
     mediaType?: string | null
+    visibility?: string
     expiresAt: Date | string
     createdAt?: Date | string
   }
@@ -136154,6 +139664,7 @@ export namespace Prisma {
     reports?: ReportUpdateManyWithoutPostNestedInput
     shares?: PostShareUpdateManyWithoutPostNestedInput
     reposts?: RepostUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutAuthorInput = {
@@ -136170,6 +139681,7 @@ export namespace Prisma {
     reports?: ReportUncheckedUpdateManyWithoutPostNestedInput
     shares?: PostShareUncheckedUpdateManyWithoutPostNestedInput
     reposts?: RepostUncheckedUpdateManyWithoutPostNestedInput
+    hashtags?: PostHashtagUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateManyWithoutAuthorInput = {
@@ -136295,6 +139807,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
     mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: StoryViewUpdateManyWithoutStoryNestedInput
@@ -136305,6 +139818,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
     mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     views?: StoryViewUncheckedUpdateManyWithoutStoryNestedInput
@@ -136315,6 +139829,7 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     mediaUrl?: NullableStringFieldUpdateOperationsInput | string | null
     mediaType?: NullableStringFieldUpdateOperationsInput | string | null
+    visibility?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -137946,6 +141461,10 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type PostHashtagCreateManyPostInput = {
+    hashtagId: string
+  }
+
   export type PostReactionUpdateWithoutPostInput = {
     id?: StringFieldUpdateOperationsInput | string
     type?: EnumReactionTypeFieldUpdateOperationsInput | $Enums.ReactionType
@@ -138063,6 +141582,34 @@ export namespace Prisma {
     authorId?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PostHashtagUpdateWithoutPostInput = {
+    hashtag?: HashtagUpdateOneRequiredWithoutPostsNestedInput
+  }
+
+  export type PostHashtagUncheckedUpdateWithoutPostInput = {
+    hashtagId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PostHashtagUncheckedUpdateManyWithoutPostInput = {
+    hashtagId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PostHashtagCreateManyHashtagInput = {
+    postId: string
+  }
+
+  export type PostHashtagUpdateWithoutHashtagInput = {
+    post?: PostUpdateOneRequiredWithoutHashtagsNestedInput
+  }
+
+  export type PostHashtagUncheckedUpdateWithoutHashtagInput = {
+    postId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PostHashtagUncheckedUpdateManyWithoutHashtagInput = {
+    postId?: StringFieldUpdateOperationsInput | string
   }
 
   export type CommentCreateManyParentInput = {

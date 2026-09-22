@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { bad, created, serverError } from "@/lib/http";
 import { cleanText, validEmail, validUsername } from "@/lib/validation";
-import { issueVerificationCodes } from "@/lib/verification";
 import { awardWelcomeBonusIfNeeded } from "@/lib/wallet";
 import { rateLimit } from "@/lib/rate-limit";
 
@@ -31,9 +30,10 @@ export async function POST(req: NextRequest) {
       return bad("Username is already taken.", 409);
     }
     const passwordHash = await bcrypt.hash(password, 12);
-    const user = await prisma.user.create({ data: { email, username, name, passwordHash, bio: "", dateOfBirth, gender, verificationRequired: true } });
+    const user = await prisma.user.create({ data: { email, username, name, passwordHash, bio: "", dateOfBirth, gender, verificationRequired: false } });
+    const sourceMap:any={SCHOOL:'SCHOOL',FRIEND:'FRIEND',GOOGLE:'GOOGLE',TIKTOK:'TIKTOK',INSTAGRAM:'INSTAGRAM',TWITTER:'TWITTER',AI:'AI',OTHER:'OTHER'};
+    await prisma.onboardingSurvey.create({data:{userId:user.id,source:sourceMap[b.source]||'OTHER',otherText:cleanText(b.sourceOther,160)||null}});
     const wallet = await awardWelcomeBonusIfNeeded(user.id);
-    const delivery = await issueVerificationCodes(user.id, email, "", name);
-    return created({ userId: user.id, next: "/verify-account", delivery, wallet, message: "A verification code has been sent to your email." });
+    return created({ userId: user.id, next: "/login", wallet, message: "Account created successfully." });
   } catch { return serverError(); }
 }

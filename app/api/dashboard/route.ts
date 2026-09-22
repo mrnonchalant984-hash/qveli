@@ -42,16 +42,13 @@ export async function GET(){
       }),
       prisma.user.findMany({
         where:{
-          id:{not:me.id},
-          emailVerifiedAt:{not:null},
-          blocksMade:{none:{blockedId:me.id}},
-          blocksReceived:{none:{blockerId:me.id}},
-          friendRequestsSent:{none:{addresseeId:me.id}},
-          friendRequestsReceived:{none:{requesterId:me.id}}
+          id:{not:me.id}, emailVerifiedAt:{not:null},
+          blocksMade:{none:{blockedId:me.id}}, blocksReceived:{none:{blockerId:me.id}},
+          friendRequestsSent:{none:{addresseeId:me.id}}, friendRequestsReceived:{none:{requesterId:me.id}},
+          OR:[{school:me.school||undefined},{workplace:me.workplace||undefined},{currentCity:me.currentCity||undefined},{hometown:me.hometown||undefined},{education:me.education||undefined}]
         },
-        orderBy:[{verified:'desc'},{createdAt:'desc'}],
-        take:6,
-        select:personSelect
+        take:30,
+        select:{...personSelect,school:true,workplace:true,currentCity:true,hometown:true,education:true}
       }),
       prisma.post.findMany({where:{visibility:'PUBLIC',author:{emailVerifiedAt:{not:null}}},orderBy:{createdAt:'desc'},take:100,select:{text:true}})
     ]);
@@ -68,6 +65,9 @@ export async function GET(){
       .slice(0,5)
       .map(([tag,count])=>({tag, count}));
 
+    const meSignals=[me.school,me.workplace,me.currentCity,me.hometown,me.education].filter(Boolean).map(x=>String(x).toLowerCase());
+    const rankedSuggestions=(suggestedPeople as any[]).map((u:any)=>({u,score:[u.school,u.workplace,u.currentCity,u.hometown,u.education].filter(Boolean).reduce((n,x)=>n+(meSignals.includes(String(x).toLowerCase())?1:0),0)})).sort((a,b)=>b.score-a.score).slice(0,6).map(x=>x.u);
+
     const friendContacts = friends
       .map((f:any)=>f.requesterId===me.id?f.addressee:f.requester)
       .filter((u:any)=>u.id!==me.id);
@@ -79,7 +79,7 @@ export async function GET(){
       incomingRequests: incomingRequests.map((r:any)=>({...r.requester,requestId:r.id})),
       onlineContacts,
       offlineContacts,
-      suggestedPeople,
+      suggestedPeople:rankedSuggestions,
       trending
     },{headers:{'Cache-Control':'no-store'}});
   } catch {

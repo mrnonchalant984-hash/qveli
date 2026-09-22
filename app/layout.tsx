@@ -5,6 +5,8 @@ import LaunchSplash from '@/components/LaunchSplash';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Link from 'next/link';
+import ThemeBridge from '@/components/ThemeBridge';
+import QevliAnalyticsTracker from '@/components/QevliAnalyticsTracker';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -18,9 +20,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body><ThemeBridge />
         <ServiceWorker />
         <LaunchSplash />
+        <QevliAnalyticsTracker />
         {children}
         <Link href="/feedback" className="feedbackFloat">💡 Feedback</Link>
         <Analytics />

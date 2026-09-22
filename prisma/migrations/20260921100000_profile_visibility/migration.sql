@@ -1,0 +1,2 @@
+ALTER TABLE "User" ADD COLUMN "profileVisibility" TEXT NOT NULL DEFAULT 'PUBLIC';
+ALTER TABLE "User" ADD COLUMN "lastProfileCompletionAwardAt" TIMESTAMP(3);

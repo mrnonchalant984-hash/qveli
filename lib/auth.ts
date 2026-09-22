@@ -7,13 +7,13 @@ function getSecret(){ const raw=process.env.AUTH_SECRET; if(process.env.NODE_ENV
 const COOKIE = "qevli_session";
 const SESSION_DAYS = 7;
 
-export async function createSession(userId: string) {
+export async function createSession(userId: string, remember = false) {
   const sessionId = crypto.randomUUID();
   const token = await new SignJWT({ userId, sid: sessionId })
-    .setProtectedHeader({ alg: "HS256" }).setIssuedAt().setExpirationTime(`${SESSION_DAYS}d`).sign(getSecret());
+    .setProtectedHeader({ alg: "HS256" }).setIssuedAt().setExpirationTime(`${remember ? 30 : SESSION_DAYS}d`).sign(getSecret());
   const sessionHash = crypto.createHash("sha256").update(token).digest("hex");
   await prisma.userSession.create({ data: { id: sessionId, userId, sessionHash, userAgent: "qevli-web", deviceName: "Web browser" } });
-  (await cookies()).set(COOKIE, token, { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 60 * 60 * 24 * SESSION_DAYS });
+  (await cookies()).set(COOKIE, token, { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 60 * 60 * 24 * (remember ? 30 : SESSION_DAYS) });
 }
 
 export async function clearSession() {
@@ -55,5 +55,5 @@ export async function requireUser() {
 export function sessionUser(user:any){ return {...publicUser(user), role:user.role, emailVerifiedAt:user.emailVerifiedAt, twoFactorEnabled:user.twoFactorEnabled}; }
 
 export function publicUser(user: any) {
-  return { id:user.id, username:user.username, name:user.name, bio:user.bio, school:user.school, schoolUrl:user.schoolUrl, workplace:user.workplace, workplaceUrl:user.workplaceUrl, jobTitle:user.jobTitle, currentCity:user.currentCity, hometown:user.hometown, website:user.website, education:user.education, interests:user.interests, avatarUrl:user.avatarUrl, coverUrl:user.coverUrl, professionalMode:user.professionalMode, verified:user.verified, verifiedAt:user.verifiedAt, isProfileBoosted:!!user.profileBoostedUntil && new Date(user.profileBoostedUntil).getTime()>Date.now(), createdAt:user.createdAt };
+  return { id:user.id, username:user.username, name:user.name, bio:user.bio, school:user.school, schoolUrl:user.schoolUrl, workplace:user.workplace, workplaceUrl:user.workplaceUrl, jobTitle:user.jobTitle, currentCity:user.currentCity, hometown:user.hometown, website:user.website, education:user.education, interests:user.interests, avatarUrl:user.avatarUrl, coverUrl:user.coverUrl, professionalMode:user.professionalMode, verified:user.verified, verifiedAt:user.verifiedAt, isProfileBoosted:!!user.profileBoostedUntil && new Date(user.profileBoostedUntil).getTime()>Date.now(), profileVisibility:user.profileVisibility||'PUBLIC', emailVerifiedAt:user.emailVerifiedAt||null, coinBalance:user.coinBalance||0, createdAt:user.createdAt };
 }

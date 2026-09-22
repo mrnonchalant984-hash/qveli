@@ -77,41 +77,43 @@ enum FeatureRequestStatus {
 }
 
 model User {
-  id                   String    @id @default(cuid())
-  email                String    @unique
-  username             String    @unique
-  passwordHash         String
-  name                 String
-  bio                  String    @default("")
-  school               String?
-  schoolUrl            String?
-  workplace            String?
-  workplaceUrl         String?
-  jobTitle             String?
-  currentCity          String?
-  hometown             String?
-  website              String?
-  education            String?
-  interests            String?
-  avatarUrl            String?
-  coverUrl             String?
-  role                 UserRole  @default(USER)
-  createdAt            DateTime  @default(now())
-  updatedAt            DateTime  @updatedAt
-  lastSeenAt           DateTime?
-  emailVerifiedAt      DateTime?
-  phoneNumber          String?   @unique
-  phoneVerifiedAt      DateTime?
-  dateOfBirth          DateTime?
-  gender               String?
-  verificationRequired Boolean   @default(false)
-  twoFactorEnabled     Boolean   @default(false)
-  professionalMode     Boolean   @default(false)
-  verified             Boolean   @default(false)
-  verifiedAt           DateTime?
-  profileBoostedUntil  DateTime?
-  coinBalance          Int       @default(0)
-  walletBonusAwardedAt DateTime?
+  id                           String    @id @default(cuid())
+  email                        String    @unique
+  username                     String    @unique
+  passwordHash                 String
+  name                         String
+  bio                          String    @default("")
+  school                       String?
+  schoolUrl                    String?
+  workplace                    String?
+  workplaceUrl                 String?
+  jobTitle                     String?
+  currentCity                  String?
+  hometown                     String?
+  website                      String?
+  education                    String?
+  interests                    String?
+  avatarUrl                    String?
+  coverUrl                     String?
+  role                         UserRole  @default(USER)
+  createdAt                    DateTime  @default(now())
+  updatedAt                    DateTime  @updatedAt
+  lastSeenAt                   DateTime?
+  emailVerifiedAt              DateTime?
+  phoneNumber                  String?   @unique
+  phoneVerifiedAt              DateTime?
+  dateOfBirth                  DateTime?
+  gender                       String?
+  verificationRequired         Boolean   @default(false)
+  twoFactorEnabled             Boolean   @default(false)
+  professionalMode             Boolean   @default(false)
+  verified                     Boolean   @default(false)
+  verifiedAt                   DateTime?
+  profileBoostedUntil          DateTime?
+  coinBalance                  Int       @default(0)
+  walletBonusAwardedAt         DateTime?
+  profileVisibility            String    @default("PUBLIC")
+  lastProfileCompletionAwardAt DateTime?
 
   posts                   Post[]
   companyFollows          CompanyFollow[]
@@ -217,9 +219,27 @@ model Post {
   reports    Report[]
   shares     PostShare[]
   reposts    Repost[]       @relation("originalPost")
+  hashtags   PostHashtag[]
 
   @@index([authorId, createdAt])
   @@index([createdAt])
+}
+
+model Hashtag {
+  id        String        @id @default(cuid())
+  tag       String        @unique
+  createdAt DateTime      @default(now())
+  posts     PostHashtag[]
+}
+
+model PostHashtag {
+  postId    String
+  hashtagId String
+  post      Post    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  hashtag   Hashtag @relation(fields: [hashtagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, hashtagId])
+  @@index([hashtagId])
 }
 
 model PostReaction {
@@ -279,15 +299,16 @@ model Repost {
 }
 
 model Story {
-  id        String      @id @default(cuid())
-  authorId  String
-  text      String      @db.Text
-  mediaUrl  String?
-  mediaType String?
-  expiresAt DateTime
-  createdAt DateTime    @default(now())
-  author    User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  views     StoryView[]
+  id         String      @id @default(cuid())
+  authorId   String
+  text       String      @db.Text
+  mediaUrl   String?
+  mediaType  String?
+  visibility String      @default("PUBLIC")
+  expiresAt  DateTime
+  createdAt  DateTime    @default(now())
+  author     User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  views      StoryView[]
 
   @@index([expiresAt])
 }

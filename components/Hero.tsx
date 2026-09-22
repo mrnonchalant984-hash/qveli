@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="v1HeroInner">
         <div className="v1HeroCopy">
           <div className="eyebrow">Welcome to Qevli</div>
-          <h1>Social built for <span>real connection.</span></h1>
+          <h1>Social built for <span>Real connection.</span></h1>
           <p>
             Connect with people, share what matters, and discover communities in a clean,
             simple social space made for everyday life.
